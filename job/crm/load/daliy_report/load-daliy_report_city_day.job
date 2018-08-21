@@ -1,0 +1,4 @@
+type=command
+command={cmd}
+
+sql.dir=daliy_report_city_day

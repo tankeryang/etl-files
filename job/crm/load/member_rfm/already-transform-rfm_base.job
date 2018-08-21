@@ -1,4 +1,4 @@
 type=flow
 flow.name=complete-transform-rfm_base
 
-dependencies=already-extract-to-ods_crm
+dependencies=already-transform-base

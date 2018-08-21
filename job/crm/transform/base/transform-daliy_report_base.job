@@ -1,0 +1,7 @@
+type=command
+command=${cmd}
+
+sql.dir=daliy_report_base
+sql.names=loop
+
+dependencies=transform-member_first_order

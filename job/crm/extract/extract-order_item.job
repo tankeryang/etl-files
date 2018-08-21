@@ -3,6 +3,6 @@ command=${cmd}
 
 sql.url.prefix=${ods.sql.url.prefix}
 sql.dir=order_item
-sql.names=increment
+sql.names=loop
 
 dependencies=extract-member_info,extract-member_grade_log

@@ -1,4 +1,4 @@
 type=command
 command=echo complete-extract-to-ods_crm
 
-dependencies=extract-member_type_label
+dependencies=extract-store_info

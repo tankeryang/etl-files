@@ -1,4 +1,4 @@
 type=flow
 flow.name=complete-transform-daliy_report
 
-dependencies=already-extract-to-ods_crm
+dependencies=already-transform-base
