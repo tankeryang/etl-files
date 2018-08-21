@@ -1,4 +1,4 @@
-INSERT INTO ods_crm.member_type_label
+INSERT INTO cdm_crm.member_type_label
     SELECT
         '全国',
         t1.sales_area,

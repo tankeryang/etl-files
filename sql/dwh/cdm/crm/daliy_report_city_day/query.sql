@@ -86,14 +86,14 @@
             0
         ) AS DECIMAL(18, 2))  AS order_amount_per_member
     FROM
-        ods_crm.daliy_report_base drb
+        cdm_crm.daliy_report_base drb
     RIGHT JOIN (
         SELECT DISTINCT
             sales_area,
             city,
             member_type
         FROM
-            ods_crm.member_type_label
+            cdm_crm.member_type_label
     ) mtl
     ON
         drb.city = mtl.city
@@ -105,7 +105,7 @@
             drb.member_type,
             cast(sum(drb.order_fact_amount) AS DECIMAL(38, 2))  sales_amount
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             date(drb.order_deal_time) <= date({end_date})
             AND date(drb.order_deal_time) >= date({start_date})
@@ -124,7 +124,7 @@
             drb.member_type,
             cast(sum(drb.order_amount) AS DECIMAL(38, 2))  retail_amount
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             date(drb.order_deal_time) <= date({end_date})
             AND date(drb.order_deal_time) >= date({start_date})
@@ -143,7 +143,7 @@
             drb.member_type,
             cast(count(distinct drb.outer_order_no) AS INTEGER)  order_amount
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             date(drb.order_deal_time) <= date({end_date})
             AND date(drb.order_deal_time) >= date({start_date})
@@ -161,7 +161,7 @@
             drb.city,
             cast(sum(drb.order_fact_amount) AS DECIMAL(18, 2)) total_order_fact_amount
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             date(drb.order_deal_time) <= date({end_date})
             AND date(drb.order_deal_time) >= date({start_date})
@@ -177,7 +177,7 @@
             drb.city,
             cast(sum(drb.order_fact_amount) AS DECIMAL(18, 2)) total_order_fact_amount
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             date(drb.order_deal_time) <= date({end_date})
             AND date(drb.order_deal_time) >= date({start_date})
@@ -195,7 +195,7 @@
             drb.member_type,
             cast(sum(drb.order_fact_amount) AS DECIMAL(38, 2))  last_year_same_time_sales_amount
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             date(drb.order_deal_time) <= date(date({end_date}) - interval '1' year)
             AND date(drb.order_deal_time) >= date(date({start_date}) -interval '1' year)
@@ -214,7 +214,7 @@
             drb.member_type,
             cast(sum(drb.order_item_quantity) AS INTEGER)  sales_item_quantity
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             date(drb.order_deal_time) <= date({end_date})
             AND date(drb.order_deal_time) >= date({start_date})
@@ -233,7 +233,7 @@
             drb.member_type,
             cast(count(distinct drb.member_no) AS INTEGER)  member_amount
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             date(drb.order_deal_time) <= date({end_date})
             AND date(drb.order_deal_time) >= date({start_date})
@@ -252,7 +252,7 @@
             drb.member_type,
             count(distinct drb.member_no)  past_12_month_remain_member_amount
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             drb.member_type IN ('普通会员', 'VIP会员')
             date(drb.order_deal_time) <= date(date({start_date}) - interval '1' day)
@@ -272,7 +272,7 @@
             drb.member_type,
             cast(count(distinct drb.member_no) AS INTEGER)  new_vip_member_amount
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             drb.member_type = '新会员'
             AND date(drb.member_register_time) = date(drb.order_deal_time)
@@ -294,7 +294,7 @@
             drb.member_type,
             cast(count(distinct drb.member_no) AS INTEGER)  new_normal_member_amount
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         
         WHERE
             drb.member_type = '新会员'
@@ -316,7 +316,7 @@
             drb.member_type,
             cast(count(distinct drb.member_no) AS INTEGER)  upgraded_member_amount
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             drb.member_type IN ('新会员', '普通会员')
             AND date(drb.last_grade_change_time) = date(drb.order_deal_time)
@@ -336,7 +336,7 @@
             drb.city,
             cast(count(distinct drb.store_code) AS INTEGER)  store_amount
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             date(drb.order_deal_time) <= date({end_date})
             AND date(drb.order_deal_time) >= date({start_date}) 

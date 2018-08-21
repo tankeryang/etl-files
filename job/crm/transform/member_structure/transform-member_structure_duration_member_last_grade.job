@@ -1,0 +1,10 @@
+type=command
+command=${cmd}
+#
+#
+sql.dir=member_structure_duration_member_last_grade
+
+placeholder.sql=fully-placeholders
+placeholder.loop=computing_duration:fully
+
+dependencies=transform-member_structure_duration

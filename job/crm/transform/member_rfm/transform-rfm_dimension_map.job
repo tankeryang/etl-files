@@ -1,0 +1,6 @@
+type=command
+command=${cmd}
+#
+#
+sql.dir=rfm_dimension_map
+

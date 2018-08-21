@@ -1,0 +1,8 @@
+type=command
+command=${cmd}
+
+sql.url.prefix=${ods.sql.url.prefix}
+sql.dir=member_type_label
+sql.names=fully
+
+dependencies=extract-daliy_report_base

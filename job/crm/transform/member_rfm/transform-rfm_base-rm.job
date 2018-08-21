@@ -1,0 +1,13 @@
+type=command
+command=${cmd}
+#
+#
+sql.dir=rfm_base
+sql.names=fully-rm
+#
+placeholder.sql=fully-rm-placeholders
+placeholder.loop=rfm_json:fully-rm
+placeholder.loop.value.separator=~
+#
+
+dependencies=transform-rfm_duration_dimension_map,transform-member_rfm,transform-rfm_base

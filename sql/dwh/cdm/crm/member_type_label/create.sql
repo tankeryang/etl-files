@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS ods_crm.member_type_label;
+DROP TABLE IF EXISTS cdm_crm.member_type_label;
 
 
-CREATE TABLE IF NOT EXISTS ods_crm.member_type_label (
+CREATE TABLE IF NOT EXISTS cdm_crm.member_type_label (
     country      VARCHAR,
     sales_area   VARCHAR,
     city         VARCHAR,

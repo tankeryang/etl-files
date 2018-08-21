@@ -1,0 +1,8 @@
+type=command
+command=${cmd}
+#
+#
+sql.dir=rfm_duration_dimension_map
+
+dependencies=transform-rfm_duration,transform-rfm_dimension_map
+

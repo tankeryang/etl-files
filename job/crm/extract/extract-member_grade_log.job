@@ -1,0 +1,6 @@
+type=command
+command=${cmd}
+
+sql.url.prefix=${ods.sql.url.prefix}
+sql.dir=member_grade_log
+sql.names=increment

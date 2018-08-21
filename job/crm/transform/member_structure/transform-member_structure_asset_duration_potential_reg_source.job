@@ -1,0 +1,11 @@
+type=command
+command=${cmd}
+#
+#
+sql.dir=member_structure_asset_duration_potential_reg_source
+
+placeholder.sql=fully-placeholders
+placeholder.loop=computing_duration:fully
+
+dependencies=transform-member_structure_duration
+

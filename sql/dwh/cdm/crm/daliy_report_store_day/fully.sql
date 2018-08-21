@@ -84,9 +84,9 @@ INSERT INTO cdm_crm.daliy_report_store_day
         -- 记录创建日期
         -- localtimestamp
     FROM
-        ods_crm.daliy_report_base drb
+        cdm_crm.daliy_report_base drb
     RIGHT JOIN
-        ods_crm.member_type_label mtl
+        cdm_crm.member_type_label mtl
     ON
         drb.store_code = mtl.store_code
 
@@ -98,7 +98,7 @@ INSERT INTO cdm_crm.daliy_report_store_day
             cast(sum(drb.order_fact_amount) AS DECIMAL(38, 2))  sales_amount,
             date(drb.order_deal_time)  order_deal_date
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         GROUP BY
             drb.store_code,
             drb.member_type,
@@ -117,7 +117,7 @@ INSERT INTO cdm_crm.daliy_report_store_day
             cast(sum(drb.order_amount) AS DECIMAL(38, 2))  retail_amount,
             date(drb.order_deal_time)  order_deal_date
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         GROUP BY
             drb.store_code,
             drb.member_type,
@@ -136,7 +136,7 @@ INSERT INTO cdm_crm.daliy_report_store_day
             cast(count(distinct drb.outer_order_no) AS INTEGER)  order_amount,
             date(drb.order_deal_time)  order_deal_date
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         GROUP BY
             drb.store_code,
             drb.member_type,
@@ -154,7 +154,7 @@ INSERT INTO cdm_crm.daliy_report_store_day
             cast(sum(drb.order_fact_amount) AS DECIMAL(18, 2)) total_order_fact_amount,
             date(drb.order_deal_time)  order_deal_date
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         GROUP BY
             drb.store_code,
             date(drb.order_deal_time)
@@ -170,7 +170,7 @@ INSERT INTO cdm_crm.daliy_report_store_day
             cast(sum(drb.order_fact_amount) AS DECIMAL(18, 2)) total_order_fact_amount,
             date(drb.order_deal_time)  order_deal_date
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             drb.member_type != '非会员'
         GROUP BY
@@ -189,7 +189,7 @@ INSERT INTO cdm_crm.daliy_report_store_day
             cast(sum(drb.order_fact_amount) AS DECIMAL(38, 2))  last_year_same_time_sales_amount,
             date(drb.order_deal_time)                           order_deal_date
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         GROUP BY
             drb.store_code,
             drb.member_type,
@@ -208,7 +208,7 @@ INSERT INTO cdm_crm.daliy_report_store_day
             cast(sum(drb.order_item_quantity) AS INTEGER)  sales_item_quantity,
             date(drb.order_deal_time)  order_deal_date
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         GROUP BY
             drb.store_code,
             drb.member_type,
@@ -227,7 +227,7 @@ INSERT INTO cdm_crm.daliy_report_store_day
             cast(count(distinct drb.member_no) AS INTEGER)  member_amount,
             date(drb.order_deal_time)  order_deal_date
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         GROUP BY
             drb.store_code,
             drb.member_type,
@@ -246,9 +246,9 @@ INSERT INTO cdm_crm.daliy_report_store_day
             cast(count(distinct t2.member_no) AS INTEGER)  past_12_month_remain_member_amount,
             date(t1.order_deal_time)                       order_deal_date
         FROM
-            ods_crm.daliy_report_base t1
+            cdm_crm.daliy_report_base t1
         LEFT JOIN
-            ods_crm.daliy_report_base t2
+            cdm_crm.daliy_report_base t2
         ON
             t1.store_code = t2.store_code
             AND t1.member_type = t2.member_type
@@ -274,7 +274,7 @@ INSERT INTO cdm_crm.daliy_report_store_day
             cast(count(distinct drb.member_no) AS INTEGER)  new_vip_member_amount,
             date(drb.order_deal_time)                       order_deal_date
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             drb.member_type = '新会员'
             AND date(drb.member_register_time) = date(drb.order_deal_time)
@@ -297,7 +297,7 @@ INSERT INTO cdm_crm.daliy_report_store_day
             cast(count(distinct drb.member_no) AS INTEGER)  new_normal_member_amount,
             date(drb.order_deal_time)                       order_deal_date
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         
         WHERE
             drb.member_type = '新会员'
@@ -321,7 +321,7 @@ INSERT INTO cdm_crm.daliy_report_store_day
             cast(count(distinct drb.member_no) AS INTEGER)  upgraded_member_amount,
             date(drb.order_deal_time)                       order_deal_date
         FROM
-            ods_crm.daliy_report_base drb
+            cdm_crm.daliy_report_base drb
         WHERE
             drb.member_type IN ('新会员', '普通会员')
             AND date(drb.last_grade_change_time) = date(drb.order_deal_time)

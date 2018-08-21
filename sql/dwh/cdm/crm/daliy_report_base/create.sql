@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS ods_crm.daliy_report_base;
+DROP TABLE IF EXISTS cdm_crm.daliy_report_base;
 
 
-CREATE TABLE ods_crm.daliy_report_base (
+CREATE TABLE cdm_crm.daliy_report_base (
     country                 VARCHAR,
     sales_area              VARCHAR,
     city                    VARCHAR,

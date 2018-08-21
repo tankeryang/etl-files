@@ -1,0 +1,4 @@
+type=command
+command=echo complete-etl-crm
+
+dependencies=already-transform-daliy_report

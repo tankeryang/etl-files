@@ -1,0 +1,4 @@
+type=command
+command=echo complete-transform-member_structure_active
+
+dependencies=transform-member_structure_active,transform-member_structure_asset

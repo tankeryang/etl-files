@@ -1,0 +1,17 @@
+type=command
+command=${cmd}
+#
+#
+sql.dir=member_structure_asset
+sql.names=create_table,\
+fully,\
+fully-channel,\
+fully-channel-sales-area,\
+fully-channel-sales-area-store-region,\
+fully-channel-store-region,\
+fully-sales-area,\
+fully-sales-area-store-region,\
+fully-store_region
+
+dependencies=transform-member_structure_asset_duration_potential_reg_source,\
+transform-member_structure_duration_order_store_last_grade_first_order_deal_time_recency_frequency

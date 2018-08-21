@@ -1,0 +1,4 @@
+type=flow
+flow.name=complete-transform-member_structure
+
+dependencies=already-extract-to-ods_crm

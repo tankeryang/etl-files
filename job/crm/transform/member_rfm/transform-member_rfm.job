@@ -1,0 +1,10 @@
+type=command
+command=${cmd}
+#
+#
+sql.dir=member_rfm
+
+placeholder.sql=fully-placeholders
+placeholder.loop=computing_duration:fully
+
+dependencies=transform-rfm_duration

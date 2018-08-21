@@ -1,0 +1,11 @@
+type=command
+command=${cmd}
+#
+#
+sql.dir=member_structure_order_info
+
+placeholder.sql=fully-placeholders
+placeholder.loop=computing_duration:fully
+
+dependencies=transform-member_structure_duration,\
+transform-member_structure_order_info_range
