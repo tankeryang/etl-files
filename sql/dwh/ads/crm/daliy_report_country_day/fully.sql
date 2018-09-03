@@ -1,3 +1,6 @@
+DELETE FROM ads_crm.daliy_report_country_day;
+
+
 INSERT INTO ads_crm.daliy_report_country_day
     SELECT
         drcd.sales_area,

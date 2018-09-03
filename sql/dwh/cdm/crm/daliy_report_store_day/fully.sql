@@ -1,3 +1,6 @@
+DELETE FROM cdm_crm.daliy_report_store_day;
+
+
 INSERT INTO cdm_crm.daliy_report_store_day
     SELECT DISTINCT
         mtl.sales_area,

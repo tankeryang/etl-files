@@ -1,3 +1,6 @@
+DELETE FROM ads_crm.daliy_report_area_day;
+
+
 INSERT INTO ads_crm.daliy_report_area_day
     SELECT
         drad.sales_area,

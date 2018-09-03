@@ -1,4 +1,7 @@
-INSERT INTO order_pay_item
+DELETE FROM ods_crm.order_pay_item;
+
+
+INSERT INTO ods_crm.order_pay_item
   SELECT
     pay_item_id,
     order_id,

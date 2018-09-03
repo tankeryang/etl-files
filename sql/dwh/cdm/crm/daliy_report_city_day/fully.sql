@@ -1,3 +1,6 @@
+DELETE FROM cdm_crm.daliy_report_city_day;
+
+
 INSERT INTO cdm_crm.daliy_report_city_day
     SELECT
         sales_area,

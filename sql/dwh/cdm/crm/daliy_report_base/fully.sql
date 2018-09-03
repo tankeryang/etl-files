@@ -1,3 +1,6 @@
+DELETE FROM cdm_crm.daliy_report_base;
+
+
 INSERT INTO cdm_crm.daliy_report_base
     SELECT
         '全国',
