@@ -3,7 +3,7 @@ command=${cmd}
 #
 #
 sql.dir=member_structure_active
-sql.names=create_table,\
+sql.names=create,\
 fully,\
 fully-channel,\
 fully-channel-sales-area,\

@@ -3,7 +3,7 @@ command=${cmd}
 #
 #
 sql.dir=rfm_base
-sql.names=create_table,fully
+sql.names=create,fully
 #
 placeholder.sql=fully-placeholders
 placeholder.loop=computing_duration:fully

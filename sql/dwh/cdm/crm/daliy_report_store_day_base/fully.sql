@@ -1,3 +1,6 @@
+DELETE FROM cdm_crm.daliy_report_store_day_base;
+
+
 INSERT INTO cdm_crm.daliy_report_store_day_base
     SELECT DISTINCT
         mtl.country,

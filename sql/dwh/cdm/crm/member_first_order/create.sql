@@ -5,6 +5,6 @@ DROP TABLE IF EXISTS cdm_crm.member_first_order;
 
 
 CREATE TABLE cdm_crm.member_first_order (
-  member_no     VARCHAR,
-  order_deal_time TIMESTAMP
+    member_no     VARCHAR,
+    order_deal_time TIMESTAMP
 );

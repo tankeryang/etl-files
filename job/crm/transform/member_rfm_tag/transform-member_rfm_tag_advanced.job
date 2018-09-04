@@ -3,7 +3,7 @@ command=${cmd}
 
 sql.url.prefix=${cdm.sql.url.prefix}
 sql.dir=member_rfm_tag_advanced
-sql.names=create_table,fully
+sql.names=create,fully
 
 placeholder.sql=fully-placeholders
 placeholder.loop=computing_duration:fully

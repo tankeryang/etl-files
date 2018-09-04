@@ -2,3 +2,4 @@ type=command
 command={cmd}
 
 sql.dir=daliy_report_area_day
+sql.name=loop
