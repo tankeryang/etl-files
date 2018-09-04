@@ -42,7 +42,7 @@ INSERT INTO cdm_crm.daliy_report_base
     ON
         oi.store_code = si.store_code
     LEFT JOIN
-        ods_crm.member_first_order mfo
+        cdm_crm.member_first_order mfo
     ON
         oi.member_no = mfo.member_no
     LEFT JOIN
