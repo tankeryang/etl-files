@@ -12,7 +12,7 @@ INSERT INTO cdm_crm.member_type_label
             store_code,
             'key' AS key
         FROM
-            ods_crm.daliy_report_base
+            cdm_crm.daliy_report_base
         WHERE
             channel_type = '自营'
     ) t1
@@ -21,7 +21,7 @@ INSERT INTO cdm_crm.member_type_label
             member_type,
             'key' AS key
         FROM
-            ods_crm.daliy_report_base
+            cdm_crm.daliy_report_base
         WHERE
             member_type IS NOT NULL
     ) t2
