@@ -1,0 +1,6 @@
+type=command
+command=${cmd}
+
+sql.dir=daliy_report_store_day_base
+
+dependencies=transform-member_type_label

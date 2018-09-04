@@ -1,0 +1,5 @@
+type=command
+command={cmd}
+
+sql.dir=daliy_report_store_day
+sql.name=loop

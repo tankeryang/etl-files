@@ -1,0 +1,6 @@
+type=command
+command=${cmd}
+#
+#
+sql.dir=member_structure_duration
+

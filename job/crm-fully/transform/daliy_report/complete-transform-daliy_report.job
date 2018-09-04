@@ -1,0 +1,4 @@
+type=command
+command=echo complete-transform-daliy_report
+
+dependencies=transform-daliy_report_store_day,transform-daliy_report_city_day,transform-daliy_report_area_day,transform-daliy_report_country_day
