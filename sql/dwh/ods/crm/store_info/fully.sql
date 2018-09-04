@@ -1,4 +1,4 @@
-DELETE FROM ods_crm.store_info
+DELETE FROM ods_crm.store_info;
 
 
 INSERT INTO ods_crm.store_info
@@ -7,6 +7,11 @@ INSERT INTO ods_crm.store_info
         store_no   AS store_code,
         store_name,
         channel_type,
+        store_type,
+        operation_state,
+        brand_code,
+        business_mode,
+        country,
         region     AS sales_area,
         province,
         city,

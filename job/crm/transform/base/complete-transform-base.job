@@ -1,4 +1,4 @@
 type=command
 command=echo complete-transform-daliy_report
 
-dependencies=transform-member_first_order,transform-daliy_report_base,transform-member_type_label,transform-daliy_report_store_day_base
+dependencies=transform-daliy_report_store_day_base
