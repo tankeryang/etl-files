@@ -1,4 +1,4 @@
-CREATE SCHEMA IF NOT EXISTS ods_crm;
+CREATE SCHEMA IF NOT EXISTS cdm_crm;
 
 
 DROP TABLE IF EXISTS cdm_crm.member_first_order;
