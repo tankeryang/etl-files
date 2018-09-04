@@ -1,4 +1,4 @@
 type=command
 command=echo complete-load-daliy_report
 
-dependencies=load-daliy_report_store_day,load-daliy_report_city_day,loda-daliy_report_area_day,load-daliy_report_country_day
+dependencies=load-daliy_report_store_day,load-daliy_report_city_day,load-daliy_report_area_day,load-daliy_report_country_day
