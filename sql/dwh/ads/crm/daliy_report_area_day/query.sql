@@ -89,17 +89,13 @@
             IF(om.order_amount IS NOT NULL, om.order_amount, 0) * 1.0 / IF(mm.member_amount IS NOT NULL, mm.member_amount, 0),
             0
         ) AS DECIMAL(18, 2))  AS order_amount_per_member
-    FROM
-        cdm_crm.daliy_report_base drb
-    RIGHT JOIN (
+    FROM (
         SELECT DISTINCT
             sales_area,
             member_type
         FROM
             cdm_crm.member_type_label
     ) mtl
-    ON
-        drb.sales_area = mtl.sales_area
 
     -- 消费金额
     LEFT JOIN (
@@ -110,8 +106,8 @@
         FROM
             cdm_crm.daliy_report_base drb
         WHERE
-            date(drb.order_deal_time) <= date({end_date})
-            AND date(drb.order_deal_time) >= date({start_date})
+            date(drb.order_deal_time) <= date('2018-09-10')
+            AND date(drb.order_deal_time) >= date('2018-09-01')
         GROUP BY
             drb.sales_area,
             drb.member_type
@@ -129,8 +125,8 @@
         FROM
             cdm_crm.daliy_report_base drb
         WHERE
-            date(drb.order_deal_time) <= date({end_date})
-            AND date(drb.order_deal_time) >= date({start_date})
+            date(drb.order_deal_time) <= date('2018-09-10')
+            AND date(drb.order_deal_time) >= date('2018-09-01')
         GROUP BY
             drb.sales_area,
             drb.member_type
@@ -148,8 +144,8 @@
         FROM
             cdm_crm.daliy_report_base drb
         WHERE
-            date(drb.order_deal_time) <= date({end_date})
-            AND date(drb.order_deal_time) >= date({start_date})
+            date(drb.order_deal_time) <= date('2018-09-10')
+            AND date(drb.order_deal_time) >= date('2018-09-01')
         GROUP BY
             drb.sales_area,
             drb.member_type
@@ -166,8 +162,8 @@
         FROM
             cdm_crm.daliy_report_base drb
         WHERE
-            date(drb.order_deal_time) <= date({end_date})
-            AND date(drb.order_deal_time) >= date({start_date})
+            date(drb.order_deal_time) <= date('2018-09-10')
+            AND date(drb.order_deal_time) >= date('2018-09-01')
         GROUP BY
             drb.sales_area
     ) sm_tt
@@ -182,8 +178,8 @@
         FROM
             cdm_crm.daliy_report_base drb
         WHERE
-            date(drb.order_deal_time) <= date({end_date})
-            AND date(drb.order_deal_time) >= date({start_date})
+            date(drb.order_deal_time) <= date('2018-09-10')
+            AND date(drb.order_deal_time) >= date('2018-09-01')
             AND drb.member_type != '非会员'
         GROUP BY
             drb.sales_area
@@ -200,8 +196,8 @@
         FROM
             cdm_crm.daliy_report_base drb
         WHERE
-            date(drb.order_deal_time) <= date(date({end_date}) - interval '1' year)
-            AND date(drb.order_deal_time) >= date(date({start_date}) -interval '1' year)
+            date(drb.order_deal_time) <= date(date('2018-09-10') - interval '1' year)
+            AND date(drb.order_deal_time) >= date(date('2018-09-01') -interval '1' year)
         GROUP BY
             drb.sales_area,
             drb.member_type
@@ -219,8 +215,8 @@
         FROM
             cdm_crm.daliy_report_base drb
         WHERE
-            date(drb.order_deal_time) <= date({end_date})
-            AND date(drb.order_deal_time) >= date({start_date})
+            date(drb.order_deal_time) <= date('2018-09-10')
+            AND date(drb.order_deal_time) >= date('2018-09-01')
         GROUP BY
             drb.sales_area,
             drb.member_type
@@ -238,8 +234,8 @@
         FROM
             cdm_crm.daliy_report_base drb
         WHERE
-            date(drb.order_deal_time) <= date({end_date})
-            AND date(drb.order_deal_time) >= date({start_date})
+            date(drb.order_deal_time) <= date('2018-09-10')
+            AND date(drb.order_deal_time) >= date('2018-09-01')
         GROUP BY
             drb.sales_area,
             drb.member_type
@@ -258,8 +254,8 @@
             cdm_crm.daliy_report_base drb
         WHERE
             drb.member_type IN ('普通会员', 'VIP会员')
-            AND date(drb.order_deal_time) <= date(date({start_date}) - interval '1' day)
-            AND date(drb.order_deal_time) >= date(date({start_date}) - interval '12' month)
+            AND date(drb.order_deal_time) <= date(date('2018-09-01') - interval '1' day)
+            AND date(drb.order_deal_time) >= date(date('2018-09-01') - interval '12' month)
         GROUP BY
             drb.sales_area,
             drb.member_type
@@ -280,8 +276,8 @@
             drb.member_type = '新会员'
             AND date(drb.member_register_time) = date(drb.order_deal_time)
             AND drb.last_grade_change_time IS NOT NULL
-            AND date(drb.order_deal_time) <= date({end_date})
-            AND date(drb.order_deal_time) >= date({start_date})
+            AND date(drb.order_deal_time) <= date('2018-09-10')
+            AND date(drb.order_deal_time) >= date('2018-09-01')
         GROUP BY
             drb.sales_area,
             drb.member_type
@@ -302,8 +298,8 @@
         WHERE
             drb.member_type = '新会员'
             AND drb.last_grade_change_time IS NULL
-            AND date(drb.order_deal_time) <= date({end_date})
-            AND date(drb.order_deal_time) >= date({start_date})
+            AND date(drb.order_deal_time) <= date('2018-09-10')
+            AND date(drb.order_deal_time) >= date('2018-09-01')
         GROUP BY
             drb.sales_area,
             drb.member_type
@@ -323,8 +319,8 @@
         WHERE
             drb.member_type IN ('新会员', '普通会员')
             AND date(drb.last_grade_change_time) = date(drb.order_deal_time)
-            AND date(drb.order_deal_time) <= date({end_date})
-            AND date(drb.order_deal_time) >= date({start_date})
+            AND date(drb.order_deal_time) <= date('2018-09-10')
+            AND date(drb.order_deal_time) >= date('2018-09-01')
         GROUP BY
             drb.sales_area,
             drb.member_type
@@ -341,8 +337,8 @@
         FROM
             cdm_crm.daliy_report_base drb
         WHERE
-            date(drb.order_deal_time) <= date({end_date})
-            AND date(drb.order_deal_time) >= date({start_date}) 
+            date(drb.order_deal_time) <= date('2018-09-10')
+            AND date(drb.order_deal_time) >= date('2018-09-01') 
         GROUP BY
             drb.sales_area
     ) stm
@@ -351,6 +347,4 @@
 
     WHERE
         mtl.member_type != '非会员'
-        AND mtl.sales_area IN ({sales_area_list})
-        AND date(drb.order_deal_time) <= date({end_date})
-        AND date(drb.order_deal_time) >= date({start_date});
+        AND mtl.sales_area IN ('华南', '华北')

@@ -5,6 +5,7 @@ INSERT INTO ods_crm.order_info
     SELECT
         order_id,
         outer_order_no,
+        cast(order_from AS VARCHAR),
         store_code,
         pay_time AS order_deal_time,
         member_no,
