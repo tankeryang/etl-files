@@ -79,12 +79,7 @@
             0
         ) AS DECIMAL(18, 2))  AS order_amount_per_member
     FROM
-        cdm_crm.daliy_report_base drb
-    RIGHT JOIN
         cdm_crm.member_type_label mtl
-    ON
-        drb.store_code = mtl.store_code
-
 
     LEFT JOIN (
         SELECT
@@ -249,6 +244,4 @@
         AND mtl.member_type = ugm.member_type
     WHERE
         mtl.member_type != '非会员'
-        AND mtl.store_code IN ({store_list})
-        AND date(drb.order_deal_time) <= date({end_date})
-        AND date(drb.order_deal_time) >= date({start_date});
+        AND mtl.store_code IN ({store_list});

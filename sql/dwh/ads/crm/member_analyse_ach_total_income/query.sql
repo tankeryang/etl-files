@@ -64,7 +64,7 @@ AND matl.all = lyst.all
 
 WHERE matl.province IN ('广东省')
 AND matl.order_channel IN('线下')
-AND matl.sales_mode IN ('ZJ')
+AND matl.sales_mode IN ('正价')
 AND matl.store_type IN ('MALL')
 AND matl.store_level IN ('A')
 AND matl.channel_type IN ('自营')
@@ -149,7 +149,7 @@ AND matl2.member_type = lyst2.member_type
 
 WHERE matl2.province IN ('广东省')
 AND matl2.order_channel IN ('线下')
-AND matl2.sales_mode IN ('ZJ')
+AND matl2.sales_mode IN ('正价')
 AND matl2.store_type IN ('MALL')
 AND matl2.store_level IN ('A')
 AND matl2.channel_type IN ('自营');

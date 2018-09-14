@@ -15,6 +15,7 @@ INSERT INTO cdm_crm.member_analyse_type_label
         t1.channel_type,
         '整体',
         t2.member_type,
+        t3.member_nowbefore_type,
         t2.member_newold_type,
         t2.member_level_type
     FROM (
@@ -30,10 +31,8 @@ INSERT INTO cdm_crm.member_analyse_type_label
             store_level,
             channel_type,
             'key' AS key
-        FROM
-            cdm_crm.member_analyse_base
-        WHERE
-            country IS NOT NULL
+        FROM cdm_crm.member_analyse_base
+        WHERE country IS NOT NULL
     ) t1
     FULL JOIN (
         SELECT DISTINCT
@@ -41,8 +40,12 @@ INSERT INTO cdm_crm.member_analyse_type_label
             member_newold_type,
             member_level_type,
             'key' AS key
-        FROM
-            cdm_crm.member_analyse_base
+        FROM cdm_crm.member_analyse_base
     ) t2
-    ON
-        t1.key = t2.key;
+    ON t1.key = t2.key
+    FULL JOIN (
+        SELECT '当月会员' AS member_nowbefore_type, 'key' AS key
+        UNION SELECT '当年会员' AS member_nowbefore_type, 'key' AS key
+        UNION SELECT '往年会员' AS member_nowbefore_type, 'key' AS key
+    ) t3
+    ON t1.key = t3.key;

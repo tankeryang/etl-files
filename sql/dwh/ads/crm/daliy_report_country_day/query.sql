@@ -85,17 +85,13 @@
             IF(om.order_amount IS NOT NULL, om.order_amount, 0) * 1.0 / IF(mm.member_amount IS NOT NULL, mm.member_amount, 0),
             0
         ) AS DECIMAL(18, 2))  AS order_amount_per_member
-    FROM
-        cdm_crm.daliy_report_base drb
-    RIGHT JOIN (
+    FROM (
         SELECT DISTINCT
             country,
             member_type
         FROM
             cdm_crm.member_type_label
     ) mtl
-    ON
-        drb.country = mtl.country
 
     -- 消费金额
     LEFT JOIN (
@@ -346,6 +342,4 @@
         mtl.country = stm.country
 
     WHERE
-        mtl.member_type != '非会员'
-        AND date(drb.order_deal_time) <= date({end_date})
-        AND date(drb.order_deal_time) >= date({start_date});
+        mtl.member_type != '非会员';
