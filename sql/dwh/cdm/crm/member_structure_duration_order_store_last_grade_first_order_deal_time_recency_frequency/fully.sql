@@ -51,7 +51,7 @@ INSERT INTO cdm_crm.member_structure_duration_order_store_last_grade_first_order
                 ON dos.member_no = dmlg.member_no AND
                 dos.computing_until_month = dmlg.computing_until_month AND
                 dos.computing_duration = dmlg.computing_duration
-            LEFT JOIN ods_crm.member_first_order mfo
+            LEFT JOIN cdm_crm.member_first_order mfo
                 ON dos.member_no = mfo.member_no
             LEFT JOIN cdm_crm.member_structure_duration_member_recency dmr
                 ON dos.member_no = dmr.member_no AND
