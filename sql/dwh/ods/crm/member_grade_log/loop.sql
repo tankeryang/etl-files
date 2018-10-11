@@ -7,7 +7,7 @@ INSERT INTO ods_crm.member_grade_log
         grade_change_time         AS grade_change_time,
         localtimestamp            AS create_time
     FROM
-        prod_mysql_crm.crm.member_grade_log
+        dev_mysql_fpsit.crm.member_grade_log
     WHERE
         date_format(grade_change_time, '%Y-%m-%d %T') > (
             SELECT date_format(max(create_time), '%Y-%m-%d %T')

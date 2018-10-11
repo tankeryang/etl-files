@@ -1,6 +1,5 @@
 CREATE SCHEMA IF NOT EXISTS ods_crm;
 
-
 DROP TABLE IF EXISTS ods_crm.order_info;
 
 
@@ -8,6 +7,7 @@ CREATE TABLE ods_crm.order_info (
     order_id              INTEGER,
     outer_order_no        VARCHAR,
     order_from            VARCHAR,
+    brand_code            VARCHAR,
     store_code            VARCHAR,
     order_deal_time       TIMESTAMP,
     member_no             VARCHAR,

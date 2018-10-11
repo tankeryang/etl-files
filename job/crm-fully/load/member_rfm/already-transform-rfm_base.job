@@ -1,4 +1,4 @@
 type=flow
 flow.name=complete-transform-rfm_base
 
-dependencies=already-transform-base
+dependencies=already-extract-crm

@@ -1,6 +1,0 @@
-type=command
-command=${cmd}
-
-sql.dir=daliy_report_store_day
-
-dependencies=transform-daliy_report_store_day_base

@@ -17,4 +17,4 @@ INSERT INTO ods_crm.store_info
         city,
         district,
         localtimestamp
-    FROM prod_mysql_crm.crm.store_info;
+    FROM dev_mysql_fpsit.crm.store_info;

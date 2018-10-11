@@ -1,4 +1,4 @@
 type=flow
 flow.name=complete-transform-member_structure
 
-dependencies=already-transform-base
+dependencies=already-extract-crm

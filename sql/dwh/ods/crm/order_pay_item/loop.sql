@@ -11,7 +11,7 @@ INSERT INTO ods_crm.order_pay_item
         pay_amount,
         coupon_no,
         localtimestamp
-    FROM prod_mysql_crm.crm.order_pay_item
+    FROM dev_mysql_fpsit.crm.order_pay_item
     WHERE
         date_format(create_time, '%Y-%m-%d %T') > (
         SELECT date_format(max(create_time), '%Y-%m-%d %T')

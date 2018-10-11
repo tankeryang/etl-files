@@ -34,8 +34,7 @@ INSERT INTO ods_crm.member_info
         last_update_time,
         member_register_time,
         member_register_store,
+        member_manage_store,
         localtimestamp
-    FROM prod_mysql_crm.crm.member_info
-    WHERE
-        member_id != 61
-        OR member_id != 41825;
+    FROM dev_mysql_fpsit.crm.member_info
+    WHERE member_id != 61 OR member_id != 41825;

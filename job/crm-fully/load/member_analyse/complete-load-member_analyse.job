@@ -1,0 +1,4 @@
+type=command
+command=echo complete-load-member_analyse
+
+dependencies=load-member_register_detail,load-member_analyse_fold_daily_income_detail,load-member_recruit_analyse_fold_daily_income_detail

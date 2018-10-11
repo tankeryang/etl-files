@@ -6,6 +6,7 @@ INSERT INTO ods_crm.order_info
         order_id,
         outer_order_no,
         cast(order_from AS VARCHAR),
+        brand_code,
         store_code,
         pay_time AS order_deal_time,
         member_no,
@@ -16,10 +17,10 @@ INSERT INTO ods_crm.order_info
         order_status,
         outer_return_order_no,
         localtimestamp
-    FROM prod_mysql_crm.crm.order_info
+    FROM dev_mysql_fpsit.crm.order_info
     WHERE
-        date_format(create_time, '%Y-%m-%d %T') > (
-            SELECT date_format(max(create_time), '%Y-%m-%d %T')
+        date_format(pay_time, '%Y-%m-%d %T') > (
+            SELECT date_format(max(order_deal_time), '%Y-%m-%d %T')
             FROM ods_crm.order_info
         )
-        AND date_format(create_time, '%Y-%m-%d %T') <= date_format(localtimestamp, '%Y-%m-%d %T');
+        AND date_format(pay_time, '%Y-%m-%d %T') <= date_format(localtimestamp, '%Y-%m-%d %T');
