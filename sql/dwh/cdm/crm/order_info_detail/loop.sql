@@ -1,6 +1,3 @@
-DELETE FROM cdm_crm.order_info_detail;
-
-
 INSERT INTO cdm_crm.order_info_detail
     WITH mgl AS (
         SELECT
@@ -40,9 +37,9 @@ INSERT INTO cdm_crm.order_info_detail
         oi.outer_order_no,
         oi.member_no,
         oi.order_grade,
-        -- 是否会员
+        -- 会员与非会员
         IF(oi.member_no NOT IN ('-1', '-2'), '会员', '非会员'),
-        -- 新老会员分析
+        -- 新老会员类型
         IF(oi.member_no NOT IN ('-1', '-2'),
             IF(date_format(oi.order_deal_time, '%Y-%m-%d') <= date_format(mfo.order_deal_time, '%Y-%m-%d'),
                 '新会员',
@@ -59,10 +56,8 @@ INSERT INTO cdm_crm.order_info_detail
                 OR (oi.member_no NOT IN ('-1', '-2') AND date_format(oi.order_deal_time, '%Y-%m-%d') <= date_format(mfo.order_deal_time, '%Y-%m-%d')))
             AND date(mgl.grade_change_time) = date(oi.order_deal_time),
             '升级', '未升级'),
-        -- 会员注册类型
         IF(oi.member_no NOT IN ('-1', '-2') AND mi.member_manage_store like '%WWW%',
             '官网', '门店'),
-        -- 日报会员类型
         cast(IF(oi.member_no NOT IN ('-1', '-2'),
             IF(date_format(oi.order_deal_time, '%Y-%m-%d') <= date_format(mfo.order_deal_time, '%Y-%m-%d'),
                 '新会员',
@@ -90,4 +85,5 @@ INSERT INTO cdm_crm.order_info_detail
         AND oi.order_deal_time = mgl.order_deal_time
     WHERE oi.order_status = 'PAYED'
     AND oi.order_id NOT IN (60754226, 61380230)
+    AND date_format(oi.order_deal_time, '%Y-%m-%d %T') > (SELECT max(date_format(order_deal_time, '%Y-%m-%d %T') FROM cdm_crm.order_info_detail))
     AND date_format(oi.order_deal_time, '%Y-%m-%d %T') <= date_format(localtimestamp, '%Y-%m-%d %T');
