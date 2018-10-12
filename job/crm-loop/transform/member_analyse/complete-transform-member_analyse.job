@@ -1,0 +1,4 @@
+type=command
+command=echo complete-transform-member_analyse
+
+dependencies=transform-member_analyse_index_label,transform-member_info_detail

@@ -1,6 +1,7 @@
 type=command
 command=${cmd}
 
-sql.dir=member_info_detail
+sql.dir=order_info_detail
+sql.names=create,loop
 
 dependencies=transform-member_first_order,transform-member_last_order
