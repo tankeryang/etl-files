@@ -85,5 +85,5 @@ INSERT INTO cdm_crm.order_info_detail
         AND oi.order_deal_time = mgl.order_deal_time
     WHERE oi.order_status = 'PAYED'
     AND oi.order_id NOT IN (60754226, 61380230)
-    AND date_format(oi.order_deal_time, '%Y-%m-%d %T') > (SELECT max(date_format(order_deal_time, '%Y-%m-%d %T') FROM cdm_crm.order_info_detail))
+    AND date_format(oi.order_deal_time, '%Y-%m-%d %T') > (SELECT max(date_format(order_deal_time, '%Y-%m-%d %T')) FROM cdm_crm.order_info_detail)
     AND date_format(oi.order_deal_time, '%Y-%m-%d %T') <= date_format(localtimestamp, '%Y-%m-%d %T');

@@ -3,6 +3,6 @@ command=${cmd}
 
 sql.url.prefix=${ods.sql.url.prefix}
 sql.dir=store_info
-sql.names=create,loop
+sql.names=create,fully
 
 dependencies=extract-order_info,extract-order_pay_item
