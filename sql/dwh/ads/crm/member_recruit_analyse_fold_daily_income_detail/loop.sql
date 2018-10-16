@@ -19,7 +19,7 @@ INSERT INTO ads_crm.member_recruit_analyse_fold_daily_income_detail
         t.date
     FROM ads_crm.member_analyse_daily_income_detail t
     WHERE t.member_type = '会员'
-    AND t.date > (SELECT max(date) FROM ads_crm.member_analyse_daily_income_detail)
+    AND t.date > (SELECT max(date) FROM ads_crm.member_recruit_analyse_fold_daily_income_detail)
     GROUP BY
         t.country,
         t.sales_area,
@@ -57,7 +57,7 @@ INSERT INTO ads_crm.member_recruit_analyse_fold_daily_income_detail
         t.date
     FROM ads_crm.member_analyse_daily_income_detail t
     WHERE t.member_type = '会员'
-    AND t.date > (SELECT max(date) FROM ads_crm.member_analyse_daily_income_detail)
+    AND t.date > (SELECT max(date) FROM ads_crm.member_recruit_analyse_fold_daily_income_detail)
     GROUP BY
         t.country,
         t.sales_area,
@@ -95,6 +95,7 @@ INSERT INTO ads_crm.member_recruit_analyse_fold_daily_income_detail
         t.date
     FROM ads_crm.member_analyse_daily_income_detail t
     WHERE t.member_type = '会员'
+    AND t.date > (SELECT max(date) FROM ads_crm.member_recruit_analyse_fold_daily_income_detail)
     GROUP BY
         t.country,
         t.sales_area,

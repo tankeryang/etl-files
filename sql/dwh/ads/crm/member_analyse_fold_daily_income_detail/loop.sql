@@ -23,7 +23,7 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         cast(sum(t.order_amount) AS INTEGER),
         t.date
     FROM ads_crm.member_analyse_daily_income_detail t
-    WHERE t.date > (SELECT max(date) FROM ads_crm.member_analyse_daily_income_detail)
+    WHERE t.date > (SELECT max(date) FROM ads_crm.member_analyse_fold_daily_income_detail)
     GROUP BY DISTINCT
         t.country,
         t.sales_area,
@@ -70,7 +70,7 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         cast(sum(t1.order_amount) AS INTEGER),
         t1.date
     FROM ads_crm.member_analyse_daily_income_detail t1
-    WHERE t1.date > (SELECT max(date) FROM ads_crm.member_analyse_daily_income_detail)
+    WHERE t1.date > (SELECT max(date) FROM ads_crm.member_analyse_fold_daily_income_detail)
     GROUP BY
         t1.country,
         t1.sales_area,
@@ -112,7 +112,7 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         t2.date
     FROM ads_crm.member_analyse_daily_income_detail t2
     WHERE t2.member_type = '会员'
-    AND t2.date > (SELECT max(date) FROM ads_crm.member_analyse_daily_income_detail)
+    AND t2.date > (SELECT max(date) FROM ads_crm.member_analyse_fold_daily_income_detail)
     GROUP BY
         t2.country,
         t2.sales_area,
@@ -154,7 +154,7 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         t3.date
     FROM ads_crm.member_analyse_daily_income_detail t3
     WHERE t3.member_type = '会员'
-    AND t3.date > (SELECT max(date) FROM ads_crm.member_analyse_daily_income_detail)
+    AND t3.date > (SELECT max(date) FROM ads_crm.member_analyse_fold_daily_income_detail)
     GROUP BY
         t3.country,
         t3.sales_area,

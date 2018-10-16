@@ -2,4 +2,4 @@ type=command
 command=${cmd}
 
 sql.dir=member_analyse_daily_income_detail
-sql.names=create,loop
+sql.names=loop
