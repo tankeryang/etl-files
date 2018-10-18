@@ -1,6 +1,3 @@
-DELETE FROM cdm_crm.member_structure_duration_order_store_last_grade_first_order_deal_time_recency_frequency;
-
-
 INSERT INTO cdm_crm.member_structure_duration_order_store_last_grade_first_order_deal_time_recency_frequency (
     computing_until_month,
     computing_duration,

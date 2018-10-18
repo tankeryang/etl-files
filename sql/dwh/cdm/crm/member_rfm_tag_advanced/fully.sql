@@ -1,6 +1,3 @@
-DELETE FROM cdm_crm.member_rfm_tag_advanced;
-
-
 INSERT INTO cdm_crm.member_rfm_tag_advanced (
     computing_until_date,
     computing_duration,
