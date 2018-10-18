@@ -1,4 +1,4 @@
 type=command
 command=echo complete-transform-rfm_base
 
-dependencies=transform-rfm_base_with_expression
+dependencies=transform-rfm_base_with_expression,transform-member_rfm_tag_advanced
