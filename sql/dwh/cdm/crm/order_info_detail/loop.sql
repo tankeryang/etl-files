@@ -32,7 +32,7 @@ INSERT INTO cdm_crm.order_info_detail
             WHEN 'ZMD' THEN '专卖店'
             WHEN 'MALL' THEN 'MALL'
         ELSE NULL END,
-        IF(cms_si.store_level = '', NULL, IF(cms_si.store_level IN ('C', 'C+', 'C-'), 'C', cms_si.store_level)),
+        IF(cms_si.store_level = '', '', IF(cms_si.store_level IN ('C', 'C+', 'C-'), 'C', cms_si.store_level)),
         si.channel_type,
         oi.outer_order_no,
         oi.member_no,
