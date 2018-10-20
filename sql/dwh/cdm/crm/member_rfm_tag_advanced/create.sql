@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS cdm_crm.member_rfm_tag_advanced;
 CREATE TABLE cdm_crm.member_rfm_tag_advanced (
     computing_until_date      VARCHAR,
     computing_duration        INTEGER,
+    brand_code                VARCHAR,
     member_no                 VARCHAR,
     average_order_amount      DECIMAL(38, 2),
     average_purchase_interval DECIMAL(38, 2),
