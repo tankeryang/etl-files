@@ -82,7 +82,7 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
             FROM union_all_order_info_n_member_purchase_from_return oi, ods_crm.order_item oit
             WHERE oi.order_id = oit.order_id AND
                 oit.quantity > 0
-            GROUP BY oi.member_no
+            GROUP BY oi.member_no, oi.brand_code
         ),
         --累计购买金额
         member_monetary_total AS (
@@ -95,7 +95,7 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
             FROM union_all_order_info_n_member_purchase_from_return oi, ods_crm.order_item oit
             WHERE oi.order_id = oit.order_id AND
                 oit.quantity > 0
-            GROUP BY oi.member_no
+            GROUP BY oi.member_no, oi.brand_code
         ),
         --平均购买时间、金额、间隙
         average_purchase_time_monetary_interval AS (
