@@ -16,6 +16,3 @@ CREATE TABLE cdm_crm.member_rfm_tag_advanced (
     total_return_amount       DECIMAL(38, 2),
     create_time               TIMESTAMP
 );
-
-
-

@@ -1,0 +1,4 @@
+type=command
+command=echo complete-et-crm-member_rfm_tag_advanced
+
+dependencies=already-load-member_analyse,already-transform-member_rfm_tag_advanced
