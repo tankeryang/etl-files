@@ -91,9 +91,10 @@ INSERT INTO cdm_crm.order_info_detail
     LEFT JOIN ods_cms.store_info cms_si ON oi.store_code = cms_si.store_code
     LEFT JOIN cdm_cms.store_info cdm_cms_si ON cdm_cms_si.country_code = cms_si.country_code
     AND cdm_cms_si.store_code = oi.store_code 
-    LEFT JOIN cdm_crm.member_first_order mfo ON oi.member_no = mfo.member_no
-    LEFT JOIN ods_crm.member_info mi ON oi.member_no = mi.member_no
+    LEFT JOIN cdm_crm.member_first_order mfo ON oi.member_no = mfo.member_no AND oi.brand_code = mfo.brand_code
+    LEFT JOIN ods_crm.member_info mi ON oi.member_no = mi.member_no AND oi.brand_code = mi.brand_code
     LEFT JOIN mgl ON oi.member_no = mgl.member_no
+    AND oi.brand_code = mgl.brand_code
     AND oi.outer_order_no = mgl.outer_order_no
     AND oi.order_deal_time = mgl.order_deal_time
     WHERE oi.order_status = 'PAYED'
