@@ -26,4 +26,4 @@ INSERT INTO ods_crm.order_item
         cast(sub_coupon_amount AS DECIMAL(38, 2)),
         localtimestamp
     FROM dev_mysql_fpsit.crm.order_item
-    WHERE date_format(create_time, '%Y-%m-%d %T') <= date_format(localtimestamp, '%Y-%m-%d %T');
+    WHERE date(create_time) < date(localtimestamp);

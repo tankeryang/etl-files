@@ -5,6 +5,7 @@ INSERT INTO ods_crm.member_info
     SELECT
         member_id,
         member_no,
+        brand_code,
         wechat_id,
         member_code,
         member_card,

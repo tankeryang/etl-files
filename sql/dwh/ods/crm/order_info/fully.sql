@@ -18,4 +18,4 @@ INSERT INTO ods_crm.order_info
         outer_return_order_no,
         localtimestamp
     FROM dev_mysql_fpsit.crm.order_info
-    WHERE date_format(pay_time, '%Y-%m-%d %T') <= date_format(localtimestamp, '%Y-%m-%d %T');
+    WHERE date(pay_time) < date(localtimestamp);

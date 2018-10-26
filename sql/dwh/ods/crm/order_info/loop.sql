@@ -23,4 +23,4 @@ INSERT INTO ods_crm.order_info
             SELECT date_format(max(order_deal_time), '%Y-%m-%d %T')
             FROM ods_crm.order_info
         )
-        AND date_format(pay_time, '%Y-%m-%d %T') <= date_format(localtimestamp, '%Y-%m-%d %T');
+        AND date(pay_time) < date(localtimestamp);

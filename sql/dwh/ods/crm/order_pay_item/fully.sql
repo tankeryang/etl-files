@@ -13,4 +13,4 @@ INSERT INTO ods_crm.order_pay_item
         coupon_no,
         localtimestamp
     FROM dev_mysql_fpsit.crm.order_pay_item
-    WHERE date_format(create_time, '%Y-%m-%d %T') <= date_format(localtimestamp, '%Y-%m-%d %T');
+    WHERE date(create_time) < date(localtimestamp);

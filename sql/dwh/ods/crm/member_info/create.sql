@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS ods_crm.member_info;
 CREATE TABLE ods_crm.member_info (
     member_id                   INTEGER,
     member_no                   VARCHAR,
+    brand_code                  VARCHAR,
     wechat_id                   VARCHAR,
     member_code                 VARCHAR,
     member_card                 VARCHAR,

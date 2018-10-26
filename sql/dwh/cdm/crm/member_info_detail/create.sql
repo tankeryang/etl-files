@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS cdm_crm.member_info_detail (
     register_store_code         VARCHAR,
     store_code                  VARCHAR,
     brand_name                  VARCHAR,
+    brand_code                  VARCHAR,
     sales_mode                  VARCHAR,
     store_type                  VARCHAR,
     store_level                 VARCHAR,

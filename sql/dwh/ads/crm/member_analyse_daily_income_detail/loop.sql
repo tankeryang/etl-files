@@ -27,7 +27,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
         FROM cdm_crm.order_info_detail oid
         WHERE oid.order_amount > 0
         AND date(oid.order_deal_time) > (SELECT max(date) FROM ads_crm.member_analyse_daily_income_detail)
-        AND date_format(oid.order_deal_time, '%Y-%m-%d %T') <= date_format(localtimestamp, '%Y-%m-%d %T')
+        AND date(oid.order_deal_time) < date(localtimestamp)
         GROUP BY 
             oid.country,
             oid.sales_area,
