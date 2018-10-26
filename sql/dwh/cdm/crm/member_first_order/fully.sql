@@ -7,4 +7,4 @@ INSERT INTO cdm_crm.member_first_order
         brand_code,
         min(order_deal_time) AS order_deal_time
     FROM ods_crm.order_info
-    GROUP BY member_no;
+    GROUP BY member_no, brand_code;
