@@ -22,7 +22,7 @@ INSERT INTO ods_crm.order_item
         cast(return_amount AS DECIMAL(38, 2)),
         cast(sub_coupon_amount AS DECIMAL(38, 2)),
         localtimestamp
-    FROM dev_mysql_fpsit.crm.order_item
+    FROM prod_mysql_crm.crm.order_item
     WHERE
         date_format(create_time, '%Y-%m-%d %T') > (
             SELECT date_format(max(create_time), '%Y-%m-%d %T')

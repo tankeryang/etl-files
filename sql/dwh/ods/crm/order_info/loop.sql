@@ -17,7 +17,7 @@ INSERT INTO ods_crm.order_info
         order_status,
         outer_return_order_no,
         localtimestamp
-    FROM dev_mysql_fpsit.crm.order_info
+    FROM prod_mysql_crm.crm.order_info
     WHERE
         date_format(pay_time, '%Y-%m-%d %T') > (
             SELECT date_format(max(order_deal_time), '%Y-%m-%d %T')

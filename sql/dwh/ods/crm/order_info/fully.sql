@@ -17,5 +17,5 @@ INSERT INTO ods_crm.order_info
         order_status,
         outer_return_order_no,
         localtimestamp
-    FROM dev_mysql_fpsit.crm.order_info
+    FROM prod_mysql_crm.crm.order_info
     WHERE date(pay_time) < date(localtimestamp);
