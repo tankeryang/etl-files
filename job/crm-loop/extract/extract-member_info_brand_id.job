@@ -4,3 +4,5 @@ command=${cmd}
 sql.url.prefix=${ods.sql.url.prefix}
 sql.dir=member_info
 sql.names=fully
+
+dependencies=extract-store_info
