@@ -19,8 +19,8 @@ INSERT INTO ods_crm.order_info
         localtimestamp
     FROM prod_mysql_crm.crm.order_info
     WHERE
-        date_format(pay_time, '%Y-%m-%d %T') > (
-            SELECT date_format(max(order_deal_time), '%Y-%m-%d %T')
+        date_format(create_time, '%Y-%m-%d %T') > (
+            SELECT date_format(max(create_time), '%Y-%m-%d %T')
             FROM ods_crm.order_info
         )
-        AND date(pay_time) < date(localtimestamp);
+        AND date(create_time) < date(localtimestamp);

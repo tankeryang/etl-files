@@ -23,7 +23,7 @@ INSERT INTO cdm_crm.order_info_detail
         IF(oi.order_from = '1', '线上', '线下')                AS order_channel,
         si.province                                           AS province,
         si.city                                               AS city,
-        si.brand_code                                         AS brand_code,
+        oi.brand_code                                         AS brand_code,
         cdm_cms_si.brand_name                                 AS brand_name,
         oi.store_code                                         AS store_code,
         CASE cms_si.sales_mode
@@ -72,7 +72,7 @@ INSERT INTO cdm_crm.order_info_detail
             IF(mi.member_manage_store like '%WWW%', '官网', '门店'
         ), NULL)                                               AS member_register_type,
         -- 日报会员类型
-        IF(COALESCE(try_cast(oi.member_no AS INTEGER), 0) > 0,
+        IF(COALESCE(try_cast(oi.member_no AS INTEGER), 0) > 0 AND oi.order_grade IN (9, 10, 11, 13, 14),
             IF(date_format(oi.order_deal_time, '%Y-%m-%d') <= date_format(mfo.order_deal_time, '%Y-%m-%d'),
                 '新会员',
                 CASE oi.order_grade
@@ -87,7 +87,8 @@ INSERT INTO cdm_crm.order_info_detail
         oi.order_amount                                        AS order_amount,
         oi.order_fact_amount                                   AS order_fact_amount,
         mi.member_register_time                                AS member_register_time,
-        IF(oi.member_no != '-1', mgl.grade_change_time, NULL)  AS last_grade_change_time,
+        IF(COALESCE(try_cast(oi.member_no AS INTEGER), 0) > 0,
+            mgl.grade_change_time, NULL)                       AS last_grade_change_time,
         oi.order_deal_time                                     AS order_deal_time,
         localtimestamp                                         AS create_time
     FROM ods_crm.order_info oi
