@@ -1,7 +1,7 @@
-DELETE FROM ods_mms.commodity_info;
+DELETE FROM ods_crm.commodity_info;
 
 
-INSERT INTO ods_mms.commodity_info
+INSERT INTO ods_crm.commodity_info
     SELECT
         product_code,
         product_name,

@@ -4,4 +4,4 @@ command=${cmd}
 sql.url.prefix=${ods.sql.url.prefix}
 sql.dir=order_pay_item
 
-dependencies=extract-order_item
+dependencies=extract-order_item,extract-coupon_info

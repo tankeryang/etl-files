@@ -1,10 +1,10 @@
-CREATE SCHEMA IF NOT EXISTS ods_mms;
+CREATE SCHEMA IF NOT EXISTS ods_crm;
 
 
-DROP TABLE IF EXISTS ods_mms.commodity_info;
+DROP TABLE IF EXISTS ods_crm.commodity_info;
 
 
-CREATE TABLE IF NOT EXISTS ods_mms.commodity_info (
+CREATE TABLE IF NOT EXISTS ods_crm.commodity_info (
     product_code VARCHAR,
     product_name VARCHAR,
     brand_code   VARCHAR,

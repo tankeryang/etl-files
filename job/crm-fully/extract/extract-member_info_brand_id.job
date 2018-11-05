@@ -5,4 +5,4 @@ sql.url.prefix=${ods.sql.url.prefix}
 sql.dir=member_info_brand_id
 sql.names=create,fully
 
-dependencies=extract-store_info
+dependencies=extract-store_info,extract-commodity_info
