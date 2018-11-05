@@ -86,12 +86,19 @@ INSERT INTO cdm_crm.order_info_detail
         oi.order_item_quantity                                 AS order_item_quantity,
         oi.order_amount                                        AS order_amount,
         oi.order_fact_amount                                   AS order_fact_amount,
+        opi.pay_type                                           AS order_pay_type,
+        opi.coupon_no                                          AS order_coupon_no,
+        ci.coupon_category                                     AS order_coupon_category,
+        ci.coupon_denomination                                 AS order_coupon_denomination,
+        ci.coupon_discount                                     AS order_coupon_discount,
         mi.member_register_time                                AS member_register_time,
         IF(COALESCE(try_cast(oi.member_no AS INTEGER), 0) > 0,
             mgl.grade_change_time, NULL)                       AS last_grade_change_time,
         oi.order_deal_time                                     AS order_deal_time,
         localtimestamp                                         AS create_time
     FROM ods_crm.order_info oi
+    LEFT JOIN ods_crm.order_pay_item opi ON oi.outer_order_no = opi.outer_order_no
+    LEFT JOIN ods_crm.coupon_info ci ON opi.coupon_no = ci.coupon_no
     LEFT JOIN ods_crm.store_info si ON oi.store_code = si.store_code
     LEFT JOIN ods_cms.store_info cms_si ON oi.store_code = cms_si.store_code
     LEFT JOIN cdm_cms.store_info cdm_cms_si ON cdm_cms_si.country_code = cms_si.country_code

@@ -5,12 +5,15 @@ DROP TABLE IF EXISTS cdm_crm.member_product_preference;
 
 
 CREATE TABLE IF NOT EXISTS cdm_crm.member_product_preference (
-    category_preference       AS VARCHAR,
-    sub_cate_preference       AS VARCHAR,
-    product_group_preference  AS VARCHAR,
-    lining_preference         AS VARCHAR,
-    price_baseline_preference AS VARCHAR,
-    outline_preference        AS VARCHAR,
-    color_preference          AS VARCHAR,
-    size_preference           AS VARCHAR
+    brand_code                VARCHAR,
+    member_no                 VARCHAR,
+    main_cate_preference      VARCHAR,
+    sub_cate_preference       VARCHAR,
+    leaf_cate_preference      VARCHAR,
+    product_group_preference  VARCHAR,
+    lining_preference         VARCHAR,
+    price_baseline_preference VARCHAR,
+    outline_preference        VARCHAR,
+    color_preference          VARCHAR,
+    size_preference           VARCHAR
 );
