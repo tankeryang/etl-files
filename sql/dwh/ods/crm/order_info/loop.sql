@@ -23,4 +23,5 @@ INSERT INTO ods_crm.order_info
             SELECT date_format(max(create_time), '%Y-%m-%d %T')
             FROM ods_crm.order_info
         )
-        AND date(create_time) < date(localtimestamp);
+        AND date(create_time) < date(localtimestamp)
+        AND order_status = 'PAYED';
