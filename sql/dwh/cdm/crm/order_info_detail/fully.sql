@@ -86,28 +86,30 @@ INSERT INTO cdm_crm.order_info_detail
         oi.order_item_quantity                                 AS order_item_quantity,
         oi.order_amount                                        AS order_amount,
         oi.order_fact_amount                                   AS order_fact_amount,
-        opi.pay_type                                           AS order_pay_type,
-        opi.coupon_no                                          AS order_coupon_no,
-        ci.coupon_category                                     AS order_coupon_category,
-        ci.coupon_denomination                                 AS order_coupon_denomination,
-        ci.coupon_discount                                     AS order_coupon_discount,
+        cast(IF(oi.order_fact_amount > 0, 
+            oi.order_fact_amount - COALESCE(ocid.coupon_denomination_sum, 0),
+            oi.order_fact_amount) AS DECIMAL(38, 2))           AS order_fact_amount_include_coupon,
+        ocid.pay_type                                          AS order_pay_type,
+        ocid.coupon_no_array                                   AS order_coupon_no,
+        ocid.coupon_category                                   AS order_coupon_category,
+        ocid.coupon_denomination_sum                           AS order_coupon_denomination,
         mi.member_register_time                                AS member_register_time,
         IF(COALESCE(try_cast(oi.member_no AS INTEGER), 0) > 0,
             mgl.grade_change_time, NULL)                       AS last_grade_change_time,
         oi.order_deal_time                                     AS order_deal_time,
         localtimestamp                                         AS create_time
     FROM ods_crm.order_info oi
-    LEFT JOIN ods_crm.order_pay_item opi ON oi.outer_order_no = opi.outer_order_no
-    LEFT JOIN ods_crm.coupon_info ci ON opi.coupon_no = ci.coupon_no
+    LEFT JOIN cdm_crm.order_coupon_info_detail ocid ON oi.outer_order_no = ocid.outer_order_no
+        AND ocid.coupon_category = 'Cash'
     LEFT JOIN ods_crm.store_info si ON oi.store_code = si.store_code
     LEFT JOIN ods_cms.store_info cms_si ON oi.store_code = cms_si.store_code
     LEFT JOIN cdm_cms.store_info cdm_cms_si ON cdm_cms_si.country_code = cms_si.country_code
-    AND cdm_cms_si.store_code = oi.store_code 
+        AND cdm_cms_si.store_code = oi.store_code 
     LEFT JOIN cdm_crm.member_first_order mfo ON oi.member_no = mfo.member_no AND oi.brand_code = mfo.brand_code
     LEFT JOIN ods_crm.member_info mi ON oi.member_no = mi.member_no AND oi.brand_code = mi.brand_code
     LEFT JOIN mgl ON oi.member_no = mgl.member_no
-    AND oi.brand_code = mgl.brand_code
-    AND oi.outer_order_no = mgl.outer_order_no
-    AND oi.order_deal_time = mgl.order_deal_time
+        AND oi.brand_code = mgl.brand_code
+        AND oi.outer_order_no = mgl.outer_order_no
+        AND oi.order_deal_time = mgl.order_deal_time
     WHERE oi.order_status = 'PAYED'
     AND date(oi.order_deal_time) < date(localtimestamp);

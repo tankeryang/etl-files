@@ -1,5 +1,6 @@
 type=command
 command=${cmd}
 
-sql.dir=member_first_order
+sql.dir=order_coupon_info_detail
+
 sql.names=fully
