@@ -79,7 +79,7 @@ INSERT INTO cdm_crm.member_consumption_preference
         SELECT DISTINCT
             brand_code,
             member_no,
-            cast(sum(order_item_quantity) * 1.00 / count(outer_order_no) AS DECIMAL(18,4)) AS related_rate
+            cast(sum(order_item_quantity) * 1.00 / count(outer_order_no) AS DECIMAL(18, 4)) AS related_rate_preference
         FROM cdm_crm.order_info_detail
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
         AND date(order_deal_time) <= date(localtimestamp)
@@ -91,6 +91,7 @@ INSERT INTO cdm_crm.member_consumption_preference
         mi.member_no,
         sp.store_preference,
         pp.pay_type_preference,
+        rr.related_rate_preference,
         cast(dp.discount_rate_preference AS DECIMAL(18, 4)),
         cast(cdp.coupon_discount_rate_preference AS DECIMAL(18, 4)),
         cast(dp.discount_rate_preference AS DECIMAL(18, 4)) AS uncoupon_discount_rate_preference,

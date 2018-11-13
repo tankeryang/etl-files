@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS cdm_crm.member_consumption_preference (
     member_no                         VARCHAR,
     store_preference                  VARCHAR,
     pay_type_preference               VARCHAR,
-    related_rate_preference           VARCHAR,
+    related_rate_preference           DECIMAL(18, 4),
     discount_rate_preference          DECIMAL(18, 4),
     coupon_discount_rate_preference   DECIMAL(18, 4),
     uncoupon_discount_rate_preference DECIMAL(18, 4),
