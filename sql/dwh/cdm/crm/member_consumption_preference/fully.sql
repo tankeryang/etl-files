@@ -41,7 +41,7 @@ INSERT INTO cdm_crm.member_consumption_preference
         SELECT DISTINCT
             brand_code,
             member_no,
-            IF(order_amount != 0, order_fact_amount / order_amount, 0) AS discount_rate,
+            IF(order_amount != 0, order_fact_amount * 1.00 / order_amount, 0) AS discount_rate,
             count(outer_order_no) AS discount_rate_count
         FROM cdm_crm.order_info_detail
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
@@ -60,7 +60,7 @@ INSERT INTO cdm_crm.member_consumption_preference
         SELECT DISTINCT
             brand_code,
             member_no,
-            IF(order_amount != 0, order_fact_amount_include_coupon / order_amount, 0) AS coupon_discount_rate,
+            IF(order_amount != 0, order_fact_amount_include_coupon * 1.00 / order_amount, 0) AS coupon_discount_rate,
             count(outer_order_no) AS coupon_discount_rate_count
         FROM cdm_crm.order_info_detail
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
@@ -79,7 +79,7 @@ INSERT INTO cdm_crm.member_consumption_preference
         SELECT DISTINCT
             brand_code,
             member_no,
-            cast(sum(order_item_quantity) / count(outer_order_no) AS DECIMAL(18,4)) AS related_rate
+            cast(sum(order_item_quantity) * 1.00 / count(outer_order_no) AS DECIMAL(18,4)) AS related_rate
         FROM cdm_crm.order_info_detail
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
         AND date(order_deal_time) <= date(localtimestamp)
@@ -91,9 +91,9 @@ INSERT INTO cdm_crm.member_consumption_preference
         mi.member_no,
         sp.store_preference,
         pp.pay_type_preference,
-        dp.discount_rate_preference,
-        cdp.coupon_discount_rate_preference,
-        dp.discount_rate_preference AS uncoupon_discount_rate_preference,
+        cast(dp.discount_rate_preference AS DECIMAL(18, 4)),
+        cast(cdp.coupon_discount_rate_preference AS DECIMAL(18, 4)),
+        cast(dp.discount_rate_preference AS DECIMAL(18, 4)) AS uncoupon_discount_rate_preference,
         '{computing_duration}'
     FROM ods_crm.member_info mi
     LEFT JOIN sp ON mi.brand_code = sp.brand_code AND mi.member_no = sp.member_no
