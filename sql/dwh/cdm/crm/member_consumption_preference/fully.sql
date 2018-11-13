@@ -95,7 +95,7 @@ INSERT INTO cdm_crm.member_consumption_preference
         cdp.coupon_discount_rate_preference,
         dp.discount_rate_preference AS uncoupon_discount_rate_preference,
         '{computing_duration}'
-    FROM ods_crm.member_info
+    FROM ods_crm.member_info mi
     LEFT JOIN sp ON mi.brand_code = sp.brand_code AND mi.member_no = sp.member_no
     LEFT JOIN pp ON mi.brand_code = pp.brand_code AND mi.member_no = pp.member_no
     LEFT JOIN dp ON mi.brand_code = dp.brand_code AND mi.member_no = dp.member_no
