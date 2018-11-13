@@ -5,7 +5,7 @@ INSERT INTO cdm_crm.member_product_preference
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
         AND item_type = 'SALE'
         AND date(order_deal_time) <= date(localtimestamp)
-        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{compution_duration}' day
+        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{computing_duration}' day
         GROUP BY brand_code, member_no, main_cate
     ), mp AS (
         SELECT DISTINCT
@@ -21,7 +21,7 @@ INSERT INTO cdm_crm.member_product_preference
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
         AND item_type = 'SALE'
         AND date(order_deal_time) <= date(localtimestamp)
-        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{compution_duration}' day
+        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{computing_duration}' day
         GROUP BY brand_code, member_no, sub_cate
     ), sp AS (
         SELECT DISTINCT
@@ -37,7 +37,7 @@ INSERT INTO cdm_crm.member_product_preference
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
         AND item_type = 'SALE'
         AND date(order_deal_time) <= date(localtimestamp)
-        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{compution_duration}' day
+        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{computing_duration}' day
         GROUP BY brand_code, member_no, leaf_cate
     ), lp AS (
         SELECT DISTINCT
@@ -53,7 +53,7 @@ INSERT INTO cdm_crm.member_product_preference
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
         AND item_type = 'SALE'
         AND date(order_deal_time) <= date(localtimestamp)
-        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{compution_duration}' day
+        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{computing_duration}' day
         GROUP BY brand_code, member_no, lining
     ), lnp AS (
         SELECT DISTINCT
@@ -69,7 +69,7 @@ INSERT INTO cdm_crm.member_product_preference
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
         AND item_type = 'SALE'
         AND date(order_deal_time) <= date(localtimestamp)
-        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{compution_duration}' day
+        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{computing_duration}' day
         GROUP BY brand_code, member_no, product_color_code
     ), cp AS (
         SELECT DISTINCT
@@ -85,7 +85,7 @@ INSERT INTO cdm_crm.member_product_preference
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
         AND item_type = 'SALE'
         AND date(order_deal_time) <= date(localtimestamp)
-        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{compution_duration}' day
+        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{computing_duration}' day
         GROUP BY brand_code, member_no, product_size_code
     ), szp AS (
         SELECT DISTINCT
@@ -108,7 +108,7 @@ INSERT INTO cdm_crm.member_product_preference
         NULL AS outline_preference,
         cp.color_preference,
         szp.size_preference,
-        '{compution_duration}'
+        '{computing_duration}'
     FROM ods_crm.member_info mi
     LEFT JOIN mp ON mi.brand_code = mp.brand_code AND mi.member_no = mp.member_no
     LEFT JOIN sp ON mi.brand_code = sp.brand_code AND mi.member_no = sp.member_no

@@ -8,7 +8,7 @@ INSERT INTO cdm_crm.member_consumption_preference
         FROM cdm_crm.order_info_detail
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
         AND date(order_deal_time) <= date(localtimestamp)
-        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{compution_duration}' day
+        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{computing_duration}' day
         GROUP BY brand_code, member_no, store_code
     ), sp AS (
         SELECT DISTINCT
@@ -27,7 +27,7 @@ INSERT INTO cdm_crm.member_consumption_preference
         FROM cdm_crm.order_info_detail
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
         AND date(order_deal_time) <= date(localtimestamp)
-        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{compution_duration}' day
+        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{computing_duration}' day
         GROUP BY brand_code, member_no, order_pay_type
     ), pp AS (
         SELECT DISTINCT
@@ -46,7 +46,7 @@ INSERT INTO cdm_crm.member_consumption_preference
         FROM cdm_crm.order_info_detail
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
         AND date(order_deal_time) <= date(localtimestamp)
-        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{compution_duration}' day
+        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{computing_duration}' day
         GROUP BY brand_code, member_no, order_fact_amount, order_amount
     ), dp AS (
         SELECT DISTINCT
@@ -65,7 +65,7 @@ INSERT INTO cdm_crm.member_consumption_preference
         FROM cdm_crm.order_info_detail
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
         AND date(order_deal_time) <= date(localtimestamp)
-        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{compution_duration}' day
+        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{computing_duration}' day
         GROUP BY brand_code, member_no, order_fact_amount_include_coupon, order_amount
     ), cdp AS (
         SELECT DISTINCT
@@ -82,7 +82,7 @@ INSERT INTO cdm_crm.member_consumption_preference
             cast(sum(order_item_auantity) / count(outer_order_no) AS DECIMAL(18,4)) AS related_rate,
         WHERE COALESCE(try_cast(member_no AS INTEGER), 0) > 0
         AND date(order_deal_time) <= date(localtimestamp)
-        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{compution_duration}' day
+        AND date(order_deal_time) >= date(localtimestamp) - INTERVAL '{computing_duration}' day
         GROUP BY brand_code, member_no
     )
     SELECT
