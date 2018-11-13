@@ -2,7 +2,7 @@ type=command
 command=${cmd}
 
 sql.url.prefix=${cdm.sql.url.prefix}
-sql.dir=member_rfm_tag_advanced
+sql.dir=member_consumption_preference
 sql.names=create,fully
 
 placeholder.sql=fully-placeholders
