@@ -15,5 +15,6 @@ CREATE TABLE IF NOT EXISTS cdm_crm.member_product_preference (
     price_baseline_preference VARCHAR,
     outline_preference        VARCHAR,
     color_preference          VARCHAR,
-    size_preference           VARCHAR
+    size_preference           VARCHAR,
+    computing_duration        VARCHAR
 );

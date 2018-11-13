@@ -1,5 +1,9 @@
 CREATE SCHEMA IF NOT EXISTS cdm_crm;
+
+
 DROP TABLE IF EXISTS cdm_crm.member_rfm_tag_advanced;
+
+
 --member_rfm_tag_advanced客户RFM高级选项表
 CREATE TABLE cdm_crm.member_rfm_tag_advanced (
     computing_until_date      VARCHAR,

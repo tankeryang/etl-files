@@ -23,4 +23,4 @@ INSERT INTO cdm_crm.order_item_detail
         localtimestamp
     FROM ods_crm.order_item oit
     LEFT JOIN ods_crm.order_info oif ON oit.outer_order_no = oif.outer_order_no
-    LEFT JOIN ods_mms.commodity_info ci ON oit.product_code = ci.product_code;
+    LEFT JOIN ods_crm.commodity_info ci ON oit.product_code = ci.product_code;
