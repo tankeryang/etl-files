@@ -31,13 +31,15 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_group_info_detail (
     outline_preference                     VARCHAR,
     color_preference                       VARCHAR,
     size_preference                        VARCHAR,
+    product_computing_duration             VARCHAR,
     -- 购物偏好
     store_preference                       VARCHAR,
     pay_type_preference                    VARCHAR,
-    related_rate                           VARCHAR,
-    discount_rate                          DECIMAL(18, 4),
-    coupon_discount_rate                   DECIMAL(18, 4),
-    uncoupon_discount_rate                 DECIMAL(18, 4),
+    related_rate_preference                DECIMAL(18, 4),
+    discount_rate_preference               DECIMAL(18, 4),
+    coupon_discount_rate_preference        DECIMAL(18, 4),
+    uncoupon_discount_rate_preference      DECIMAL(18, 4),
+    consumption_computing_duration         VARCHAR,
     -- 会员相关
     member_score                           DECIMAL(18, 4),
     -- RFM模型(高级选项)

@@ -13,5 +13,5 @@ CREATE TABLE IF NOT EXISTS cdm_crm.member_consumption_preference (
     discount_rate_preference          DECIMAL(18, 4),
     coupon_discount_rate_preference   DECIMAL(18, 4),
     uncoupon_discount_rate_preference DECIMAL(18, 4),
-    computing_duration               VARCHAR
+    computing_duration                VARCHAR
 );

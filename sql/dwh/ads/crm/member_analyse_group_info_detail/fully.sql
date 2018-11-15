@@ -41,14 +41,14 @@ INSERT INTO ads_crm.member_analyse_group_info_detail
         -- 会员相关
         mi.member_score,
         -- rfm高级
-        mra.average_order_amount      AS average_order_fact_amount,
-        mra.average_purchase_interval AS average_order_deal_time_gap_with_today,
-        mra.total_purchase_frequency  AS cumulated_consumed_amount,
-        mra.total_order_fact_amount   AS cumulated_order_fact_amount,
-        mra.total_order_count         AS cumulated_order_count,
-        mra.total_order_item_quantit  AS cumulated_item_count,
-        mra.total_return_frequency    AS return_count,
-        mra.total_return_amount       AS return_amount
+        cast(mra.average_order_amount AS DECIMAL(18, 4))      AS average_order_fact_amount,
+        cast(mra.average_purchase_interval AS DECIMAL(18, 4)) AS average_order_deal_time_gap_with_today,
+        cast(mra.total_purchase_frequency AS INTEGER)         AS cumulated_consumed_amount,
+        cast(mra.total_order_fact_amount AS DECIMAL(18, 4))   AS cumulated_order_fact_amount,
+        cast(mra.total_order_count AS INTEGER)                AS cumulated_order_count,
+        cast(mra.total_order_item_quantity AS INTEGER)        AS cumulated_item_count,
+        cast(mra.total_return_frequency AS INTEGER)           AS return_count,
+        cast(mra.total_return_amount AS DECIMAL(18, 4))       AS return_amount
     FROM cdm_crm.member_info_detail mid
     LEFT JOIN cdm_crm.member_last_order mlo ON mid.brand_code = mlo.brand_code AND mid.member_no = mlo.member_no
     LEFT JOIN cdm_crm.member_first_order mfo ON mid.brand_code = mfo.brand_code AND mid.member_no = mfo.member_no
