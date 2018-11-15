@@ -50,5 +50,6 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_group_info_detail (
     cumulated_order_count                  INTEGER,
     cumulated_item_amount                  INTEGER,
     return_count                           INTEGER,
-    return_amount                          DECIMAL(18, 4)
+    return_amount                          DECIMAL(18, 4),
+    rfm_advanced_computing_duration        VARCHAR
 );

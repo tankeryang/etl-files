@@ -39,21 +39,22 @@ INSERT INTO ads_crm.member_analyse_group_info_detail
         mcp.uncoupon_discount_rate_preference,
         mcp.computing_duration,
         -- 会员相关
-        mi.member_score,
+        cast(mi.member_score AS DECIMAL(18, 4)),
         -- rfm高级
         cast(mra.average_order_amount AS DECIMAL(18, 4))      AS average_order_fact_amount,
-        cast(mra.average_purchase_interval AS DECIMAL(18, 4)) AS average_order_deal_time_gap_with_today,
+        cast(mra.average_purchase_interval AS INTEGER)        AS average_order_deal_time_gap_with_today,
         cast(mra.total_purchase_frequency AS INTEGER)         AS cumulated_consumed_amount,
         cast(mra.total_order_fact_amount AS DECIMAL(18, 4))   AS cumulated_order_fact_amount,
         cast(mra.total_order_count AS INTEGER)                AS cumulated_order_count,
         cast(mra.total_order_item_quantity AS INTEGER)        AS cumulated_item_count,
         cast(mra.total_return_frequency AS INTEGER)           AS return_count,
-        cast(mra.total_return_amount AS DECIMAL(18, 4))       AS return_amount
+        cast(mra.total_return_amount AS DECIMAL(18, 4))       AS return_amount,
+        cast(mra.computing_duration AS VARCHAR)               AS rfm_advanced_computing_duration
     FROM cdm_crm.member_info_detail mid
     LEFT JOIN cdm_crm.member_last_order mlo ON mid.brand_code = mlo.brand_code AND mid.member_no = mlo.member_no
     LEFT JOIN cdm_crm.member_first_order mfo ON mid.brand_code = mfo.brand_code AND mid.member_no = mfo.member_no
     LEFT JOIN ods_crm.member_info mi ON mid.brand_code = mi.brand_code AND mid.member_no = mi.member_no
-    LEFT JOIN cdm_crm.member_product_preference mpp ON mid.brand_code = mpp.brand_code AND mid.member_no = mpp.member_no
-    LEFT JOIN cdm_crm.member_consumption_preference mcp ON mid.brand_code = mcp.brand_code
+    FULL JOIN cdm_crm.member_product_preference mpp ON mid.brand_code = mpp.brand_code AND mid.member_no = mpp.member_no
+    FULL JOIN cdm_crm.member_consumption_preference mcp ON mid.brand_code = mcp.brand_code
         AND mid.member_no = mcp.member_no
-    LEFT JOIN cdm_crm.member_rfm_tag_advanced mra ON mid.brand_code = mra.brand_code AND mid.member_no = mra.member_no;
+    FULL JOIN cdm_crm.member_rfm_tag_advanced mra ON mid.brand_code = mra.brand_code AND mid.member_no = mra.member_no;
