@@ -25,7 +25,7 @@ INSERT INTO ads_crm.member_analyse_group_info_detail
         mpp.leaf_cate_preference,
         mpp.product_group_preference,
         mpp.lining_preference,
-        mpp.price_baseline_prference,
+        mpp.price_baseline_preference,
         mpp.outline_preference,
         mpp.color_preference,
         mpp.size_preference,
@@ -51,10 +51,9 @@ INSERT INTO ads_crm.member_analyse_group_info_detail
         mra.total_return_amount       AS return_amount
     FROM cdm_crm.member_info_detail mid
     LEFT JOIN cdm_crm.member_last_order mlo ON mid.brand_code = mlo.brand_code AND mid.member_no = mlo.member_no
+    LEFT JOIN cdm_crm.member_first_order mfo ON mid.brand_code = mfo.brand_code AND mid.member_no = mfo.member_no
     LEFT JOIN ods_crm.member_info mi ON mid.brand_code = mi.brand_code AND mid.member_no = mi.member_no
     LEFT JOIN cdm_crm.member_product_preference mpp ON mid.brand_code = mpp.brand_code AND mid.member_no = mpp.member_no
     LEFT JOIN cdm_crm.member_consumption_preference mcp ON mid.brand_code = mcp.brand_code
         AND mid.member_no = mcp.member_no
-    LEFT JOIN member_rfm_tag_advanced mra ON mid.brand_code = mra.brand_code AND mid.member_no = mra.member_no
-    
-
+    LEFT JOIN cdm_crm.member_rfm_tag_advanced mra ON mid.brand_code = mra.brand_code AND mid.member_no = mra.member_no;
