@@ -54,7 +54,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly_all
         f.brand_name    AS brand,
         f.order_channel AS order_channel,
         array[f.{zone}] AS zone,
-        {zone}          AS zone_type,
+        '{zone}'        AS zone_type,
         f.member_type   AS member_type,
         cast(sum(f.sales_income) AS DECIMAL(18, 3)) AS sales_income,
         cast(COALESCE(TRY(sum(f.sales_income) * 1.0 / tt.sales_income), 0) AS DECIMAL(18, 4)) AS sales_income_proportion,
