@@ -1,1 +1,1 @@
-SELECT 'zone', 'country, sales_area, sales_district, province, city'
+SELECT array['country', 'sales_area', 'sales_district', 'province', 'city'] AS zone;
