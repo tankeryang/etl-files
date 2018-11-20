@@ -1,53 +1,53 @@
 INSERT INTO ads_crm.member_analyse_income_total_zone_daily_all
     WITH tt AS (
-        SELECT brand_name, order_channel, {zone}, cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income
+        SELECT brand_name, {zone}, cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type = '整体' AND member_newold_type IS NULL AND member_level_type IS NULL
         AND date = date(localtimestamp)
-        GROUP BY brand_name, order_channel, {zone}
+        GROUP BY brand_name, {zone}
     ), lyst AS (
-        SELECT brand_name, order_channel, {zone}, member_type,
+        SELECT brand_name, {zone}, member_type,
             cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income,
             array_distinct(array_agg(store_code)) AS store_array
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type IS NOT NULL AND member_newold_type IS NULL AND member_level_type IS NULL
         AND date = date(date(localtimestamp) - interval '1' year)
-        GROUP BY brand_name, order_channel, {zone}, member_type
+        GROUP BY brand_name, {zone}, member_type
     ), ss AS (
-        SELECT ss.brand_name, ss.order_channel, ss.{zone}, ss.member_type,
+        SELECT ss.brand_name, ss.{zone}, ss.member_type,
             array_intersect(array_distinct(array_agg(ss.store_code)), lyst.store_array) AS store_array
         FROM ads_crm.member_analyse_fold_daily_income_detail ss
-        LEFT JOIN lyst ON ss.brand_name = lyst.brand_name AND ss.order_channel = lyst.order_channel
+        LEFT JOIN lyst ON ss.brand_name = lyst.brand_name
         AND ss.{zone} = lyst.{zone} AND ss.member_type = lyst.member_type
         WHERE ss.member_type IS NOT NULL AND ss.member_newold_type IS NULL AND ss.member_level_type IS NULL
         AND ss.date <= date(localtimestamp)
-        GROUP BY ss.brand_name, ss.order_channel, ss.{zone}, ss.member_type, lyst.store_array
+        GROUP BY ss.brand_name, ss.{zone}, ss.member_type, lyst.store_array
     ), ss_lyst AS (
-        SELECT ss_l.brand_name, ss_l.order_channel, ss_l.{zone}, ss_l.member_type,
+        SELECT ss_l.brand_name, ss_l.{zone}, ss_l.member_type,
             cast(sum(ss_l.sales_income) AS DECIMAL(18, 3)) AS sales_income
         FROM ads_crm.member_analyse_fold_daily_income_detail ss_l
-        LEFT JOIN ss ON ss_l.brand_name = ss.brand_name AND ss.order_channel = ss_l.order_channel
+        LEFT JOIN ss ON ss_l.brand_name = ss.brand_name
         AND ss_l.{zone} = ss.{zone} AND ss_l.member_type = ss.member_type
         WHERE ss_l.member_type IS NOT NULL AND ss_l.member_newold_type IS NULL AND ss_l.member_level_type IS NULL
         AND contains(ss.store_array, ss_l.store_code)
         AND ss_l.date = date(date(localtimestamp) - interval '1' year)
-        GROUP BY ss_l.brand_name, ss_l.order_channel, ss_l.{zone}, ss_l.member_type
+        GROUP BY ss_l.brand_name, ss_l.{zone}, ss_l.member_type
     ), ss_now AS (
-        SELECT DISTINCT f.brand_name, f.order_channel, f.{zone}, f.member_type,
+        SELECT DISTINCT f.brand_name, f.{zone}, f.member_type,
             cast(COALESCE(TRY(sum(f.sales_income) * 1.0 / ss_lyst.sales_income), 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst
         FROM ads_crm.member_analyse_fold_daily_income_detail f
-        LEFT JOIN ss_lyst ON f.brand_name = ss_lyst.brand_name AND f.order_channel = ss_lyst.order_channel
+        LEFT JOIN ss_lyst ON f.brand_name = ss_lyst.brand_name
         AND f.{zone} = ss_lyst.{zone} AND f.member_type = ss_lyst.member_type
-        LEFT JOIN ss ON f.brand_name = ss.brand_name AND f.order_channel = ss.order_channel
+        LEFT JOIN ss ON f.brand_name = ss.brand_name
         AND f.{zone} = ss.{zone} AND f.member_type = ss.member_type
         WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
         AND contains(ss.store_array, f.store_code)
         AND f.date = date(localtimestamp)
-        GROUP BY f.brand_name, f.order_channel, f.{zone}, f.member_type, ss_lyst.sales_income
+        GROUP BY f.brand_name, f.{zone}, f.member_type, ss_lyst.sales_income
     )
     SELECT DISTINCT
         f.brand_name    AS brand,
-        f.order_channel AS order_channel,
+        NULL            AS order_channel,
         f.{zone}        AS zone,
         '{zone}'        AS zone_type,
         f.member_type   AS member_type,
@@ -63,11 +63,11 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily_all
         cast(COALESCE(ss_now.compared_with_ss_lyst, 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst,
         localtimestamp AS create_time
     FROM ads_crm.member_analyse_fold_daily_income_detail f
-    LEFT JOIN tt ON f.brand_name = tt.brand_name AND f.order_channel = tt.order_channel AND f.{zone} = tt.{zone}
-    LEFT JOIN lyst ON f.brand_name = lyst.brand_name AND f.order_channel = lyst.order_channel
+    LEFT JOIN tt ON f.brand_name = tt.brand_name AND f.{zone} = tt.{zone}
+    LEFT JOIN lyst ON f.brand_name = lyst.brand_name
     AND f.{zone} = lyst.{zone} AND f.member_type = lyst.member_type
-    LEFT JOIN ss_now ON f.brand_name = ss_now.brand_name AND f.order_channel = ss_now.order_channel
+    LEFT JOIN ss_now ON f.brand_name = ss_now.brand_name
     AND f.{zone} = ss_now.{zone} AND f.member_type = ss_now.member_type
     WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
     AND f.date = date(localtimestamp)
-    GROUP BY f.brand_name, f.order_channel, f.{zone}, f.member_type, tt.sales_income, lyst.sales_income, ss_now.compared_with_ss_lyst;
+    GROUP BY f.brand_name, f.{zone}, f.member_type, tt.sales_income, lyst.sales_income, ss_now.compared_with_ss_lyst;
