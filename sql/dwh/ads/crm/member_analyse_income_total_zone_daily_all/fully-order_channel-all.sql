@@ -47,7 +47,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily_all
     )
     SELECT DISTINCT
         f.brand_name    AS brand,
-        NULL            AS order_channel,
+        '全部'          AS order_channel,
         f.{zone}        AS zone,
         '{zone}'        AS zone_type,
         f.member_type   AS member_type,
