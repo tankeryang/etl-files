@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS ads_crm.member_analyse_income_total_zone_monthly_all;
 CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_income_total_zone_monthly_all (
     brand                   VARCHAR,
     order_channel           VARCHAR,
-    zone                    ARRAY<VARCHAR>,
+    zone                    VARCHAR,
     zone_type               VARCHAR,
     member_type             VARCHAR,
     sales_income            DECIMAL(18, 3),

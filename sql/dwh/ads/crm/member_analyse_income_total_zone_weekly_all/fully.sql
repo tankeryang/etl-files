@@ -53,7 +53,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_weekly_all
     SELECT DISTINCT
         f.brand_name    AS brand,
         f.order_channel AS order_channel,
-        array[f.{zone}] AS zone,
+        f.{zone}        AS zone,
         '{zone}'        AS zone_type,
         f.member_type   AS member_type,
         cast(sum(f.sales_income) AS DECIMAL(18, 3)) AS sales_income,
