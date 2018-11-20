@@ -74,4 +74,4 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly_all
     AND f.{zone} = ss_now.{zone} AND f.member_type = ss_now.member_type
     WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
     AND f.date <= date(localtimestamp) AND f.date >= date(date_format(localtimestamp, '%Y-%m-01'))
-    GROUP BY f.brand_name, f.order_channel, f.{zone}, '{zone}', f.member_type, tt.sales_income, lyst.sales_income, ss_now.compared_with_ss_lyst;
+    GROUP BY f.brand_name, f.order_channel, f.{zone}, f.member_type, tt.sales_income, lyst.sales_income, ss_now.compared_with_ss_lyst;
