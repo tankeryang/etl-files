@@ -5,7 +5,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_weekly_all
         LEFT JOIN w ON 
         WHERE member_type = '整体' AND member_newold_type IS NULL AND member_level_type IS NULL
         AND date <= date(localtimestamp)
-        AND date >= date(date_format(date(localtimestamp) - interval '{gap}' day, '%Y-%m-%d'))
+        AND date >= date('{first_date_of_week}')
         GROUP BY brand_name, order_channel, {zone}
     ), lyst AS (
         SELECT brand_name, order_channel, {zone}, member_type,
@@ -14,7 +14,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_weekly_all
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type IS NOT NULL AND member_newold_type IS NULL AND member_level_type IS NULL
         AND date <= date(date(localtimestamp) - interval '1' year)
-        AND date >= date(date_format(date(localtimestamp) - interval '{gap}' day, '%Y-%m-%d'))
+        AND date >= date('{first_date_of_week}')
         GROUP BY brand_name, {zone}, member_type
     ), ss AS (
         SELECT ss.brand_name, ss.order_channel, ss.{zone}, ss.member_type,
@@ -24,7 +24,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_weekly_all
         AND ss.{zone} = lyst.{zone} AND ss.member_type = lyst.member_type
         WHERE ss.member_type IS NOT NULL AND ss.member_newold_type IS NULL AND ss.member_level_type IS NULL
         AND ss.date <= date(localtimestamp)
-        AND ss.date >= date(date_format(date(localtimestamp) - interval '{gap}' day, '%Y-%m-%d'))
+        AND ss.date >= date('{first_date_of_week}')
         GROUP BY ss.brand_name, ss.order_channel, ss.{zone}, ss.member_type, lyst.store_array
     ), ss_lyst AS (
         SELECT ss_l.brand_name, ss_l.order_channel, ss_l.{zone}, ss_l.member_type,
@@ -35,7 +35,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_weekly_all
         WHERE ss_l.member_type IS NOT NULL AND ss_l.member_newold_type IS NULL AND ss_l.member_level_type IS NULL
         AND contains(ss.store_array, ss_l.store_code)
         AND ss_l.date <= date(date(localtimestamp) - interval '1' year)
-        AND ss_l.date >= date(date_format(date(localtimestamp) - interval '{gap}' day, '%Y-%m-%d'))
+        AND ss_l.date >= date('{first_date_of_week}')
         GROUP BY ss_l.brand_name, ss_l.{zone}, ss_l.member_type
     ), ss_now AS (
         SELECT DISTINCT f.brand_name, f.order_channel, f.{zone}, f.member_type,
@@ -48,7 +48,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_weekly_all
         WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
         AND contains(ss.store_array, f.store_code)
         AND f.date <= date(localtimestamp)
-        AND f.date >= date(date_format(date(localtimestamp) - interval '{gap}' day, '%Y-%m-%d'))
+        AND f.date >= date('{first_date_of_week}')
         GROUP BY f.brand_name, f.order_channel, f.{zone}, f.member_type, ss_lyst.sales_income
     )
     SELECT DISTINCT
@@ -74,5 +74,5 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_weekly_all
     LEFT JOIN ss_now ON f.brand_name = ss_now.brand_name AND f.order_channel = ss_now.order_channel
     AND f.{zone} = ss_now.{zone} AND f.member_type = ss_now.member_type
     WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
-    AND f.date <= date(localtimestamp) AND f.date >= date(date_format(date(localtimestamp) - interval '{gap}' day, '%Y-%m-%d'))
+    AND f.date <= date(localtimestamp) AND f.date >= date('{first_date_of_week}')
     GROUP BY f.brand_name, f.order_channel, f.{zone}, '{zone}', f.member_type, tt.sales_income, lyst.sales_income, ss_now.compared_with_ss_lyst

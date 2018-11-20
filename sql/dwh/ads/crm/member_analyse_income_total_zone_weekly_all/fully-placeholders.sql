@@ -1,9 +1,7 @@
 WITH g AS (
-    SELECT cast(dow(localtimestamp) AS VARCHAR) AS gap
-), gg AS (
-    SELECT date(localtimestamp) - interval g.gap day AS week_head_date FROM g
+    SELECT date(date_add('day', -dow(date(localtimestamp) - interval '1' day), localtimestamp)) AS first_date_of_week
 )
 SELECT
     array['country', 'sales_area', 'sales_district', 'province', 'city'] AS zone,
-    array[gg.week_head_date] AS gap
-FROM gg;
+    array[g.first_date_of_week] AS first_date_of_week
+FROM g;
