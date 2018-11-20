@@ -1,1 +1,1 @@
-SELECT array['country', 'sales_area', 'sales_district', 'province', 'city'] AS zone;
+SELECT array['country', 'sales_area', 'sales_district', 'province', 'city', 'store_code'] AS zone;
