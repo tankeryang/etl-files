@@ -15,7 +15,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_weekly_all
         WHERE member_type IS NOT NULL AND member_newold_type IS NULL AND member_level_type IS NULL
         AND date <= date(date(localtimestamp) - interval '1' year)
         AND date >= date('{first_date_of_week}')
-        GROUP BY brand_name, {zone}, member_type
+        GROUP BY brand_name, order_channel, {zone}, member_type
     ), ss AS (
         SELECT ss.brand_name, ss.order_channel, ss.{zone}, ss.member_type,
             array_intersect(array_distinct(array_agg(ss.store_code)), lyst.store_array) AS store_array
@@ -36,7 +36,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_weekly_all
         AND contains(ss.store_array, ss_l.store_code)
         AND ss_l.date <= date(date(localtimestamp) - interval '1' year)
         AND ss_l.date >= date('{first_date_of_week}')
-        GROUP BY ss_l.brand_name, ss_l.{zone}, ss_l.member_type
+        GROUP BY ss_l.brand_name, ss_l.order_channel, ss_l.{zone}, ss_l.member_type
     ), ss_now AS (
         SELECT DISTINCT f.brand_name, f.order_channel, f.{zone}, f.member_type,
             cast(COALESCE(TRY(sum(f.sales_income) * 1.0 / ss_lyst.sales_income), 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst
@@ -55,7 +55,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_weekly_all
         f.brand_name    AS brand,
         f.order_channel AS order_channel,
         array[f.{zone}] AS zone,
-        {zone}          AS zone_type,
+        '{zone}'        AS zone_type,
         f.member_type   AS member_type,
         cast(sum(f.sales_income) AS DECIMAL(18, 3)) AS sales_income,
         cast(COALESCE(TRY(sum(f.sales_income) * 1.0 / tt.sales_income), 0) AS DECIMAL(18, 4)) AS sales_income_proportion,
@@ -75,4 +75,4 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_weekly_all
     AND f.{zone} = ss_now.{zone} AND f.member_type = ss_now.member_type
     WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
     AND f.date <= date(localtimestamp) AND f.date >= date('{first_date_of_week}')
-    GROUP BY f.brand_name, f.order_channel, f.{zone}, '{zone}', f.member_type, tt.sales_income, lyst.sales_income, ss_now.compared_with_ss_lyst
+    GROUP BY f.brand_name, f.order_channel, f.{zone}, f.member_type, tt.sales_income, lyst.sales_income, ss_now.compared_with_ss_lyst
