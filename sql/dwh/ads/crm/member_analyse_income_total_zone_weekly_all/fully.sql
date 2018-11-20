@@ -2,7 +2,6 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_weekly_all
     WITH tt AS (
         SELECT brand_name, order_channel, {zone}, cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income
         FROM ads_crm.member_analyse_fold_daily_income_detail
-        LEFT JOIN w ON 
         WHERE member_type = '整体' AND member_newold_type IS NULL AND member_level_type IS NULL
         AND date <= date(localtimestamp)
         AND date >= date('{first_date_of_week}')
