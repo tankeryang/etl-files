@@ -1,5 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS ods_crm;
 
+
 DROP TABLE IF EXISTS ods_crm.member_info;
 
 

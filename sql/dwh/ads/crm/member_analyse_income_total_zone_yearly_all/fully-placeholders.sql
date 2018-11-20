@@ -1,0 +1,1 @@
+SELECT 'zone', 'country, sales_area, sales_district, province, city'

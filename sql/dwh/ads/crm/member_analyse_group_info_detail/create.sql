@@ -45,10 +45,10 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_group_info_detail (
     -- RFM模型(高级选项)
     average_order_fact_amount              DECIMAL(18, 4),
     average_order_deal_time_gap_with_today INTEGER,
-    cumulated_consumed_amount              INTEGER,
-    cumulated_order_fact_amount            DECIMAL(18, 4),
-    cumulated_order_count                  INTEGER,
-    cumulated_item_amount                  INTEGER,
+    cumulative_consumed_amount             INTEGER,
+    cumulative_order_fact_amount           DECIMAL(18, 4),
+    cumulative_order_count                 INTEGER,
+    cumulative_item_amount                 INTEGER,
     return_count                           INTEGER,
     return_amount                          DECIMAL(18, 4),
     rfm_advanced_computing_duration        VARCHAR

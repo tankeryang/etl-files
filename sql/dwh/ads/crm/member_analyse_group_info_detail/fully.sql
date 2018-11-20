@@ -43,10 +43,10 @@ INSERT INTO ads_crm.member_analyse_group_info_detail
         -- rfm高级
         cast(mra.average_order_amount AS DECIMAL(18, 4))      AS average_order_fact_amount,
         cast(mra.average_purchase_interval AS INTEGER)        AS average_order_deal_time_gap_with_today,
-        cast(mra.total_purchase_frequency AS INTEGER)         AS cumulated_consumed_amount,
-        cast(mra.total_order_fact_amount AS DECIMAL(18, 4))   AS cumulated_order_fact_amount,
-        cast(mra.total_order_count AS INTEGER)                AS cumulated_order_count,
-        cast(mra.total_order_item_quantity AS INTEGER)        AS cumulated_item_count,
+        cast(mra.total_purchase_frequency AS INTEGER)         AS cumulative_consumed_amount,
+        cast(mra.total_order_fact_amount AS DECIMAL(18, 4))   AS cumulative_order_fact_amount,
+        cast(mra.total_order_count AS INTEGER)                AS cumulative_order_count,
+        cast(mra.total_order_item_quantity AS INTEGER)        AS cumulative_item_count,
         cast(mra.total_return_frequency AS INTEGER)           AS return_count,
         cast(mra.total_return_amount AS DECIMAL(18, 4))       AS return_amount,
         cast(mra.computing_duration AS VARCHAR)               AS rfm_advanced_computing_duration
