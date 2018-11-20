@@ -104,7 +104,7 @@ INSERT INTO cdm_crm.order_info_detail
     LEFT JOIN ods_crm.store_info si ON oi.store_code = si.store_code
     LEFT JOIN ods_cms.store_info cms_si ON oi.store_code = cms_si.store_code
     LEFT JOIN cdm_cms.store_info cdm_cms_si ON cdm_cms_si.country_code = cms_si.country_code
-        AND cdm_cms_si.store_code = oi.store_code 
+        AND cdm_cms_si.brand_code = oi.brand_code 
     LEFT JOIN cdm_crm.member_first_order mfo ON oi.member_no = mfo.member_no AND oi.brand_code = mfo.brand_code
     LEFT JOIN ods_crm.member_info mi ON oi.member_no = mi.member_no AND oi.brand_code = mi.brand_code
     LEFT JOIN mgl ON oi.member_no = mgl.member_no
