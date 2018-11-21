@@ -6,10 +6,14 @@ DROP TABLE IF EXISTS ads_crm.member_analyse_income_total_all;
 
 CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_income_total_all (
     brand                   VARCHAR,
-    order_channel           VARCHAR,
     zone                    VARCHAR,
     zone_type               VARCHAR,
     member_type             VARCHAR,
+    order_channel           VARCHAR,
+    sales_mode              VARCHAR,
+    store_type              VARCHAR,
+    store_level             VARCHAR,
+    channel_type            VARCHAR,
     sales_income            DECIMAL(18, 3),
     sales_income_proportion DECIMAL(18, 4),
     customer_amount         INTEGER,
