@@ -1,4 +1,4 @@
-INSERT INTO ads_crm.member_analyse_income_total_zone_all
+INSERT INTO ads_crm.member_analyse_income_total_all
     WITH tt AS (
         SELECT brand_name, {zone}, cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income
         FROM ads_crm.member_analyse_fold_daily_income_detail
