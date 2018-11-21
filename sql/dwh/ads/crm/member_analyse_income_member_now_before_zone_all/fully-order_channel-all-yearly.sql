@@ -110,7 +110,7 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_zone_all
         cast(COALESCE(TRY(SUM(t1.siq) * 1.0 / SUM(t1.oa)), 0) AS DECIMAL(18, 2)) AS sales_item_per_order,
         'yearly' AS duration_type,
         localtimestamp AS create_time
-    FROM t1 GROUP BY t1.brand, t1.order_channel, t1.zone, t1.member_type
+    FROM t1 GROUP BY t1.brand, t1.zone, t1.member_type
     UNION SELECT DISTINCT
         t2.brand         AS brand,
         '全部'           AS order_channel,
@@ -127,4 +127,4 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_zone_all
         cast(COALESCE(TRY(SUM(t2.siq) * 1.0 / SUM(t2.oa)), 0) AS DECIMAL(18, 2)) AS sales_item_per_order,
         'yearly' AS duration_type,
         localtimestamp AS create_time
-    FROM t2 GROUP BY t2.brand, t2.order_channel, t2.zone, t2.member_type;
+    FROM t2 GROUP BY t2.brand, t2.zone, t2.member_type;
