@@ -44,7 +44,7 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_all
             count(distinct coid.outer_order_no) AS oa,
             sum(coid.order_item_quantity)       AS siq
             FROM coid
-            WHERE date(coid.order_deal_time) = date(localtimestamp)
+            WHERE date(coid.order_deal_time) = date(localtimestamp) - interval '1' day
             GROUP BY brand_name, {zone}, member_type) sm
         ON cmail.brand_name = sm.brand_name
         AND cmail.{zone} = sm.{zone}
@@ -52,7 +52,7 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_all
         LEFT JOIN (
             SELECT brand_name, {zone}, sum(coid.order_fact_amount) * 1.0 AS ttsi
             FROM coid
-            WHERE date(coid.order_deal_time) = date(localtimestamp)
+            WHERE date(coid.order_deal_time) = date(localtimestamp) - interval '1' day
             GROUP BY brand_name, {zone}) smtt
         ON cmail.brand_name = smtt.brand_name
         AND cmail.{zone} = smtt.{zone}
@@ -77,7 +77,7 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_all
             count(distinct coid.outer_order_no) AS oa,
             sum(coid.order_item_quantity)       AS siq
             FROM coid
-            WHERE date(coid.order_deal_time) = date(localtimestamp)
+            WHERE date(coid.order_deal_time) = date(localtimestamp) - interval '1' day
             GROUP BY brand_name, {zone}, member_nowbefore_type) sm2
         ON cmail2.brand_name = sm2.brand_name
         AND cmail2.{zone} = sm2.{zone}
@@ -85,7 +85,7 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_all
         LEFT JOIN (
             SELECT brand_name, {zone}, sum(coid.order_fact_amount) * 1.0 AS ttsi
             FROM coid
-            WHERE date(coid.order_deal_time) = date(localtimestamp)
+            WHERE date(coid.order_deal_time) = date(localtimestamp) - interval '1' day
             GROUP BY brand_name, {zone}) smtt2
         ON cmail2.brand_name = smtt2.brand_name
         AND cmail2.{zone} = smtt2.{zone}
@@ -104,7 +104,7 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_all
         cast(COALESCE(TRY(SUM(t1.si) * 1.0 / SUM(t1.oa)), 0) AS DECIMAL(18, 2)) AS sales_income_per_order,
         cast(COALESCE(TRY(SUM(t1.si) * 1.0 / SUM(t1.siq)), 0) AS DECIMAL(18, 2)) AS sales_income_per_item,
         cast(COALESCE(TRY(SUM(t1.siq) * 1.0 / SUM(t1.oa)), 0) AS DECIMAL(18, 2)) AS sales_item_per_order,
-        'monthly' AS duration_type,
+        'daily' AS duration_type,
         localtimestamp AS create_time
     FROM t1 GROUP BY t1.brand, t1.zone, t1.member_type
     UNION SELECT DISTINCT
@@ -121,6 +121,6 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_all
         cast(COALESCE(TRY(SUM(t2.si) * 1.0 / SUM(t2.oa)), 0) AS DECIMAL(18, 2)) AS sales_income_per_order,
         cast(COALESCE(TRY(SUM(t2.si) * 1.0 / SUM(t2.siq)), 0) AS DECIMAL(18, 2)) AS sales_income_per_item,
         cast(COALESCE(TRY(SUM(t2.siq) * 1.0 / SUM(t2.oa)), 0) AS DECIMAL(18, 2)) AS sales_item_per_order,
-        'monthly' AS duration_type,
+        'daily' AS duration_type,
         localtimestamp AS create_time
     FROM t2 GROUP BY t2.brand, t2.zone, t2.member_type;
