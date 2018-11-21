@@ -71,7 +71,7 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_zone_all
         SELECT DISTINCT
             cmail2.brand_name            AS brand,
             cmail2.{zone}                AS zone,
-            cmail.order_channel          AS order_channel,
+            cmail2.order_channel         AS order_channel,
             cmail2.member_nowbefore_type AS member_type,
             sm2.si                       AS si,
             sm2.ca                       AS ca,
