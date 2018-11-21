@@ -3,11 +3,11 @@ INSERT INTO ads_crm.member_analyse_income_total_all
         SELECT
             brand_name,
             {zone},
-            IF (order_channel IS NULL, '全部', order_channel),
-            IF (sales_mode IS NULL, '全部', sales_mode),
-            IF (store_type IS NULL, '全部', store_type),
-            IF (store_level IS NULL, '全部', store_level),
-            IF (channel_type IS NULL, '全部', channel_type),
+            IF (order_channel IS NULL, '全部', order_channel) AS order_channel,
+            IF (sales_mode IS NULL, '全部', sales_mode) AS sales_mode,
+            IF (store_type IS NULL, '全部', store_type) AS store_type,
+            IF (store_level IS NULL, '全部', store_level) AS store_level,
+            IF (channel_type IS NULL, '全部', channel_type) AS channel_type,
             cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type = '整体' AND member_newold_type IS NULL AND member_level_type IS NULL
@@ -20,11 +20,11 @@ INSERT INTO ads_crm.member_analyse_income_total_all
             brand_name,
             {zone},
             member_type,
-            IF (order_channel IS NULL, '全部', order_channel),
-            IF (sales_mode IS NULL, '全部', sales_mode),
-            IF (store_type IS NULL, '全部', store_type),
-            IF (store_level IS NULL, '全部', store_level),
-            IF (channel_type IS NULL, '全部', channel_type),
+            IF (order_channel IS NULL, '全部', order_channel) AS order_channel,
+            IF (sales_mode IS NULL, '全部', sales_mode) AS sales_mode,
+            IF (store_type IS NULL, '全部', store_type) AS store_type,
+            IF (store_level IS NULL, '全部', store_level) AS store_level,
+            IF (channel_type IS NULL, '全部', channel_type) AS channel_type,
             cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income,
             array_distinct(array_agg(store_code)) AS store_array
         FROM ads_crm.member_analyse_fold_daily_income_detail
@@ -38,11 +38,11 @@ INSERT INTO ads_crm.member_analyse_income_total_all
             ss.brand_name,
             ss.{zone},
             ss.member_type,
-            IF (ss.order_channel IS NULL, '全部', ss.order_channel),
-            IF (ss.sales_mode IS NULL, '全部', ss.sales_mode),
-            IF (ss.store_type IS NULL, '全部', ss.store_type),
-            IF (ss.store_level IS NULL, '全部', ss.store_level),
-            IF (ss.channel_type IS NULL, '全部', ss.channel_type),
+            IF (ss.order_channel IS NULL, '全部', ss.order_channel) AS order_channel,
+            IF (ss.sales_mode IS NULL, '全部', ss.sales_mode) AS sales_mode,
+            IF (ss.store_type IS NULL, '全部', ss.store_type) AS store_type,
+            IF (ss.store_level IS NULL, '全部', ss.store_level) AS store_level,
+            IF (ss.channel_type IS NULL, '全部', ss.channel_type) AS channel_type,
             array_intersect(array_distinct(array_agg(ss.store_code)), lyst.store_array) AS store_array
         FROM ads_crm.member_analyse_fold_daily_income_detail ss
         LEFT JOIN lyst ON ss.brand_name = lyst.brand_name
@@ -63,11 +63,11 @@ INSERT INTO ads_crm.member_analyse_income_total_all
             ss_l.brand_name,
             ss_l.{zone},
             ss_l.member_type,
-            IF (ss_l.order_channel IS NULL, '全部', ss_l.order_channel),
-            IF (ss_l.sales_mode IS NULL, '全部', ss_l.sales_mode),
-            IF (ss_l.store_type IS NULL, '全部', ss_l.store_type),
-            IF (ss_l.store_level IS NULL, '全部', ss_l.store_level),
-            IF (ss_l.channel_type IS NULL, '全部', ss_l.channel_type),
+            IF (ss_l.order_channel IS NULL, '全部', ss_l.order_channel) AS order_channel,
+            IF (ss_l.sales_mode IS NULL, '全部', ss_l.sales_mode) AS sales_mode,
+            IF (ss_l.store_type IS NULL, '全部', ss_l.store_type) AS store_type,
+            IF (ss_l.store_level IS NULL, '全部', ss_l.store_level) AS store_level,
+            IF (ss_l.channel_type IS NULL, '全部', ss_l.channel_type) AS channel_type,
             cast(sum(ss_l.sales_income) AS DECIMAL(18, 3)) AS sales_income
         FROM ads_crm.member_analyse_fold_daily_income_detail ss_l
         LEFT JOIN ss ON ss_l.brand_name = ss.brand_name
@@ -89,11 +89,11 @@ INSERT INTO ads_crm.member_analyse_income_total_all
             f.brand_name,
             f.{zone},
             f.member_type,
-            IF (f.order_channel IS NULL, '全部', f.order_channel),
-            IF (f.sales_mode IS NULL, '全部', f.sales_mode),
-            IF (f.store_type IS NULL, '全部', f.store_type),
-            IF (f.store_level IS NULL, '全部', f.store_level),
-            IF (f.channel_type IS NULL, '全部', f.channel_type),
+            IF (f.order_channel IS NULL, '全部', f.order_channel) AS order_channel,
+            IF (f.sales_mode IS NULL, '全部', f.sales_mode) AS sales_mode,
+            IF (f.store_type IS NULL, '全部', f.store_type) AS store_type,
+            IF (f.store_level IS NULL, '全部', f.store_level) AS store_level,
+            IF (f.channel_type IS NULL, '全部', f.channel_type) AS channel_type,
             cast(COALESCE(TRY(sum(f.sales_income) * 1.0 / ss_lyst.sales_income), 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst
         FROM ads_crm.member_analyse_fold_daily_income_detail f
         LEFT JOIN ss_lyst ON f.brand_name = ss_lyst.brand_name
@@ -124,11 +124,11 @@ INSERT INTO ads_crm.member_analyse_income_total_all
         f.{zone}        AS zone,
         '{zone}'        AS zone_type,
         f.member_type   AS member_type,
-        IF (f.order_channel IS NULL, '全部', f.order_channel),
-        IF (f.sales_mode IS NULL, '全部', f.sales_mode),
-        IF (f.store_type IS NULL, '全部', f.store_type),
-        IF (f.store_level IS NULL, '全部', f.store_level),
-        IF (f.channel_type IS NULL, '全部', f.channel_type),
+        IF (f.order_channel IS NULL, '全部', f.order_channel) AS order_channel,
+        IF (f.sales_mode IS NULL, '全部', f.sales_mode) AS sales_mode,
+        IF (f.store_type IS NULL, '全部', f.store_type) AS store_type,
+        IF (f.store_level IS NULL, '全部', f.store_level) AS store_level,
+        IF (f.channel_type IS NULL, '全部', f.channel_type) AS channel_type,
         cast(sum(f.sales_income) AS DECIMAL(18, 3)) AS sales_income,
         cast(COALESCE(TRY(sum(f.sales_income) * 1.0 / tt.sales_income), 0) AS DECIMAL(18, 4)) AS sales_income_proportion,
         cast(cardinality(array_distinct(flatten(array_agg(f.customer_array)))) AS INTEGER) AS customer_amount,
