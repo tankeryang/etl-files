@@ -1,8 +1,9 @@
-INSERT INTO ads_crm.member_analyse_income_member_now_before_zone_all
+INSERT INTO ads_crm.member_analyse_income_member_now_before_all
     WITH coid AS (
         SELECT DISTINCT
             t_.brand_name,
             t_.{zone},
+            t_.order_channel,
             t_.outer_order_no,
             t_.member_no,
             t_.member_grade_id,
@@ -27,6 +28,7 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_zone_all
         SELECT DISTINCT
             cmail.brand_name    AS brand,
             cmail.{zone}        AS zone,
+            cmail.order_channel AS order_channel,
             cmail.member_type   AS member_type,
             sm.si               AS si,
             sm.ca               AS ca,
@@ -34,34 +36,37 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_zone_all
             sm.siq              AS siq,
             smtt.ttsi           AS ttsi
         FROM (
-            SELECT DISTINCT brand_name, {zone}, member_type
+            SELECT DISTINCT brand_name, {zone}, order_channel, member_type
             FROM cdm_crm.member_analyse_index_label
             WHERE member_type = '会员' ) cmail
         LEFT JOIN (
-            SELECT brand_name, {zone}, member_type,
+            SELECT brand_name, {zone}, order_channel, member_type,
             sum(coid.order_fact_amount) * 1.0   AS si,
             count(distinct coid.member_no)      AS ca,
             count(distinct coid.outer_order_no) AS oa,
             sum(coid.order_item_quantity)       AS siq
             FROM coid
             WHERE date(coid.order_deal_time) <= date(localtimestamp)
-            AND date(coid.order_deal_time) >= date(date_format(localtimestamp, '%Y-01-01'))
-            GROUP BY brand_name, {zone}, member_type) sm
+            AND date(coid.order_deal_time) >= date('{first_date_of_week}')
+            GROUP BY brand_name, {zone}, order_channel, member_type) sm
         ON cmail.brand_name = sm.brand_name
         AND cmail.{zone} = sm.{zone}
+        AND cmail.order_channel = sm.order_channel
         AND cmail.member_type = sm.member_type
         LEFT JOIN (
-            SELECT brand_name, {zone}, sum(coid.order_fact_amount) * 1.0 AS ttsi
+            SELECT brand_name, {zone}, order_channel, sum(coid.order_fact_amount) * 1.0 AS ttsi
             FROM coid
             WHERE date(coid.order_deal_time) <= date(localtimestamp)
-            AND date(coid.order_deal_time) >= date(date_format(localtimestamp, '%Y-01-01'))
-            GROUP BY brand_name, {zone}) smtt
+            AND date(coid.order_deal_time) >= date('{first_date_of_week}')
+            GROUP BY brand_name, {zone}, order_channel) smtt
         ON cmail.brand_name = smtt.brand_name
         AND cmail.{zone} = smtt.{zone}
+        AND cmail.order_channel = smtt.order_channel
     ), t2 AS (
         SELECT DISTINCT
             cmail2.brand_name            AS brand,
             cmail2.{zone}                AS zone,
+            cmail2.order_channel         AS order_channel,
             cmail2.member_nowbefore_type AS member_type,
             sm2.si                       AS si,
             sm2.ca                       AS ca,
@@ -69,34 +74,36 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_zone_all
             sm2.siq                      AS siq,
             smtt2.ttsi                   AS ttsi
         FROM (
-            SELECT DISTINCT brand_name, {zone}, member_nowbefore_type
+            SELECT DISTINCT brand_name, {zone}, order_channel, member_nowbefore_type
             FROM cdm_crm.member_analyse_index_label
             WHERE member_type = '会员') cmail2
         LEFT JOIN (
-            SELECT brand_name, {zone}, member_nowbefore_type,
+            SELECT brand_name, {zone}, order_channel, member_nowbefore_type,
             sum(coid.order_fact_amount) * 1.0   AS si,
             count(distinct member_no)           AS ca,
             count(distinct coid.outer_order_no) AS oa,
             sum(coid.order_item_quantity)       AS siq
             FROM coid
             WHERE date(coid.order_deal_time) <= date(localtimestamp)
-            AND date(coid.order_deal_time) >= date(date_format(localtimestamp, '%Y-01-01'))
-            GROUP BY brand_name, {zone}, member_nowbefore_type) sm2
+            AND date(coid.order_deal_time) >= date('{first_date_of_week}')
+            GROUP BY brand_name, {zone}, order_channel, member_nowbefore_type) sm2
         ON cmail2.brand_name = sm2.brand_name
         AND cmail2.{zone} = sm2.{zone}
+        AND cmail2.order_channel = sm2.order_channel
         AND cmail2.member_nowbefore_type = sm2.member_nowbefore_type
         LEFT JOIN (
-            SELECT brand_name, {zone}, sum(coid.order_fact_amount) * 1.0 AS ttsi
+            SELECT brand_name, {zone}, order_channel, sum(coid.order_fact_amount) * 1.0 AS ttsi
             FROM coid
             WHERE date(coid.order_deal_time) <= date(localtimestamp)
-            AND date(coid.order_deal_time) >= date(date_format(localtimestamp, '%Y-01-01'))
-            GROUP BY brand_name, {zone}) smtt2
+            AND date(coid.order_deal_time) >= date('{first_date_of_week}')
+            GROUP BY brand_name, {zone}, order_channel) smtt2
         ON cmail2.brand_name = smtt2.brand_name
         AND cmail2.{zone} = smtt2.{zone}
+        AND cmail2.order_channel = smtt2.order_channel
     )
     SELECT DISTINCT
         t1.brand         AS brand,
-        '全部'            AS order_channel,
+        t1.order_channel AS order_channel,
         t1.zone          AS zone,
         '{zone}'         AS zone_type,
         t1.member_type   AS member_type,
@@ -108,12 +115,12 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_zone_all
         cast(COALESCE(TRY(SUM(t1.si) * 1.0 / SUM(t1.oa)), 0) AS DECIMAL(18, 2)) AS sales_income_per_order,
         cast(COALESCE(TRY(SUM(t1.si) * 1.0 / SUM(t1.siq)), 0) AS DECIMAL(18, 2)) AS sales_income_per_item,
         cast(COALESCE(TRY(SUM(t1.siq) * 1.0 / SUM(t1.oa)), 0) AS DECIMAL(18, 2)) AS sales_item_per_order,
-        'yearly' AS duration_type,
+        'weekly' AS duration_type,
         localtimestamp AS create_time
-    FROM t1 GROUP BY t1.brand, t1.zone, t1.member_type
+    FROM t1 GROUP BY t1.brand, t1.order_channel, t1.zone, t1.member_type
     UNION SELECT DISTINCT
         t2.brand         AS brand,
-        '全部'           AS order_channel,
+        t2.order_channel AS order_channel,
         t2.zone          AS zone,
         '{zone}'         AS zone_type,
         t2.member_type   AS member_type,
@@ -125,6 +132,6 @@ INSERT INTO ads_crm.member_analyse_income_member_now_before_zone_all
         cast(COALESCE(TRY(SUM(t2.si) * 1.0 / SUM(t2.oa)), 0) AS DECIMAL(18, 2)) AS sales_income_per_order,
         cast(COALESCE(TRY(SUM(t2.si) * 1.0 / SUM(t2.siq)), 0) AS DECIMAL(18, 2)) AS sales_income_per_item,
         cast(COALESCE(TRY(SUM(t2.siq) * 1.0 / SUM(t2.oa)), 0) AS DECIMAL(18, 2)) AS sales_item_per_order,
-        'yearly' AS duration_type,
+        'weekly' AS duration_type,
         localtimestamp AS create_time
-    FROM t2 GROUP BY t2.brand, t2.zone, t2.member_type;
+    FROM t2 GROUP BY t2.brand, t2.order_channel, t2.zone, t2.member_type;
