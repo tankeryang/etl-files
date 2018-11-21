@@ -40,11 +40,11 @@ INSERT INTO ads_crm.member_analyse_income_total_all
             ss.brand_name,
             ss.{zone},
             ss.member_type,
-            order_channel,
-            sales_mode,
-            store_type,
-            store_level,
-            channel_type,
+            ss.order_channel,
+            ss.sales_mode,
+            ss.store_type,
+            ss.store_level,
+            ss.channel_type,
             array_intersect(array_distinct(array_agg(ss.store_code)), lyst.store_array) AS store_array
         FROM ads_crm.member_analyse_fold_daily_income_detail ss
         LEFT JOIN lyst ON ss.brand_name = lyst.brand_name
@@ -66,11 +66,11 @@ INSERT INTO ads_crm.member_analyse_income_total_all
             ss_l.brand_name,
             ss_l.{zone},
             ss_l.member_type,
-            order_channel,
-            sales_mode,
-            store_type,
-            store_level,
-            channel_type,
+            ss_l.order_channel,
+            ss_l.sales_mode,
+            ss_l.store_type,
+            ss_l.store_level,
+            ss_l.channel_type,
             cast(sum(ss_l.sales_income) AS DECIMAL(18, 3)) AS sales_income
         FROM ads_crm.member_analyse_fold_daily_income_detail ss_l
         LEFT JOIN ss ON ss_l.brand_name = ss.brand_name
