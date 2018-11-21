@@ -144,7 +144,7 @@ INSERT INTO ads_crm.member_analyse_income_total_all
         cast(COALESCE(TRY(sum(f.sales_item_quantity) * 1.0 / sum(f.order_amount)), 0) AS DECIMAL(18, 2)) AS sales_item_per_order,
         cast(COALESCE(TRY(sum(f.sales_income) * 1.0 / lyst.sales_income), 0) AS DECIMAL(18, 4)) AS compared_with_lyst,
         cast(COALESCE(ss_now.compared_with_ss_lyst, 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst,
-        'daily' AS duration_type,
+        'monthly' AS duration_type,
         localtimestamp AS create_time
     FROM ads_crm.member_analyse_fold_daily_income_detail f
     LEFT JOIN tt ON f.brand_name = tt.brand_name
