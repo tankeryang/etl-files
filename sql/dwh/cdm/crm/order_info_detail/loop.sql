@@ -28,16 +28,16 @@ INSERT INTO cdm_crm.order_info_detail
             WHEN 'QCT' THEN '长特'
             WHEN 'BCT' THEN '长特'
             WHEN 'DT' THEN '短特'
-        ELSE NULL END                                         AS sales_mode,
+        ELSE '' END                                           AS sales_mode,
         CASE si.store_type
             WHEN 'BH' THEN '百货'
             WHEN 'ZMD' THEN '专卖店'
             WHEN 'MALL' THEN 'MALL'
-        ELSE NULL END                                         AS store_type,
-        IF(cms_si.store_level = '', '',
+        ELSE '' END                                           AS store_type,
+        IF (cms_si.store_level = '' OR cms_si.store_level IS NULL, '',
             IF(cms_si.store_level IN ('C', 'C+', 'C-'), 'C', cms_si.store_level)
         )                                                     AS store_level,
-        si.channel_type                                       AS channel_type,
+        IF (si.channel_type IS NULL, '', si.channel_type)     AS channel_type,
         oi.outer_order_no                                     AS outer_order_no,
         oi.member_no                                          AS member_no,
         oi.order_grade                                        AS member_grade_id,
@@ -101,7 +101,7 @@ INSERT INTO cdm_crm.order_info_detail
     LEFT JOIN ods_crm.store_info si ON oi.store_code = si.store_code
     LEFT JOIN ods_cms.store_info cms_si ON oi.store_code = cms_si.store_code
     LEFT JOIN cdm_cms.store_info cdm_cms_si ON cdm_cms_si.country_code = cms_si.country_code
-        AND cdm_cms_si.store_code = oi.store_code 
+        AND cdm_cms_si.store_code = oi.store_code
     LEFT JOIN cdm_crm.member_first_order mfo ON oi.member_no = mfo.member_no AND oi.brand_code = mfo.brand_code
     LEFT JOIN ods_crm.member_info mi ON oi.member_no = mi.member_no AND oi.brand_code = mi.brand_code
     LEFT JOIN mgl ON oi.member_no = mgl.member_no

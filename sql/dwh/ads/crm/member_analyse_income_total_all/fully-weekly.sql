@@ -15,7 +15,7 @@ INSERT INTO ads_crm.member_analyse_income_total_all
             AND date >= date('{first_date_of_week}')
         GROUP BY DISTINCT
             brand_name, {zone},
-            CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
+            order_channel, sales_mode, store_type, store_level, channel_type
     ), lyst AS (
         SELECT
             brand_name,
@@ -34,7 +34,7 @@ INSERT INTO ads_crm.member_analyse_income_total_all
             AND date >= date('{first_date_of_week}')
         GROUP BY DISTINCT
             brand_name, {zone}, member_type,
-            CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
+            order_channel, sales_mode, store_type, store_level, channel_type
     ), ss AS (
         SELECT
             ss.brand_name,
@@ -60,7 +60,7 @@ INSERT INTO ads_crm.member_analyse_income_total_all
             AND date >= date('{first_date_of_week}')
         GROUP BY DISTINCT
             ss.brand_name, ss.{zone}, ss.member_type, lyst.store_array,
-            CUBE (ss.order_channel, ss.sales_mode, ss.store_type, ss.store_level, ss.channel_type)
+            ss.order_channel, ss.sales_mode, ss.store_type, ss.store_level, ss.channel_type
     ), ss_lyst AS (
         SELECT
             ss_l.brand_name,
@@ -87,7 +87,7 @@ INSERT INTO ads_crm.member_analyse_income_total_all
             AND date >= date('{first_date_of_week}')
         GROUP BY DISTINCT
             ss_l.brand_name, ss_l.{zone}, ss_l.member_type,
-            CUBE (ss_l.order_channel, ss_l.sales_mode, ss_l.store_type, ss_l.store_level, ss_l.channel_type)
+            ss_l.order_channel, ss_l.sales_mode, ss_l.store_type, ss_l.store_level, ss_l.channel_type
     ), ss_now AS (
         SELECT DISTINCT
             f.brand_name,
@@ -122,7 +122,7 @@ INSERT INTO ads_crm.member_analyse_income_total_all
             AND date >= date('{first_date_of_week}')
         GROUP BY DISTINCT
             f.brand_name, f.{zone}, f.member_type, ss_lyst.sales_income,
-            CUBE (f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type)
+            f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type
     )
     SELECT DISTINCT
         f.brand_name    AS brand,
