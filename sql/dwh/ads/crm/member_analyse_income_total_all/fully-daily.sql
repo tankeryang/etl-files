@@ -14,7 +14,7 @@ INSERT INTO ads_crm.member_analyse_income_total_all
         AND date = date(localtimestamp) - interval '1' day
         GROUP BY DISTINCT
             brand_name, {zone},
-            order_channel, sales_mode, store_type, store_level, channel_type
+            CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
     ), lyst AS (
         SELECT
             brand_name,

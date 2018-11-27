@@ -9,13 +9,13 @@ INSERT INTO ads_crm.member_analyse_income_total_all
             store_level,
             channel_type,
             cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income
-        FROM ads_crm.member_analyse_fold_daily_income_detail
+        FROM ads_crm.member_analyse_fold_cube_daily_income_detail
         WHERE member_type = '整体' AND member_newold_type IS NULL AND member_level_type IS NULL
             AND date <= date(localtimestamp)
             AND date >= date(date_format(localtimestamp, '%Y-01-01'))
         GROUP BY DISTINCT
             brand_name, {zone},
-            order_channel, sales_mode, store_type, store_level, channel_type
+            CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
     ), lyst AS (
         SELECT
             brand_name,
@@ -35,6 +35,25 @@ INSERT INTO ads_crm.member_analyse_income_total_all
         GROUP BY DISTINCT
             brand_name, {zone}, member_type,
             order_channel, sales_mode, store_type, store_level, channel_type
+    ), lyst_cube AS (
+        SELECT
+            brand_name,
+            {zone},
+            member_type,
+            order_channel,
+            sales_mode,
+            store_type,
+            store_level,
+            channel_type,
+            cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income,
+            array_distinct(array_agg(store_code)) AS store_array
+        FROM ads_crm.member_analyse_fold_daily_income_detail
+        WHERE member_type IS NOT NULL AND member_newold_type IS NULL AND member_level_type IS NULL
+            AND date <= date(localtimestamp)
+            AND date >= date(date_format(localtimestamp, '%Y-01-01'))
+        GROUP BY DISTINCT
+            brand_name, {zone}, member_type,
+            CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
     ), ss AS (
         SELECT
             ss.brand_name,
@@ -61,6 +80,32 @@ INSERT INTO ads_crm.member_analyse_income_total_all
         GROUP BY DISTINCT
             ss.brand_name, ss.{zone}, ss.member_type, lyst.store_array,
             ss.order_channel, ss.sales_mode, ss.store_type, ss.store_level, ss.channel_type
+    ), ss_cube AS (
+        SELECT
+            ss.brand_name,
+            ss.{zone},
+            ss.member_type,
+            ss.order_channel,
+            ss.sales_mode,
+            ss.store_type,
+            ss.store_level,
+            ss.channel_type,
+            array_intersect(array_distinct(array_agg(ss.store_code)), lyst.store_array) AS store_array
+        FROM ads_crm.member_analyse_fold_daily_income_detail ss
+        LEFT JOIN lyst ON ss.brand_name = lyst.brand_name
+            AND ss.{zone} = lyst.{zone}
+            AND ss.member_type = lyst.member_type
+            AND ss.order_channel = lyst.order_channel
+            AND ss.sales_mode = lyst.sales_mode
+            AND ss.store_type = lyst.store_type
+            AND ss.store_level = lyst.store_level
+            AND ss.channel_type = lyst.channel_type
+        WHERE ss.member_type IS NOT NULL AND ss.member_newold_type IS NULL AND ss.member_level_type IS NULL
+            AND date <= date(localtimestamp)
+            AND date >= date(date_format(localtimestamp, '%Y-01-01'))
+        GROUP BY DISTINCT
+            ss.brand_name, ss.{zone}, ss.member_type, lyst.store_array,
+            CUBE (ss.order_channel, ss.sales_mode, ss.store_type, ss.store_level, ss.channel_type)
     ), ss_lyst AS (
         SELECT
             ss_l.brand_name,
@@ -129,11 +174,11 @@ INSERT INTO ads_crm.member_analyse_income_total_all
         f.{zone}        AS zone,
         '{zone}'        AS zone_type,
         f.member_type   AS member_type,
-        IF (f.order_channel IS NULL, '全部', f.order_channel) AS order_channel,
-        IF (f.sales_mode IS NULL, '全部', f.sales_mode) AS sales_mode,
-        IF (f.store_type IS NULL, '全部', f.store_type) AS store_type,
-        IF (f.store_level IS NULL, '全部', f.store_level) AS store_level,
-        IF (f.channel_type IS NULL, '全部', f.channel_type) AS channel_type,
+        f.order_channel,
+        f.sales_mode,
+        f.store_type,
+        f.store_level,
+        f.channel_type,
         cast(sum(f.sales_income) AS DECIMAL(18, 3)) AS sales_income,
         cast(COALESCE(TRY(sum(f.sales_income) * 1.0 / tt.sales_income), 0) AS DECIMAL(18, 4)) AS sales_income_proportion,
         cast(cardinality(array_distinct(flatten(array_agg(f.customer_array)))) AS INTEGER) AS customer_amount,
@@ -146,7 +191,7 @@ INSERT INTO ads_crm.member_analyse_income_total_all
         cast(COALESCE(ss_now.compared_with_ss_lyst, 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst,
         'yearly' AS duration_type,
         localtimestamp AS create_time
-    FROM ads_crm.member_analyse_fold_daily_income_detail f
+    FROM ads_crm.member_analyse_fold_cube_daily_income_detail f
     LEFT JOIN tt ON f.brand_name = tt.brand_name
         AND f.{zone} = tt.{zone}
         AND f.order_channel = tt.order_channel
@@ -175,4 +220,4 @@ INSERT INTO ads_crm.member_analyse_income_total_all
         AND date >= date(date_format(localtimestamp, '%Y-01-01'))
     GROUP BY DISTINCT
         f.brand_name, f.{zone}, f.member_type, tt.sales_income, lyst.sales_income, ss_now.compared_with_ss_lyst,
-        CUBE (f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type);
+        f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type;
