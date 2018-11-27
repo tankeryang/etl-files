@@ -32,6 +32,7 @@ CREATE TABLE cdm_crm.order_info_detail (
     order_fact_amount                DECIMAL(38, 2),
     order_fact_amount_include_coupon DECIMAL(38, 2),
     order_pay_type                   VARCHAR,
+    order_type_num                   INTEGER,
     order_coupon_no                  ARRAY<VARCHAR>,
     order_coupon_category            VARCHAR,
     order_coupon_denomination        DECIMAL(18, 2),

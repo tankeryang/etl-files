@@ -89,6 +89,11 @@ INSERT INTO cdm_crm.order_info_detail
             oi.order_fact_amount - COALESCE(ocid.coupon_denomination_sum, 0),
             oi.order_fact_amount) AS DECIMAL(38, 2))           AS order_fact_amount_include_coupon,
         ocid.pay_type                                          AS order_pay_type,
+        CASE
+            WHEN oi.order_fact_amount > 0 THEN 1
+            WHEN oi.order_fact_amount = 0 THEN 0
+            WHEN oi.order_fact_amount < 0 THEN -1
+        ELSE NULL END                                          AS order_type_num,
         ocid.coupon_no_array                                   AS order_coupon_no,
         ocid.coupon_category                                   AS order_coupon_category,
         ocid.coupon_denomination_sum                           AS order_coupon_denomination,
