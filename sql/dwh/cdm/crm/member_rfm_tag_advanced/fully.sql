@@ -1,9 +1,7 @@
-DELETE FROM cdm_crm.member_rfm_tag_advanced;
-
-
 INSERT INTO cdm_crm.member_rfm_tag_advanced (
     computing_until_date,
     computing_duration,
+    brand_code,
     member_no,
     average_order_amount,
     average_purchase_interval,
@@ -16,7 +14,7 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
     create_time
 )
 --会员平均购买时间、金额、间隙，累计购买次数、金额、订单数、件数，退款次数、金额
------------30,60，90，180天时间段------------------------------------------------------------------------------------------------
+-----------30,60，90，180，360天时间段------------------------------------------------------------------------------------------------
     WITH
         --订单范围
         order_info_range AS (
@@ -74,6 +72,7 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
         --累计购买金额、订单数、件数
         member_order_count_item_count AS (
             SELECT
+            oi.brand_code,
             oi.member_no,
             min(oi.order_deal_time)     AS min_order_deal_time,
             max(oi.order_deal_time)     AS max_order_deal_time,
@@ -83,11 +82,12 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
             FROM union_all_order_info_n_member_purchase_from_return oi, ods_crm.order_item oit
             WHERE oi.order_id = oit.order_id AND
                 oit.quantity > 0
-            GROUP BY oi.member_no
+            GROUP BY oi.member_no, oi.brand_code
         ),
         --累计购买金额
         member_monetary_total AS (
             SELECT
+            oi.brand_code,
             oi.member_no,
             sum(CASE WHEN oit.sub_coupon_amount IS NOT NULL
                 THEN oit.sub_coupon_amount
@@ -95,11 +95,12 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
             FROM union_all_order_info_n_member_purchase_from_return oi, ods_crm.order_item oit
             WHERE oi.order_id = oit.order_id AND
                 oit.quantity > 0
-            GROUP BY oi.member_no
+            GROUP BY oi.member_no, oi.brand_code
         ),
         --平均购买时间、金额、间隙
         average_purchase_time_monetary_interval AS (
             SELECT
+            mocic.brand_code,
             mocic.member_no,
             COALESCE(TRY(CAST(total_order_fact_amount * 1.00 / total_order_count AS DECIMAL(38, 2))),
                     0) AS average_order_amount,
@@ -122,6 +123,7 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
     SELECT
         date_format(CURRENT_DATE + INTERVAL '-1' DAY, '%Y-%m-%d') AS computing_until_date,
         CAST('{computing_duration}' AS INTEGER)                   AS computing_duration,
+        average.brand_code,
         average.member_no,
         average.average_order_amount,
         average.average_purchase_interval,

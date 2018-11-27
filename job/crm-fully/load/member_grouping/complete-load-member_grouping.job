@@ -1,0 +1,4 @@
+type=command
+command=echo complete-load-member_grouping
+
+dependencies=load-member_analyse_group_info_detail

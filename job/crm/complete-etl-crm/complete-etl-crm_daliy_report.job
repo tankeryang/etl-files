@@ -1,4 +1,0 @@
-type=command
-command=echo complete-etl-crm_daliy_report
-
-dependencies=already-load-daliy_report

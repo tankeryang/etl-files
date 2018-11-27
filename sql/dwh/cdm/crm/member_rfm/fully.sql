@@ -1,6 +1,3 @@
-DELETE FROM cdm_crm.member_rfm;
-
-
 INSERT INTO cdm_crm.member_rfm (
     member_no,
     computing_duration,

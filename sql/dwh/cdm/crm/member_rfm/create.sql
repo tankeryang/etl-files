@@ -1,5 +1,9 @@
 CREATE SCHEMA IF NOT EXISTS cdm_crm;
+
+
 DROP TABLE IF EXISTS cdm_crm.member_rfm;
+
+
 --user_rfmc基础表  每月第一天凌晨定时统计昨天往前1年、2年的数据
 CREATE TABLE cdm_crm.member_rfm (
     member_no                 VARCHAR,

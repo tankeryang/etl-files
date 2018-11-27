@@ -1,4 +1,0 @@
-type=command
-command=echo complete-transform-rfm_tag_advanced
-
-dependencies=transform-member_rfm_tag_advanced

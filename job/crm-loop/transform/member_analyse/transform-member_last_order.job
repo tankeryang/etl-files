@@ -1,0 +1,5 @@
+type=command
+command=${cmd}
+
+sql.dir=member_last_order
+sql.names=fully

@@ -1,0 +1,8 @@
+type=command
+command=${cmd}
+
+sql.url.prefix=${ods.sql.url.prefix}
+sql.dir=coupon_info
+sql.names=fully
+
+dependencies=extract-member_info,extract-member_grade_log

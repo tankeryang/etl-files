@@ -1,0 +1,4 @@
+type=command
+command=${cmd}
+
+sql.dir=member_analyse_group_info_detail

@@ -1,0 +1,4 @@
+type=flow
+flow.name=complete-transform-member_grouping
+
+dependencies=already-transform-member_analyse

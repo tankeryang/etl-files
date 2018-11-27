@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS ods_crm.member_info;
 CREATE TABLE ods_crm.member_info (
     member_id                   INTEGER,
     member_no                   VARCHAR,
+    brand_code                  VARCHAR,
     wechat_id                   VARCHAR,
     member_code                 VARCHAR,
     member_card                 VARCHAR,
@@ -36,5 +37,6 @@ CREATE TABLE ods_crm.member_info (
     last_update_time            TIMESTAMP,
     member_register_time        TIMESTAMP,
     member_register_store       VARCHAR,
+    member_manage_store         VARCHAR,
     create_time                 TIMESTAMP
 );

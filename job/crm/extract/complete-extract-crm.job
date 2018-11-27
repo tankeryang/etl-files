@@ -1,4 +1,0 @@
-type=command
-command=echo complete-extract-to-ods_crm
-
-dependencies=extract-store_info

@@ -1,6 +1,0 @@
-type=command
-command=${cmd}
-
-sql.dir=member_type_label
-
-dependencies=transform-daliy_report_base

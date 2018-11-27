@@ -17,4 +17,4 @@ INSERT INTO ods_crm.order_pay_item
         SELECT date_format(max(create_time), '%Y-%m-%d %T')
         FROM ods_crm.order_pay_item
         )
-        AND date_format(create_time, '%Y-%m-%d %T') <= date_format(localtimestamp, '%Y-%m-%d %T');
+        AND date(create_time) < date(localtimestamp);

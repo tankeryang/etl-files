@@ -5,6 +5,7 @@ INSERT INTO ods_crm.member_info
     SELECT
         member_id,
         member_no,
+        brand_code,
         wechat_id,
         member_code,
         member_card,
@@ -34,8 +35,7 @@ INSERT INTO ods_crm.member_info
         last_update_time,
         member_register_time,
         member_register_store,
+        member_manage_store,
         localtimestamp
     FROM prod_mysql_crm.crm.member_info
-    WHERE
-        member_id != 61
-        OR member_id != 41825;
+    WHERE member_id != 61 OR member_id != 41825;

@@ -1,5 +1,8 @@
 CREATE SCHEMA IF NOT EXISTS cdm_crm;
+
+
 DROP TABLE IF EXISTS cdm_crm.duration_rfm_conf;
+
 
 CREATE TABLE cdm_crm.duration_rfm_conf (
     duration             INTEGER,

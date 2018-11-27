@@ -1,0 +1,4 @@
+type=command
+command=${cmd}
+
+sql.dir=order_item_detail

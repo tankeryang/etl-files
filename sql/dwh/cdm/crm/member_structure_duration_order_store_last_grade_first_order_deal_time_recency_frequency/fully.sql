@@ -1,6 +1,3 @@
-DELETE FROM cdm_crm.member_structure_duration_order_store_last_grade_first_order_deal_time_recency_frequency;
-
-
 INSERT INTO cdm_crm.member_structure_duration_order_store_last_grade_first_order_deal_time_recency_frequency (
     computing_until_month,
     computing_duration,
@@ -46,18 +43,18 @@ INSERT INTO cdm_crm.member_structure_duration_order_store_last_grade_first_order
             dos.order_fact_amount,
             dos.order_id,
             dos.member_no
-            FROM member_structure_duration_order_store dos
+            FROM cdm_crm.member_structure_duration_order_store dos
             LEFT JOIN member_structure_duration_member_last_grade dmlg
                 ON dos.member_no = dmlg.member_no AND
                 dos.computing_until_month = dmlg.computing_until_month AND
                 dos.computing_duration = dmlg.computing_duration
-            LEFT JOIN ods_crm.member_first_order mfo
+            LEFT JOIN cdm_crm.member_first_order mfo
                 ON dos.member_no = mfo.member_no
-            LEFT JOIN member_structure_duration_member_recency dmr
+            LEFT JOIN cdm_crm.member_structure_duration_member_recency dmr
                 ON dos.member_no = dmr.member_no AND
                 dos.computing_until_month = dmr.computing_until_month AND
                 dos.computing_duration = dmr.computing_duration
-            LEFT JOIN member_structure_duration_member_frequency dmf
+            LEFT JOIN cdm_crm.member_structure_duration_member_frequency dmf
                 ON dos.member_no = dmf.member_no AND
                 dos.computing_until_month = dmf.computing_until_month AND
                 dos.computing_duration = dmf.computing_duration

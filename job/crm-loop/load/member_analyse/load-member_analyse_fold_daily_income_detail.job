@@ -1,0 +1,7 @@
+type=command
+command=${cmd}
+
+sql.dir=member_analyse_fold_daily_income_detail
+sql.names=loop
+
+dependencies=load-member_analyse_daily_income_detail

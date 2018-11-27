@@ -1,4 +1,0 @@
-type=flow
-flow.name=complete-transform-base
-
-dependencies=already-extract-crm

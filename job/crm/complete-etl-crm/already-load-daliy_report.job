@@ -1,4 +1,0 @@
-type=flow
-flow.name=complete-load-daliy_report
-
-dependencies=already-transform-daliy_report

@@ -1,6 +1,3 @@
-DELETE FROM cdm_crm.member_structure_order_info_range;
-
-
 INSERT INTO cdm_crm.member_structure_order_info_range (
     computing_until_month,
     computing_duration,
