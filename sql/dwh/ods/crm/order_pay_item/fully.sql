@@ -10,7 +10,7 @@ INSERT INTO ods_crm.order_pay_item
         pay_type,
         currency,
         pay_amount,
-        coupon_no,
+        IF (coupon_no IS NULL, '', coupon_no),
         localtimestamp
     FROM prod_mysql_crm.crm.order_pay_item
     WHERE date(create_time) < date(localtimestamp);
