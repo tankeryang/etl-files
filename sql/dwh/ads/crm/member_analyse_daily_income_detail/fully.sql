@@ -137,10 +137,10 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             i.member_level_type,
             i.member_upgrade_type,
             i.member_register_type,
-            IF (tt.sales_income IS NULL, cast(0 AS DECIMAL(18, 3)), tt.sales_income) AS sales_income,
-            IF (tt.sales_item_quantity IS NULL, cast(0 AS INTEGER), tt.sales_item_quantity) AS sales_item_quantity,
+            IF (tt.sales_income IS NULL, 0, tt.sales_income) AS sales_income,
+            IF (tt.sales_item_quantity IS NULL, 0, tt.sales_item_quantity) AS sales_item_quantity,
             IF (tt.customer_array IS NULL, array[], tt.customer_array) AS customer_array,
-            IF (tt.order_amount IS NULL, cast(0 AS INTEGER), tt.order_amount) AS order_amount,
+            IF (tt.order_amount IS NULL, 0, tt.order_amount) AS order_amount,
             i.date
         FROM i
         LEFT JOIN tt ON i.country
