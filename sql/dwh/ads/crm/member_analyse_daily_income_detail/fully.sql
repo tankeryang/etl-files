@@ -151,7 +151,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             AND tt.brand_code = i.brand_code
             AND tt.brand_name = i.brand_name
             AND tt.store_code = i.store_code
-            AND tt.sales_name = i.sales_mode
+            AND tt.sales_mode = i.sales_mode
             AND tt.store_type = i.store_type
             AND tt.store_level = i.store_level
             AND tt.channel_type = i.channel_type
