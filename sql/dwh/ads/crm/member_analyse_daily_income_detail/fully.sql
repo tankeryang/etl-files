@@ -143,7 +143,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             IF (tt.order_amount IS NULL, 0, tt.order_amount) AS order_amount,
             i.date
         FROM i
-        LEFT JOIN tt ON i.country
+        LEFT JOIN tt ON tt.country = i.country
             AND tt.sales_area = i.sales_area
             AND tt.sales_district = i.sales_district
             AND tt.province = i.province
