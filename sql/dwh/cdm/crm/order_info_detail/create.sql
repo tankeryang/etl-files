@@ -39,5 +39,6 @@ CREATE TABLE cdm_crm.order_info_detail (
     member_register_time             TIMESTAMP,
     last_grade_change_time           TIMESTAMP,
     order_deal_time                  TIMESTAMP,
+    order_deal_date                  DATE,
     create_time                      TIMESTAMP
 );
