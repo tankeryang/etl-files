@@ -55,7 +55,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
             cast(COALESCE(TRY(sum(f.sales_income) * 1.0 / sum(f.order_amount)), 0) AS DECIMAL(18, 2)) AS sales_income_per_order,
             cast(COALESCE(TRY(sum(f.sales_income) * 1.0 / sum(f.sales_item_quantity)), 0) AS DECIMAL(18, 2)) AS sales_income_per_item,
             cast(COALESCE(TRY(sum(f.sales_item_quantity) * 1.0 / sum(f.order_amount)), 0) AS DECIMAL(18, 2)) AS sales_item_per_order,
-            'yearly' AS duration_type,
+            'monthly' AS duration_type,
             localtimestamp AS create_time
         FROM ads_crm.member_analyse_fold_daily_income_detail f
         WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
