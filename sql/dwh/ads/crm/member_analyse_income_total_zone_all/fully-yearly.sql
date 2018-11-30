@@ -30,8 +30,8 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
             array_distinct(array_agg(store_code)) AS store_array
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type IS NOT NULL AND member_newold_type IS NULL AND member_level_type IS NULL
-            AND date <= date(localtimestamp)
-            AND date >= date(date_format(localtimestamp, '%Y-01-01'))
+            AND date <= date(localtimestamp) - interval '1' year
+            AND date >= date(date_format(localtimestamp, '%Y-01-01')) - interval '1' year
         GROUP BY DISTINCT
             brand_name, {zone}, member_type,
             CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
