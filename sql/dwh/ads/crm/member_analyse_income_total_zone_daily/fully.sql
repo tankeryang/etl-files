@@ -70,8 +70,8 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tt.sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS sales_income_proportion,
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(lyst.sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_lyst,
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tmp.lyst_sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst,
-        tmp.date
-        tmp.create_time,
+        tmp.date,
+        tmp.create_time
     FROM tmp
     LEFT JOIN tt ON tmp.brand = tt.brand
         AND tmp.zone = tt.zone
@@ -80,6 +80,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
         AND tmp.store_type = tt.store_type
         AND tmp.store_level = tt.store_level
         AND tmp.channel_type = tt.channel_type
+        AND tmp.date = tt.date
     LEFT JOIN lyst ON tmp.brand = lyst.brand
         AND tmp.zone = lyst.zone
         AND tmp.member_type = lyst.member_type
@@ -88,6 +89,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
         AND tmp.store_type = lyst.store_type
         AND tmp.store_level = lyst.store_level
         AND tmp.channel_type = lyst.channel_type
+        AND tmp.date = lyst.date
     GROUP BY
         tmp.brand,
         tmp.zone,
