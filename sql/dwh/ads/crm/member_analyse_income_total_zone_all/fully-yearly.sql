@@ -58,21 +58,6 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
             'yearly' AS duration_type,
             localtimestamp AS create_time
         FROM ads_crm.member_analyse_fold_daily_income_detail f
-        LEFT JOIN tt ON f.brand_name = tt.brand_name
-            AND f.{zone} = tt.{zone}
-            AND f.order_channel = tt.order_channel
-            AND f.sales_mode = tt.sales_mode
-            AND f.store_type = tt.store_type
-            AND f.store_level = tt.store_level
-            AND f.channel_type = tt.channel_type
-        LEFT JOIN lyst ON f.brand_name = lyst.brand_name
-            AND f.{zone} = lyst.{zone}
-            AND f.member_type = lyst.member_type
-            AND f.order_channel = lyst.order_channel
-            AND f.sales_mode = lyst.sales_mode
-            AND f.store_type = lyst.store_type
-            AND f.store_level = lyst.store_level
-            AND f.channel_type = lyst.channel_type
         WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
             AND date <= date(localtimestamp)
             AND date >= date(date_format(localtimestamp, '%Y-01-01'))
