@@ -86,7 +86,6 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
     FROM tmp
     LEFT JOIN tt ON tmp.brand = tt.brand
         AND tmp.zone = tt.zone
-        AND tmp.zone_type = tt.zone_type
         AND tmp.order_channel = tt.order_channel
         AND tmp.sales_mode = tt.sales_mode
         AND tmp.store_type = tt.store_type
@@ -94,7 +93,6 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
         AND tmp.channel_type = tt.channel_type
     LEFT JOIN lyst ON tmp.brand = lyst.brand
         AND tmp.zone = lyst.zone
-        AND tmp.zone_type = lyst.zone_type
         AND tmp.member_type = lyst.member_type
         AND tmp.order_channel = lyst.order_channel
         AND tmp.sales_mode = lyst.sales_mode
