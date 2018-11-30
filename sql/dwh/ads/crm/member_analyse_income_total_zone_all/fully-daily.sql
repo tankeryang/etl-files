@@ -76,5 +76,5 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
     WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
         AND date = date(localtimestamp) - interval '1' day
     GROUP BY DISTINCT
-        f.brand_name, f.{zone}, f.member_type, tt.sales_income, lyst.sales_income, ss_now.compared_with_ss_lyst,
+        f.brand_name, f.{zone}, f.member_type, tt.sales_income, lyst.sales_income,
         CUBE (f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type);
