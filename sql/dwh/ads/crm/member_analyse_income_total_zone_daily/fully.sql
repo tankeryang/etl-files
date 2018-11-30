@@ -45,8 +45,8 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
             IF (f.store_level IS NULL, '全部', f.store_level) AS store_level,
             IF (f.channel_type IS NULL, '全部', f.channel_type) AS channel_type,
             cast(sum(f.sales_income) AS DECIMAL(18, 3)) AS sales_income,
-            cast(sum(f.lyst_sales_income) AS DECIMAL(18, 3)) AS lyst_sales_income
-            f.date
+            cast(sum(f.lyst_sales_income) AS DECIMAL(18, 3)) AS lyst_sales_income,
+            f.date,
             localtimestamp AS create_time
         FROM ads_crm.member_analyse_fold_daily_income_detail f
         WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
