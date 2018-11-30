@@ -26,8 +26,7 @@ INSERT INTO ads_crm.member_analyse_income_total_store_all
             store_type,
             store_level,
             channel_type,
-            cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income,
-            array_distinct(array_agg(store_code)) AS store_array
+            cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type IS NOT NULL AND member_newold_type IS NULL AND member_level_type IS NULL
             AND date <= date(localtimestamp) - interval '1' year
@@ -35,7 +34,6 @@ INSERT INTO ads_crm.member_analyse_income_total_store_all
         GROUP BY DISTINCT
             brand_name, {zone}, member_type, sales_mode, store_type, store_level, channel_type,
             CUBE (order_channel)
-
     ), tmp AS (
         SELECT DISTINCT
             f.brand_name    AS brand,
