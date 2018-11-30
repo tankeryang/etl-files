@@ -81,6 +81,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
         tmp.sales_income_per_item,
         tmp.sales_item_per_order,
         cast(COALESCE(TRY(tmp.sales_income / lyst.sales_income * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_lyst,
+        tmp.compared_with_ss_lyst,
         tmp.duration_type,
         tmp.create_time
     FROM tmp
