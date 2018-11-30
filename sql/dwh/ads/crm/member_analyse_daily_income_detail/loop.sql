@@ -59,10 +59,10 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
                 AND member_register_type IS NOT NULL
             UNION SELECT DISTINCT
                 member_type,
-                member_newold_type,
-                member_level_type,
-                member_upgrade_type,
-                member_register_type,
+                '' AS member_newold_type,
+                '' AS member_level_type,
+                '' AS member_upgrade_type,
+                '' AS member_register_type,
                 'key' AS key
             FROM cdm_crm.order_info_detail
             WHERE member_type = '非会员'

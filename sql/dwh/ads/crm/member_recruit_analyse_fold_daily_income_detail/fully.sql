@@ -16,8 +16,8 @@ INSERT INTO ads_crm.member_recruit_analyse_fold_daily_income_detail
         t.store_level,
         t.channel_type,
         t.order_channel,
-        t.member_level_type AS member_recruit_type,
-        NULL                AS member_register_type,
+        IF (t.member_level_type = '', NULL, t.member_level_type) AS member_recruit_type,
+        NULL AS member_register_type,
         array_distinct(flatten(array_agg(t.customer_array))),
         t.date
     FROM ads_crm.member_analyse_daily_income_detail t
@@ -53,7 +53,7 @@ INSERT INTO ads_crm.member_recruit_analyse_fold_daily_income_detail
         t.store_level,
         t.channel_type,
         t.order_channel,
-        t.member_upgrade_type AS member_recruit_type,
+        IF (t.member_upgrade_type = '', NULL, t.member_upgrade_type) AS member_recruit_type,
         NULL                  AS member_register_type,
         array_distinct(flatten(array_agg(t.customer_array))),
         t.date
@@ -91,7 +91,7 @@ INSERT INTO ads_crm.member_recruit_analyse_fold_daily_income_detail
         t.channel_type,
         t.order_channel,
         NULL                   AS member_recruit_type,
-        t.member_register_type AS member_register_type,
+        IF (t.member_register_type = '', NULL, t.member_register_type) AS member_register_type,
         array_distinct(flatten(array_agg(t.customer_array))),
         t.date
     FROM ads_crm.member_analyse_daily_income_detail t
