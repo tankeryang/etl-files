@@ -59,7 +59,6 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
     SELECT DISTINCT
         tmp.brand,
         IF (tmp.zone = '', NULL, tmp.zone) AS zone,
-        tmp.zone_type,
         tmp.member_type,
         tmp.order_channel,
         tmp.sales_mode,
@@ -93,7 +92,6 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
     GROUP BY
         tmp.brand,
         tmp.zone,
-        tmp.zone_type,
         tmp.member_type,
         tmp.order_channel,
         tmp.sales_mode,
