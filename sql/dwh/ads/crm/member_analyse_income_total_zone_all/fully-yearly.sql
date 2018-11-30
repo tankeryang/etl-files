@@ -1,7 +1,7 @@
 INSERT INTO ads_crm.member_analyse_income_total_zone_all
     WITH tt AS (
         SELECT
-            brand_name,
+            brand_name AS brand,
             IF ({zone} IS NULL, '', {zone}) AS zone,
             IF (order_channel IS NULL, '全部', order_channel) AS order_channel,
             IF (sales_mode IS NULL, '全部', sales_mode) AS sales_mode,
@@ -18,7 +18,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
             CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
     ), lyst AS (
         SELECT
-            brand_name,
+            brand_name AS brand,
             IF ({zone} IS NULL, '', {zone}) AS zone,
             member_type,
             IF (order_channel IS NULL, '全部', order_channel) AS order_channel,
