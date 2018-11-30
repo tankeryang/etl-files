@@ -22,7 +22,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             t2.member_level_type,
             t2.member_upgrade_type,
             t2.member_register_type,
-            t3.date
+            t1.date
         FROM (
             SELECT DISTINCT
                 country,
@@ -38,8 +38,10 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
                 store_level,
                 channel_type,
                 order_channel,
+                order_deal_date AS date,
                 'key' AS key
             FROM cdm_crm.order_info_detail
+            WHERE order_deal_date = date(localtimestamp) - interval '1' day
         ) t1
         FULL JOIN (
             SELECT DISTINCT
@@ -65,11 +67,6 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             FROM cdm_crm.order_info_detail
             WHERE member_type = '非会员'
         ) t2 ON t1.key = t2.key
-        FULL JOIN (
-            SELECT
-                date(date(localtimestamp) - interval '1' day) AS date,
-                'key' AS key
-        ) t3 ON t1.key = t3.key
     ), tt AS (
         SELECT
             oid.country,
