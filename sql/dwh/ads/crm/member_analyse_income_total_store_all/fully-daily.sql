@@ -46,6 +46,7 @@ INSERT INTO ads_crm.member_analyse_income_total_store_all
             store_level,
             channel_type,
             cast(sum(f.sales_income) AS DECIMAL(18, 3)) AS sales_income,
+            cast(sum(f.lyst_sales_income) AS DECIMAL(18, 3)) AS lyst_sales_income,
             cast(cardinality(array_distinct(flatten(array_agg(f.customer_array)))) AS INTEGER) AS customer_amount,
             cast(sum(f.order_amount) AS INTEGER) AS order_amount,
             cast(COALESCE(TRY(sum(f.order_amount) / cardinality(array_distinct(flatten(array_agg(f.customer_array))))), 0) AS INTEGER) AS consumption_frequency,
@@ -72,16 +73,16 @@ INSERT INTO ads_crm.member_analyse_income_total_store_all
         tmp.store_type,
         tmp.store_level,
         tmp.channel_type,
-        tmp.sales_income,
-        cast(COALESCE(TRY(tmp.sales_income / tt.sales_income * 1.0), 0) AS DECIMAL(18, 4)) AS sales_income_proportion,
-        tmp.customer_amount,
-        tmp.order_amount,
-        tmp.consumption_frequency,
-        tmp.sales_income_per_order,
-        tmp.sales_income_per_item,
-        tmp.sales_item_per_order,
-        cast(COALESCE(TRY(tmp.sales_income / lyst.sales_income * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_lyst,
-        tmp.compared_with_ss_lyst,
+        cast(sum(tmp.sales_income) AS DECIMAL(18, 3)) AS sales_income,
+        cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tt.sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS sales_income_proportion,
+        cast(sum(tmp.customer_amount) AS INTEGER) AS customer_amount,
+        cast(sum(tmp.order_amount) AS INTEGER) AS order_amount,
+        cast(sum(tmp.consumption_frequency) AS INTEGER) AS consumption_frequency,
+        cast(sum(tmp.sales_income_per_order) AS DECIMAL(18, 2)) AS sales_income_per_order,
+        cast(sum(tmp.sales_income_per_item) AS DECIMAL(18, 2)) AS sales_income_per_item,
+        cast(sum(tmp.sales_item_per_order) AS DECIMAL(18, 2)) AS sales_item_per_order,
+        cast(COALESCE(TRY(sum(tmp.sales_income) / sum(lyst.sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_lyst,
+        cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tmp.lyst_sales_income) * 1.0), 0) AS DECIMAL(18, 4)),
         tmp.duration_type,
         tmp.create_time
     FROM tmp
@@ -99,4 +100,16 @@ INSERT INTO ads_crm.member_analyse_income_total_store_all
         AND tmp.sales_mode = lyst.sales_mode
         AND tmp.store_type = lyst.store_type
         AND tmp.store_level = lyst.store_level
-        AND tmp.channel_type = lyst.channel_type;
+        AND tmp.channel_type = lyst.channel_type
+    GROUP BY
+        tmp.brand,
+        tmp.zone,
+        tmp.zone_type,
+        tmp.member_type,
+        tmp.order_channel,
+        tmp.sales_mode,
+        tmp.store_type,
+        tmp.store_level,
+        tmp.channel_type,
+        tmp.duration_type,
+        tmp.create_time;

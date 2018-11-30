@@ -114,4 +114,4 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
         tmp.store_level,
         tmp.channel_type,
         tmp.duration_type,
-        tmp.create_time
+        tmp.create_time;
