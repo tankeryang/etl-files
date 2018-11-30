@@ -141,18 +141,9 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             IF (tt.order_amount IS NULL, cast(0 AS INTEGER), tt.order_amount) AS order_amount,
             i.date
         FROM i
-        LEFT JOIN tt ON i.country
-            AND tt.sales_area = i.sales_area
-            AND tt.sales_district = i.sales_district
-            AND tt.province = i.province
-            AND tt.city = i.city
+        LEFT JOIN tt ON tt.store_code = i.store_code
             AND tt.brand_code = i.brand_code
             AND tt.brand_name = i.brand_name
-            AND tt.store_code = i.store_code
-            AND tt.sales_name = i.sales_mode
-            AND tt.store_type = i.store_type
-            AND tt.store_level = i.store_level
-            AND tt.channel_type = i.channel_type
             AND tt.order_channel = i.order_channel
             AND tt.member_type = i.member_type
             AND tt.member_newold_type = i.member_newold_type
