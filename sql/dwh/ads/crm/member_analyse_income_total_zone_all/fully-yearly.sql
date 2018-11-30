@@ -62,7 +62,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
             AND date <= date(localtimestamp)
             AND date >= date(date_format(localtimestamp, '%Y-01-01'))
         GROUP BY DISTINCT
-            f.brand_name, f.{zone}, f.member_type
+            f.brand_name, f.{zone}, f.member_type,
             CUBE (f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type)
     )
     SELECT DISTINCT
