@@ -88,7 +88,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
         AND tmp.store_type = lyst.store_type
         AND tmp.store_level = lyst.store_level
         AND tmp.channel_type = lyst.channel_type
-        AND tmp.date = lyst.date
+        AND tmp.date - interval '1' year = lyst.date
     GROUP BY
         tmp.brand,
         tmp.zone,
