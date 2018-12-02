@@ -9,7 +9,8 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
             IF (store_level IS NULL, '全部', store_level) AS store_level,
             IF (channel_type IS NULL, '全部', channel_type) AS channel_type,
             cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income,
-            date
+            cast(year(date) AS INTEGER) AS year,
+            cast(month(date) AS INTEGER) AS month
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type = '整体' AND member_newold_type IS NULL AND member_level_type IS NULL
             AND date <= date(localtimestamp)
