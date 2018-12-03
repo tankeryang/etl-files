@@ -1,4 +1,4 @@
-INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
+INSERT INTO ads_crm.member_analyse_income_total_store_daily
     WITH tt AS (
         SELECT
             brand_name AS brand,
@@ -9,13 +9,13 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
             IF (store_level IS NULL, '全部', store_level) AS store_level,
             IF (channel_type IS NULL, '全部', channel_type) AS channel_type,
             cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income,
-            year,
-            month
+            date
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type = '整体' AND member_newold_type IS NULL AND member_level_type IS NULL
-            AND date <= date(localtimestamp)
+            AND date < date(localtimestamp)
+            AND date > (SELECT max(date) FROM ads_crm.member_analyse_income_total_store_daily)
         GROUP BY DISTINCT
-            brand_name, {zone}, year, month,
+            brand_name, {zone}, date,
             CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
     ), lyst AS (
         SELECT
@@ -28,13 +28,13 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
             IF (store_level IS NULL, '全部', store_level) AS store_level,
             IF (channel_type IS NULL, '全部', channel_type) AS channel_type,
             cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income,
-            year,
-            month
+            date
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type IS NOT NULL AND member_newold_type IS NULL AND member_level_type IS NULL
-            AND year < year(localtimestamp)
+            AND date < date(localtimestamp) - interval '1' year
+            AND date > (SELECT max(date) - interval '1' year FROM ads_crm.member_analyse_income_total_store_daily)
         GROUP BY DISTINCT
-            brand_name, {zone}, member_type, year, month,
+            brand_name, {zone}, member_type, date,
             CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
     ), tmp AS (
         SELECT DISTINCT
@@ -48,14 +48,14 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
             IF (f.channel_type IS NULL, '全部', f.channel_type) AS channel_type,
             cast(sum(f.sales_income) AS DECIMAL(18, 3)) AS sales_income,
             cast(sum(f.lyst_sales_income) AS DECIMAL(18, 3)) AS lyst_sales_income,
-            f.year,
-            f.month,
+            f.date,
             localtimestamp AS create_time
         FROM ads_crm.member_analyse_fold_daily_income_detail f
         WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
-            AND f.date <= date(localtimestamp)
+            AND date < date(localtimestamp)
+            AND date > (SELECT max(date) FROM ads_crm.member_analyse_income_total_store_daily)
         GROUP BY DISTINCT
-            f.brand_name, f.{zone}, f.member_type, f.year, f.month,
+            f.brand_name, f.{zone}, f.member_type, f.date,
             CUBE (f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type)
     )
     SELECT DISTINCT
@@ -71,8 +71,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tt.sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS sales_income_proportion,
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(lyst.sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_lyst,
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tmp.lyst_sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst,
-        tmp.year,
-        tmp.month,
+        tmp.date,
         tmp.create_time
     FROM tmp
     LEFT JOIN tt ON tmp.brand = tt.brand
@@ -82,8 +81,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
         AND tmp.store_type = tt.store_type
         AND tmp.store_level = tt.store_level
         AND tmp.channel_type = tt.channel_type
-        AND tmp.year = tt.year
-        AND tmp.month = tt.month
+        AND tmp.date = tt.date
     LEFT JOIN lyst ON tmp.brand = lyst.brand
         AND tmp.zone = lyst.zone
         AND tmp.member_type = lyst.member_type
@@ -92,8 +90,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
         AND tmp.store_type = lyst.store_type
         AND tmp.store_level = lyst.store_level
         AND tmp.channel_type = lyst.channel_type
-        AND tmp.year - 1 = lyst.year
-        AND tmp.month = lyst.month
+        AND tmp.date - interval '1' year = lyst.date
     GROUP BY
         tmp.brand,
         tmp.zone,
@@ -103,6 +100,5 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
         tmp.store_type,
         tmp.store_level,
         tmp.channel_type,
-        tmp.year,
-        tmp.month,
+        tmp.date,
         tmp.create_time;
