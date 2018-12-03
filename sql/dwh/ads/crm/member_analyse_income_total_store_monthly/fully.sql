@@ -83,6 +83,7 @@ INSERT INTO ads_crm.member_analyse_income_total_store_monthly
         AND tmp.store_level = tt.store_level
         AND tmp.channel_type = tt.channel_type
         AND tmp.year = tt.year
+        AND tmp.month = tt.month
     LEFT JOIN lyst ON tmp.brand = lyst.brand
         AND tmp.zone = lyst.zone
         AND tmp.member_type = lyst.member_type
