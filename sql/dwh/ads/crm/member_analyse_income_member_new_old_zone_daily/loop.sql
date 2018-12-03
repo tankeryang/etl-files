@@ -1,4 +1,4 @@
-INSERT INTO ads_crm.member_analyse_income_total_zone_daily
+INSERT INTO ads_crm.member_analyse_income_member_new_old_zone_daily
     WITH tt AS (
         SELECT
             brand_name AS brand,
