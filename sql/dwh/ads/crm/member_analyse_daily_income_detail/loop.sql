@@ -1,6 +1,3 @@
-DELETE FROM ads_crm.member_analyse_daily_income_detail;
-
-
 INSERT INTO ads_crm.member_analyse_daily_income_detail
     WITH i AS (
         SELECT
