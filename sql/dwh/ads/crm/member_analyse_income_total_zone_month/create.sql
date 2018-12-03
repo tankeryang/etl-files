@@ -1,10 +1,10 @@
 CREATE SCHEMA IF NOT EXISTS ads_crm;
 
 
-DROP TABLE IF EXISTS ads_crm.member_analyse_income_total_zone_daily;
+DROP TABLE IF EXISTS ads_crm.member_analyse_income_total_zone_monthly;
 
 
-CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_income_total_zone_daily (
+CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_income_total_zone_monthly (
     brand                   VARCHAR,
     zone                    VARCHAR,
     member_type             VARCHAR,
@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_income_total_zone_daily (
     sales_income_proportion DECIMAL(18, 4),
     compared_with_lyst      DECIMAL(18, 4),
     compared_with_ss_lyst   DECIMAL(18, 4),
-    date                    DATE,
+    year                    INTEGER,
+    month                   INTEGER,
     create_time             TIMESTAMP
-)
+);

@@ -24,7 +24,9 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         cast(sum(t.lyst_sales_income) AS DECIMAL(18, 3)),
         array_distinct(flatten(array_agg(t.customer_array))),
         cast(sum(t.order_amount) AS INTEGER),
-        t.date
+        t.date,
+        t.year,
+        t.month
     FROM ads_crm.member_analyse_daily_income_detail t
     GROUP BY DISTINCT
         t.country,
@@ -41,6 +43,8 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         t.channel_type,
         t.order_channel,
         t.date,
+        t.year,
+        t.month,
         GROUPING SETS (
             (t.member_type),
             (t.member_newold_type),
@@ -70,7 +74,9 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         cast(sum(t1.lyst_sales_income) AS DECIMAL(18, 3)),
         array_distinct(flatten(array_agg(t1.customer_array))),
         cast(sum(t1.order_amount) AS INTEGER),
-        t1.date
+        t1.date,
+        t1.year,
+        t1.month
     FROM ads_crm.member_analyse_daily_income_detail t1
     GROUP BY
         t1.country,
@@ -86,7 +92,9 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         t1.store_level,
         t1.channel_type,
         t1.order_channel,
-        t1.date
+        t1.date,
+        t1.year,
+        t1.month
 
     UNION SELECT DISTINCT
         t2.country,
@@ -110,7 +118,9 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         cast(sum(t2.lyst_sales_income) AS DECIMAL(18, 3)),
         array_distinct(flatten(array_agg(t2.customer_array))),
         cast(sum(t2.order_amount) AS INTEGER),
-        t2.date
+        t2.date,
+        t2.year,
+        t2.month
     FROM ads_crm.member_analyse_daily_income_detail t2
     WHERE t2.member_type = '会员'
     GROUP BY
@@ -127,7 +137,9 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         t2.store_level,
         t2.channel_type,
         t2.order_channel,
-        t2.date
+        t2.date,
+        t2.year,
+        t2.month
 
     UNION SELECT DISTINCT
         t3.country,
@@ -151,7 +163,9 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         cast(sum(t3.lyst_sales_income) AS DECIMAL(18, 3)),
         array_distinct(flatten(array_agg(t3.customer_array))),
         cast(sum(t3.order_amount) AS INTEGER),
-        t3.date
+        t3.date,
+        t3.year,
+        t3.month
     FROM ads_crm.member_analyse_daily_income_detail t3
     WHERE t3.member_type = '会员'
     GROUP BY
@@ -168,4 +182,6 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         t3.store_level,
         t3.channel_type,
         t3.order_channel,
-        t3.date;
+        t3.date,
+        t3.year,
+        t3.month;
