@@ -1,0 +1,1 @@
+SELECT array['store_code'] AS zone;
