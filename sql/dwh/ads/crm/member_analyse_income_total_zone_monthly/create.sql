@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_income_total_zone_monthly (
     sales_income_proportion DECIMAL(18, 4),
     compared_with_lyst      DECIMAL(18, 4),
     compared_with_ss_lyst   DECIMAL(18, 4),
-    year                    INTEGER,
-    month                   INTEGER,
-    create_time             TIMESTAMP
-);
+    create_time             TIMESTAMP,
+    year                    VARCHAR,
+    month                   VARCHAR
+) WITH (partitioned_by = ['year', 'month']);

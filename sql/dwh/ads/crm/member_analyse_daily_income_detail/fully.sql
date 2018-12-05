@@ -174,8 +174,8 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
         t.customer_array,
         t.order_amount,
         t.date,
-        cast(year(t.date) AS INTEGER) AS year,
-        cast(month(t.date) AS INTEGER) AS month
+        cast(year(t.date) AS VARCHAR) AS year,
+        cast(month(t.date) AS VARCHAR) AS month
     FROM t
     LEFT JOIN t lyst_t ON t.city = lyst_t.city
         AND t.brand_code = lyst_t.brand_code

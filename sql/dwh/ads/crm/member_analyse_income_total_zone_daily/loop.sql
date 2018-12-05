@@ -12,8 +12,8 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
             date
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type = '整体' AND member_newold_type IS NULL AND member_level_type IS NULL
-            AND date < date(localtimestamp)
-            AND date > (SELECT max(date) FROM ads_crm.member_analyse_income_total_zone_daily)
+            AND vchr_date < date_format(localtimestamp, '%Y-%m-%d')
+            AND vchr_date > (SELECT vchr_max_date FROM ads_crm.member_analyse_max_date)
         GROUP BY DISTINCT
             brand_name, {zone}, date,
             CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
@@ -31,13 +31,13 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
             date
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type IS NOT NULL AND member_newold_type IS NULL AND member_level_type IS NULL
-            AND date < date(localtimestamp) - interval '1' year
-            AND date > (SELECT max(date) - interval '1' year FROM ads_crm.member_analyse_income_total_zone_daily)
+            AND vchr_date < date(localtimestamp) - interval '1' year
+            AND vchr_date > (SELECT date_format(max_date - interval '1' year, '%Y-%m-%d') FROM ads_crm.member_analyse_max_date)
         GROUP BY DISTINCT
             brand_name, {zone}, member_type, date,
             CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
     ), tmp AS (
-        SELECT
+        SELECT DISTINCT
             f.brand_name    AS brand,
             IF (f.{zone} IS NULL, '', f.{zone}) AS zone,
             f.member_type   AS member_type,
@@ -52,13 +52,13 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
             localtimestamp AS create_time
         FROM ads_crm.member_analyse_fold_daily_income_detail f
         WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
-            AND f.date < date(localtimestamp)
-            AND f.date > (SELECT max(date) FROM ads_crm.member_analyse_income_total_zone_daily)
+            AND f.vchr_date < date(localtimestamp, '%Y-%m-%d')
+            AND f.vchr_date > (SELECT vchr_max_date FROM ads_crm.member_analyse_max_date)
         GROUP BY DISTINCT
             f.brand_name, f.{zone}, f.member_type, f.date,
             CUBE (f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type)
     )
-    SELECT
+    SELECT DISTINCT
         tmp.brand,
         IF (tmp.zone = '', NULL, tmp.zone) AS zone,
         tmp.member_type,

@@ -23,9 +23,10 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         cast(sum(t.order_amount) AS INTEGER),
         t.date,
         t.year,
-        t.month
+        t.month,
+        date_format(t.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t
-    WHERE t.date > (SELECT max(date) FROM ads_crm.member_analyse_fold_daily_income_detail)
+    WHERE t.date > (SELECT max_date FROM ads_crm.member_analyse_max_date)
     GROUP BY DISTINCT
         t.country,
         t.sales_area,
@@ -74,9 +75,10 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         cast(sum(t1.order_amount) AS INTEGER),
         t1.date,
         t1.year,
-        t1.month
+        t1.month,
+        date_format(t1.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t1
-    WHERE t1.date > (SELECT max(date) FROM ads_crm.member_analyse_fold_daily_income_detail)
+    WHERE t1.date > (SELECT max_date FROM ads_crm.member_analyse_max_date)
     GROUP BY
         t1.country,
         t1.sales_area,
@@ -119,10 +121,11 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         cast(sum(t2.order_amount) AS INTEGER),
         t2.date,
         t2.year,
-        t2.month
+        t2.month,
+        date_format(t2.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t2
     WHERE t2.member_type = '会员'
-    AND t2.date > (SELECT max(date) FROM ads_crm.member_analyse_fold_daily_income_detail)
+    AND t2.date > (SELECT max_date FROM ads_crm.member_analyse_max_date)
     GROUP BY
         t2.country,
         t2.sales_area,
@@ -165,10 +168,11 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         cast(sum(t3.order_amount) AS INTEGER),
         t3.date,
         t3.year,
-        t3.month
+        t3.month,
+        date_format(t3.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t3
     WHERE t3.member_type = '会员'
-    AND t3.date > (SELECT max(date) FROM ads_crm.member_analyse_fold_daily_income_detail)
+    AND t3.date > (SELECT max_date FROM ads_crm.member_analyse_max_date)
     GROUP BY
         t3.country,
         t3.sales_area,

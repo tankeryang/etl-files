@@ -24,6 +24,6 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_income_total_zone_all (
     sales_item_per_order    DECIMAL(18, 2),
     compared_with_lyst      DECIMAL(18, 4),
     compared_with_ss_lyst   DECIMAL(18, 4),
-    duration_type           VARCHAR,
-    create_time             TIMESTAMP
-)
+    create_time             TIMESTAMP,
+    duration_type           VARCHAR
+) WITH (partitioned_by = array['duration_type']);

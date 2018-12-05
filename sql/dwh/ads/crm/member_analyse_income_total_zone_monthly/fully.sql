@@ -13,7 +13,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
             month
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type = '整体' AND member_newold_type IS NULL AND member_level_type IS NULL
-            AND date < date(localtimestamp)
+            AND vchr_date < date_format(date(localtimestamp) - interval '1' month, '%Y-%m-%d')
         GROUP BY DISTINCT
             brand_name, {zone}, year, month,
             CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
@@ -32,7 +32,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
             month
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type IS NOT NULL AND member_newold_type IS NULL AND member_level_type IS NULL
-            AND year < year(localtimestamp)
+            AND year < cast(year(localtimestamp) AS VARCHAR)
         GROUP BY DISTINCT
             brand_name, {zone}, member_type, year, month,
             CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
@@ -53,7 +53,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
             localtimestamp AS create_time
         FROM ads_crm.member_analyse_fold_daily_income_detail f
         WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
-            AND f.date < date(localtimestamp)
+            AND f.date < date_format(date(localtimestamp) - interval '1' month, '%Y-%m-%d')
         GROUP BY DISTINCT
             f.brand_name, f.{zone}, f.member_type, f.year, f.month,
             CUBE (f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type)
@@ -71,9 +71,9 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tt.sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS sales_income_proportion,
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(lyst.sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_lyst,
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tmp.lyst_sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst,
+        tmp.create_time,
         tmp.year,
-        tmp.month,
-        tmp.create_time
+        tmp.month
     FROM tmp
     LEFT JOIN tt ON tmp.brand = tt.brand
         AND tmp.zone = tt.zone

@@ -1,0 +1,10 @@
+CREATE SCHEMA IF NOT EXISTS ads_crm;
+
+
+DROP TABLE IF EXISTS ads_crm.member_analyse_max_date;
+
+
+CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_max_date (
+    max_date      DATE,
+    vchr_max_date VARCHAR
+);

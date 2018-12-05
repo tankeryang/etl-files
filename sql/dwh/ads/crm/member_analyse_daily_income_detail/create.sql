@@ -31,6 +31,6 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_daily_income_detail(
     customer_array          ARRAY<VARCHAR>,
     order_amount            INTEGER,
     date                    DATE,
-    year                    INTEGER,
-    month                   INTEGER
+    year                    VARCHAR,
+    month                   VARCHAR
 );

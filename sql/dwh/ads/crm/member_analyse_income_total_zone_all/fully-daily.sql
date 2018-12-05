@@ -11,7 +11,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
             cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type = '整体' AND member_newold_type IS NULL AND member_level_type IS NULL
-            AND date = date(localtimestamp) - interval '1' day
+            AND vchr_date = date_format(date(localtimestamp) - interval '1' day, '%Y-%m-%d')
         GROUP BY DISTINCT
             brand_name, {zone},
             CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
@@ -28,7 +28,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
             cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type IS NOT NULL AND member_newold_type IS NULL AND member_level_type IS NULL
-            AND date = date(date(localtimestamp) - interval '1' day) - interval '1' year
+            AND vchr_date = date_format(date(date(localtimestamp) - interval '1' day) - interval '1' year, '%Y-%m-%d')
         GROUP BY DISTINCT
             brand_name, {zone}, member_type,
             CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
@@ -52,8 +52,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
             localtimestamp AS create_time
         FROM ads_crm.member_analyse_fold_daily_income_detail f
         WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
-            AND date <= date(localtimestamp)
-            AND date >= date(date_format(localtimestamp, '%Y-01-01'))
+            AND vchr_date = date_format(date(localtimestamp) - interval '1' day, '%Y-%m-%d')
         GROUP BY DISTINCT
             f.brand_name, f.{zone}, f.member_type,
             CUBE (f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type)
@@ -78,8 +77,8 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_all
         cast(COALESCE(TRY(sum(tmp.sales_item_quantity) / sum(tmp.order_amount) * 1.0), 0) AS DECIMAL(18, 2)) AS sales_item_per_order,
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(lyst.sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_lyst,
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tmp.lyst_sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst,
-        tmp.duration_type,
-        tmp.create_time
+        tmp.create_time,
+        tmp.duration_type
     FROM tmp
     LEFT JOIN tt ON tmp.brand = tt.brand
         AND tmp.zone = tt.zone
