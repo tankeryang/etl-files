@@ -20,4 +20,4 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_income_total_zone_daily (
     date                    DATE,
     vchr_date               VARCHAR,
     create_time             TIMESTAMP
-) WITH (partitioned_by = vchr_date)
+) WITH (partitioned_by = array['vchr_date'])
