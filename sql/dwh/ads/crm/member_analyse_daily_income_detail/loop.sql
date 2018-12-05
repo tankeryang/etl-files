@@ -38,7 +38,8 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
                 order_deal_date AS date,
                 'key' AS key
             FROM cdm_crm.order_info_detail
-            WHERE order_deal_date = date(localtimestamp) - interval '1' day
+            WHERE order_deal_date < date(localtimestamp)
+                AND order_deal_date > (SELECT max(date) FROM ads_crm.member_analyse_daily_income_detail)
         ) t1
         FULL JOIN (
             SELECT DISTINCT
