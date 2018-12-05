@@ -69,6 +69,7 @@ INSERT INTO ads_crm.member_analyse_income_total_store_all
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(lyst.sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_lyst,
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tmp.lyst_sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst,
         tmp.date,
+        date_format(tmp.date, '%Y-%m-%d') AS vchr_date,
         tmp.create_time
     FROM tmp
     LEFT JOIN tt ON tmp.brand = tt.brand

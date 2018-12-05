@@ -18,5 +18,6 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_income_total_zone_daily (
     compared_with_lyst      DECIMAL(18, 4),
     compared_with_ss_lyst   DECIMAL(18, 4),
     date                    DATE,
+    vchr_date               VARCHAR,
     create_time             TIMESTAMP
-)
+) WITH (partitioned_by = )
