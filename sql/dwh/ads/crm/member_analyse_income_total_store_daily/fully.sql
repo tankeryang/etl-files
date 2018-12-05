@@ -1,60 +1,60 @@
-INSERT INTO ads_crm.member_analyse_income_total_store_daily
+INSERT INTO ads_crm.member_analyse_income_total_store_all
     WITH tt AS (
         SELECT
             brand_name AS brand,
             IF ({zone} IS NULL, '', {zone}) AS zone,
             IF (order_channel IS NULL, '全部', order_channel) AS order_channel,
-            IF (sales_mode IS NULL, '全部', sales_mode) AS sales_mode,
-            IF (store_type IS NULL, '全部', store_type) AS store_type,
-            IF (store_level IS NULL, '全部', store_level) AS store_level,
-            IF (channel_type IS NULL, '全部', channel_type) AS channel_type,
+            sales_mode,
+            store_type,
+            store_level,
+            channel_type,
             cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income,
             date
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type = '整体' AND member_newold_type IS NULL AND member_level_type IS NULL
-            AND date <= date(localtimestamp)
+            AND date < date(localtimestamp)
         GROUP BY DISTINCT
-            brand_name, {zone}, date,
-            CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
+            brand_name, {zone}, sales_mode, store_type, store_level, channel_type, date
+            CUBE (order_channel)
     ), lyst AS (
         SELECT
             brand_name AS brand,
             IF ({zone} IS NULL, '', {zone}) AS zone,
             member_type,
             IF (order_channel IS NULL, '全部', order_channel) AS order_channel,
-            IF (sales_mode IS NULL, '全部', sales_mode) AS sales_mode,
-            IF (store_type IS NULL, '全部', store_type) AS store_type,
-            IF (store_level IS NULL, '全部', store_level) AS store_level,
-            IF (channel_type IS NULL, '全部', channel_type) AS channel_type,
+            sales_mode,
+            store_type,
+            store_level,
+            channel_type,
             cast(sum(sales_income) AS DECIMAL(18, 3)) AS sales_income,
             date
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type IS NOT NULL AND member_newold_type IS NULL AND member_level_type IS NULL
             AND date <= date(localtimestamp) - interval '1' year
         GROUP BY DISTINCT
-            brand_name, {zone}, member_type, date,
-            CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
+            brand_name, {zone}, member_type, sales_mode, store_type, store_level, channel_type, date,
+            CUBE (order_channel)
     ), tmp AS (
         SELECT DISTINCT
             f.brand_name    AS brand,
             IF (f.{zone} IS NULL, '', f.{zone}) AS zone,
             f.member_type   AS member_type,
             IF (f.order_channel IS NULL, '全部', f.order_channel) AS order_channel,
-            IF (f.sales_mode IS NULL, '全部', f.sales_mode) AS sales_mode,
-            IF (f.store_type IS NULL, '全部', f.store_type) AS store_type,
-            IF (f.store_level IS NULL, '全部', f.store_level) AS store_level,
-            IF (f.channel_type IS NULL, '全部', f.channel_type) AS channel_type,
+            sales_mode,
+            store_type,
+            store_level,
+            channel_type,
             cast(sum(f.sales_income) AS DECIMAL(18, 3)) AS sales_income,
             cast(sum(f.lyst_sales_income) AS DECIMAL(18, 3)) AS lyst_sales_income,
-            f.date,
+            f.date
             localtimestamp AS create_time
         FROM ads_crm.member_analyse_fold_daily_income_detail f
         WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
             AND f.date <= date(localtimestamp)
             AND f.date >= date(date_format(localtimestamp, '%Y-01-01'))
         GROUP BY DISTINCT
-            f.brand_name, f.{zone}, f.member_type, f.date,
-            CUBE (f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type)
+            f.brand_name, f.{zone}, f.member_type, f.sales_mode, f.store_type, f.store_level, f.channel_type, f.date,
+            CUBE (f.order_channel)
     )
     SELECT DISTINCT
         tmp.brand,

@@ -12,7 +12,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
             date
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type = '整体' AND member_newold_type IS NULL AND member_level_type IS NULL
-            AND date <= date(localtimestamp)
+            AND date < date(localtimestamp)
         GROUP BY DISTINCT
             brand_name, {zone}, date,
             CUBE (order_channel, sales_mode, store_type, store_level, channel_type)

@@ -47,11 +47,7 @@ INSERT INTO ads_crm.member_analyse_income_total_store_all
             cast(sum(f.lyst_sales_income) AS DECIMAL(18, 3)) AS lyst_sales_income,
             cast(cardinality(array_distinct(flatten(array_agg(f.customer_array)))) AS INTEGER) AS customer_amount,
             cast(sum(f.order_amount) AS INTEGER) AS order_amount,
-            cast(COALESCE(TRY(sum(f.order_amount) / cardinality(array_distinct(flatten(array_agg(f.customer_array))))), 0) AS INTEGER) AS consumption_frequency,
-            cast(COALESCE(TRY(sum(f.sales_income) * 1.0 / sum(f.order_amount)), 0) AS DECIMAL(18, 2)) AS sales_income_per_order,
-            cast(COALESCE(TRY(sum(f.sales_income) * 1.0 / sum(f.sales_item_quantity)), 0) AS DECIMAL(18, 2)) AS sales_income_per_item,
-            cast(COALESCE(TRY(sum(f.sales_item_quantity) * 1.0 / sum(f.order_amount)), 0) AS DECIMAL(18, 2)) AS sales_item_per_order,
-            cast(COALESCE(TRY(sum(f.sales_income) * 1.0 / sum(lyst_sales_income)), 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst,
+            cast(sum(f.sales_item_quantity) AS INTEGER) AS sales_item_quantity,
             'daily' AS duration_type,
             localtimestamp AS create_time
         FROM ads_crm.member_analyse_fold_daily_income_detail f
@@ -75,12 +71,12 @@ INSERT INTO ads_crm.member_analyse_income_total_store_all
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tt.sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS sales_income_proportion,
         cast(sum(tmp.customer_amount) AS INTEGER) AS customer_amount,
         cast(sum(tmp.order_amount) AS INTEGER) AS order_amount,
-        cast(sum(tmp.consumption_frequency) AS INTEGER) AS consumption_frequency,
-        cast(sum(tmp.sales_income_per_order) AS DECIMAL(18, 2)) AS sales_income_per_order,
-        cast(sum(tmp.sales_income_per_item) AS DECIMAL(18, 2)) AS sales_income_per_item,
-        cast(sum(tmp.sales_item_per_order) AS DECIMAL(18, 2)) AS sales_item_per_order,
+        cast(COALESCE(TRY(sum(tmp.order_amount) / sum(tmp.customer_amount) * 1.0), 0) AS INTEGER) AS consumption_frequency,
+        cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tmp.order_amount) * 1.0), 0) AS DECIMAL(18, 2)) AS sales_income_per_order,
+        cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tmp.sales_item_quantity) * 1.0), 0) AS DECIMAL(18, 2)) AS sales_income_per_item,
+        cast(COALESCE(TRY(sum(tmp.sales_item_quantity) / sum(tmp.order_amount) * 1.0), 0) AS DECIMAL(18, 2)) AS sales_item_per_order,
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(lyst.sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_lyst,
-        cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tmp.lyst_sales_income) * 1.0), 0) AS DECIMAL(18, 4)),
+        cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tmp.lyst_sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst,
         tmp.duration_type,
         tmp.create_time
     FROM tmp

@@ -13,7 +13,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
             month
         FROM ads_crm.member_analyse_fold_daily_income_detail
         WHERE member_type = '整体' AND member_newold_type IS NULL AND member_level_type IS NULL
-            AND date <= date(localtimestamp)
+            AND date < date(localtimestamp)
         GROUP BY DISTINCT
             brand_name, {zone}, year, month,
             CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
@@ -53,7 +53,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_monthly
             localtimestamp AS create_time
         FROM ads_crm.member_analyse_fold_daily_income_detail f
         WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
-            AND f.date <= date(localtimestamp)
+            AND f.date < date(localtimestamp)
         GROUP BY DISTINCT
             f.brand_name, f.{zone}, f.member_type, f.year, f.month,
             CUBE (f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type)
