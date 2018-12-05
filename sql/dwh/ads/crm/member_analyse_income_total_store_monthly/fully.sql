@@ -55,8 +55,8 @@ INSERT INTO ads_crm.member_analyse_income_total_store_monthly
         WHERE f.member_type IS NOT NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NULL
             AND f.date <= date(localtimestamp)
         GROUP BY DISTINCT
-            f.brand_name, f.{zone}, f.member_type, f.year, f.month,
-            CUBE (f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type)
+            f.brand_name, f.{zone}, f.member_type, f.year, f.month, f.sales_mode, f.store_type, f.store_level, f.channel_type,
+            CUBE (f.order_channel)
     )
     SELECT DISTINCT
         tmp.brand,
