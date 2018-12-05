@@ -35,7 +35,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
             brand_name, {zone}, member_type, date,
             CUBE (order_channel, sales_mode, store_type, store_level, channel_type)
     ), tmp AS (
-        SELECT DISTINCT
+        SELECT
             f.brand_name    AS brand,
             IF (f.{zone} IS NULL, '', f.{zone}) AS zone,
             f.member_type   AS member_type,
@@ -55,7 +55,7 @@ INSERT INTO ads_crm.member_analyse_income_total_zone_daily
             f.brand_name, f.{zone}, f.member_type, f.date,
             CUBE (f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type)
     )
-    SELECT DISTINCT
+    SELECT
         tmp.brand,
         IF (tmp.zone = '', NULL, tmp.zone) AS zone,
         tmp.member_type,
