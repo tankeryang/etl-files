@@ -15,7 +15,7 @@ INSERT INTO ads_crm.member_analyse_income_total_daily
             AND vchr_date < date_format(localtimestamp, '%Y-%m-%d')
             AND vchr_date > (SELECT vchr_max_date FROM ads_crm.member_analyse_max_date)
         GROUP BY DISTINCT
-            brand_name, {zone}, sales_mode, store_type, store_level, channel_type, date
+            brand_name, {zone}, sales_mode, store_type, store_level, channel_type, date,
             CUBE (order_channel)
     ), lyst AS (
         SELECT

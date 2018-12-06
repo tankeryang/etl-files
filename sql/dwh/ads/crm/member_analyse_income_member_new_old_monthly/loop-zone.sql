@@ -22,7 +22,7 @@ INSERT INTO ads_crm.member_analyse_income_member_new_old_monthly
         SELECT
             brand_name AS brand,
             IF ({zone} IS NULL, '', {zone}) AS zone,
-            member_type,
+            member_newold_type AS member_type,
             IF (order_channel IS NULL, '全部', order_channel) AS order_channel,
             IF (sales_mode IS NULL, '全部', sales_mode) AS sales_mode,
             IF (store_type IS NULL, '全部', store_type) AS store_type,
@@ -42,7 +42,7 @@ INSERT INTO ads_crm.member_analyse_income_member_new_old_monthly
         SELECT
             f.brand_name    AS brand,
             IF (f.{zone} IS NULL, '', f.{zone}) AS zone,
-            f.member_type   AS member_type,
+            f.member_newold_type   AS member_type,
             IF (f.order_channel IS NULL, '全部', f.order_channel) AS order_channel,
             IF (f.sales_mode IS NULL, '全部', f.sales_mode) AS sales_mode,
             IF (f.store_type IS NULL, '全部', f.store_type) AS store_type,
