@@ -5,8 +5,6 @@ DROP TABLE IF EXISTS ads_crm.member_analyse_income_member_new_old_daily;
 
 
 CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_income_member_new_old_daily (
-    brand                   VARCHAR,
-    zone                    VARCHAR,
     member_type             VARCHAR,
     order_channel           VARCHAR,
     sales_mode              VARCHAR,
@@ -19,5 +17,7 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_income_member_new_old_daily (
     compared_with_ss_lyst   DECIMAL(18, 4),
     date                    DATE,
     create_time             TIMESTAMP,
+    brand                   VARCHAR,
+    zone                    VARCHAR,
     vchr_date               VARCHAR
 ) WITH (partitioned_by = array['brand', 'zone', 'vchr_date']);

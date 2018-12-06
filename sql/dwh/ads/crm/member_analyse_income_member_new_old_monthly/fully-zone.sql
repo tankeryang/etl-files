@@ -59,8 +59,6 @@ INSERT INTO ads_crm.member_analyse_income_member_new_old_monthly
             CUBE (f.order_channel, f.sales_mode, f.store_type, f.store_level, f.channel_type)
     )
     SELECT
-        tmp.brand,
-        IF (tmp.zone = '', NULL, tmp.zone) AS zone,
         tmp.member_type,
         tmp.order_channel,
         tmp.sales_mode,
@@ -72,6 +70,8 @@ INSERT INTO ads_crm.member_analyse_income_member_new_old_monthly
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(lyst.sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_lyst,
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tmp.lyst_sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst,
         tmp.create_time,
+        tmp.brand,
+        IF (tmp.zone = '', NULL, tmp.zone) AS zone,
         tmp.year,
         tmp.month
     FROM tmp
