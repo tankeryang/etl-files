@@ -46,7 +46,7 @@ INSERT INTO ads_crm.member_analyse_income_member_level_daily
             channel_type,
             cast(sum(f.sales_income) AS DECIMAL(18, 3)) AS sales_income,
             cast(sum(f.lyst_sales_income) AS DECIMAL(18, 3)) AS lyst_sales_income,
-            f.date
+            f.date,
             localtimestamp AS create_time
         FROM ads_crm.member_analyse_fold_daily_income_detail f
         WHERE f.member_type IS NULL AND f.member_newold_type IS NULL AND f.member_level_type IS NOT NULL
