@@ -56,6 +56,8 @@ INSERT INTO ads_crm.member_analyse_income_member_new_old_daily
             CUBE (f.order_channel)
     )
     SELECT DISTINCT
+        tmp.brand,
+        IF (tmp.zone = '', NULL, tmp.zone) AS zone,
         tmp.member_type,
         tmp.order_channel,
         tmp.sales_mode,
@@ -68,8 +70,6 @@ INSERT INTO ads_crm.member_analyse_income_member_new_old_daily
         cast(COALESCE(TRY(sum(tmp.sales_income) / sum(tmp.lyst_sales_income) * 1.0), 0) AS DECIMAL(18, 4)) AS compared_with_ss_lyst,
         tmp.date,
         tmp.create_time,
-        tmp.brand,
-        IF (tmp.zone = '', NULL, tmp.zone) AS zone,
         date_format(tmp.date, '%Y-%m-%d') AS vchr_date
     FROM tmp
     LEFT JOIN tt ON tmp.brand = tt.brand

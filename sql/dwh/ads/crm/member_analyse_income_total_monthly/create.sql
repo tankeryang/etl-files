@@ -5,6 +5,8 @@ DROP TABLE IF EXISTS ads_crm.member_analyse_income_total_monthly;
 
 
 CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_income_total_monthly (
+    brand                   VARCHAR,
+    zone                    VARCHAR,
     member_type             VARCHAR,
     order_channel           VARCHAR,
     sales_mode              VARCHAR,
@@ -16,8 +18,6 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_income_total_monthly (
     compared_with_lyst      DECIMAL(18, 4),
     compared_with_ss_lyst   DECIMAL(18, 4),
     create_time             TIMESTAMP,
-    brand                   VARCHAR,
-    zone                    VARCHAR,
     year                    VARCHAR,
     month                   VARCHAR
-) WITH (partitioned_by = ['brand', 'zone', 'year', 'month']);
+) WITH (partitioned_by = ['year', 'month']);
