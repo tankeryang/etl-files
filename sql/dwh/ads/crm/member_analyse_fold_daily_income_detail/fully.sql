@@ -25,8 +25,7 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         array_distinct(flatten(array_agg(t.customer_array))),
         cast(sum(t.order_amount) AS INTEGER),
         t.date,
-        t.year,
-        t.month,
+        concat(t.year, '-', t.month) AS year_month,
         date_format(t.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t
     GROUP BY DISTINCT
@@ -76,8 +75,7 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         array_distinct(flatten(array_agg(t1.customer_array))),
         cast(sum(t1.order_amount) AS INTEGER),
         t1.date,
-        t1.year,
-        t1.month,
+        concat(t1.year, '-', t1.month) AS year_month,
         date_format(t1.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t1
     GROUP BY
@@ -121,8 +119,7 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         array_distinct(flatten(array_agg(t2.customer_array))),
         cast(sum(t2.order_amount) AS INTEGER),
         t2.date,
-        t2.year,
-        t2.month,
+        concat(t2.year, '-', t2.month) AS year_month,
         date_format(t2.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t2
     WHERE t2.member_type = '会员'
@@ -167,8 +164,7 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         array_distinct(flatten(array_agg(t3.customer_array))),
         cast(sum(t3.order_amount) AS INTEGER),
         t3.date,
-        t3.year,
-        t3.month,
+        concat(t3.year, '-', t3.month) AS year_month,
         date_format(t3.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t3
     WHERE t3.member_type = '会员'

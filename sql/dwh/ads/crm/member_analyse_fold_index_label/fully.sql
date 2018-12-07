@@ -30,9 +30,9 @@ INSERT INTO ads_crm.member_analyse_fold_index_label
     ) t1
     FULL JOIN (
         SELECT DISTINCT
-            member_type,
-            member_newold_type,
-            member_level_type,
+            IF (member_type = '', NULL, member_type) AS member_type,
+            IF (member_newold_type = '', NULL, member_newold_type) AS member_newold_type,
+            IF (member_level_type = '', NULL, member_level_type) AS member_level_type,
             'key' AS key
         FROM ads_crm.member_analyse_daily_income_detail
         UNION SELECT

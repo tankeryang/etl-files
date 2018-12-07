@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_recruit_analyse_fold_daily_income_deta
     member_register_type    VARCHAR,
     customer_array          ARRAY<VARCHAR>,
     date                    DATE,
-    year                    VARCHAR,
-    month                   VARCHAR,
+    year_month              VARCHAR,
     vchr_date               VARCHAR
-) WITH (partitioned_by = array['year', 'month', 'vchr_date']);
+) WITH (partitioned_by = array['year_month', 'vchr_date']);
