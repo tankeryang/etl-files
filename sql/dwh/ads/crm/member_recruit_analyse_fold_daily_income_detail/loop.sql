@@ -22,7 +22,7 @@ INSERT INTO ads_crm.member_recruit_analyse_fold_daily_income_detail
         date_format(t.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t
     WHERE t.member_type = '会员'
-    AND t.date > (SELECT max_date FROM ads_crm.member_analyse_max_date)
+    AND t.date > (SELECT max_date FROM ads_crm.member_recruit_analyse_max_date)
     GROUP BY
         t.country,
         t.sales_area,
@@ -65,7 +65,7 @@ INSERT INTO ads_crm.member_recruit_analyse_fold_daily_income_detail
         date_format(t1.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t1
     WHERE t1.member_type = '会员'
-    AND t1.date > (SELECT max_date FROM ads_crm.member_analyse_max_date)
+    AND t1.date > (SELECT max_date FROM ads_crm.member_recruit_analyse_max_date)
     GROUP BY
         t1.country,
         t1.sales_area,
@@ -108,7 +108,7 @@ INSERT INTO ads_crm.member_recruit_analyse_fold_daily_income_detail
         date_format(t2.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t2
     WHERE t2.member_type = '会员'
-    AND t2.date > (SELECT vchr_max_date FROM ads_crm.member_analyse_max_date)
+    AND t2.date > (SELECT vchr_max_date FROM ads_crm.member_recruit_analyse_max_date)
     GROUP BY
         t2.country,
         t2.sales_area,

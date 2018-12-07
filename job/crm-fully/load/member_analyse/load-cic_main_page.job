@@ -1,0 +1,7 @@
+type=command
+command=${cmd}
+
+sql.dir=cic_main_page
+sql.names=create,fully
+
+dependencies=load-member_register_detail
