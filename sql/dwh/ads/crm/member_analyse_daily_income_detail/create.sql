@@ -30,5 +30,7 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_daily_income_detail(
     lyst_sales_income       DECIMAL(18, 3),
     customer_array          ARRAY<VARCHAR>,
     order_amount            INTEGER,
-    date                    DATE
+    date                    DATE,
+    year                    VARCHAR,
+    month                   VARCHAR
 );

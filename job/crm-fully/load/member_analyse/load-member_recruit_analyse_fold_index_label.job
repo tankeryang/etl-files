@@ -1,0 +1,7 @@
+type=command
+command=${cmd}
+
+sql.dir=member_recruit_analyse_fold_index_label
+sql.names=create,fully
+
+dependencies=load-member_analyse_daily_income_detail

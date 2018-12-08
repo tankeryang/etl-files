@@ -101,6 +101,7 @@ INSERT INTO cdm_crm.order_info_detail
         IF(COALESCE(try_cast(oi.member_no AS INTEGER), 0) > 0,
             mgl.grade_change_time, NULL)                       AS last_grade_change_time,
         oi.order_deal_time                                     AS order_deal_time,
+        date(oi.order_deal_time)                               AS order_deal_date,
         localtimestamp                                         AS create_time
     FROM ods_crm.order_info oi
     LEFT JOIN cdm_crm.order_coupon_info_detail ocid ON oi.outer_order_no = ocid.outer_order_no
