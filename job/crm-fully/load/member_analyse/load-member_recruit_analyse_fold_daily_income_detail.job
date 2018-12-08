@@ -3,4 +3,4 @@ command=${cmd}
 
 sql.dir=member_recruit_analyse_fold_daily_income_detail
 
-dependencies=load-member_analyse_daily_income_detail
+dependencies=load-member_analyse_max_date
