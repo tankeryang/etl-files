@@ -17,8 +17,7 @@ INSERT INTO ads_crm.member_recruit_analyse_fold_daily_income_detail
         NULL                AS member_register_type,
         array_distinct(flatten(array_agg(t.customer_array))),
         t.date,
-        t.year,
-        t.month,
+        concat(t.year, '-', t.month) AS year_month,
         date_format(t.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t
     WHERE t.member_type = '会员'
@@ -60,8 +59,7 @@ INSERT INTO ads_crm.member_recruit_analyse_fold_daily_income_detail
         NULL                   AS member_register_type,
         array_distinct(flatten(array_agg(t1.customer_array))),
         t1.date,
-        t1.year,
-        t1.month,
+        concat(t1.year, '-', t1.month) AS year_month,
         date_format(t1.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t1
     WHERE t1.member_type = '会员'
@@ -103,12 +101,11 @@ INSERT INTO ads_crm.member_recruit_analyse_fold_daily_income_detail
         t2.member_register_type AS member_register_type,
         array_distinct(flatten(array_agg(t2.customer_array))),
         t2.date,
-        t2.year,
-        t2.month,
+        concat(t2.year, '-', t2.month) AS year_month,
         date_format(t2.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t2
     WHERE t2.member_type = '会员'
-    AND t2.date > (SELECT vchr_max_date FROM ads_crm.member_recruit_analyse_max_date)
+    AND t2.date > (SELECT max_date FROM ads_crm.member_recruit_analyse_max_date)
     GROUP BY
         t2.country,
         t2.sales_area,
