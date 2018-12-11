@@ -1,0 +1,6 @@
+type=command
+command=${cmd}
+
+sql.dir=order_info_detail
+
+sql.names=loop

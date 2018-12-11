@@ -1,10 +1,10 @@
-CREATE SCHEMA IF NOT EXISTS cdm_crm;
+CREATE SCHEMA IF NOT EXISTS ads_crm;
 
 
-DROP TABLE IF EXISTS cdm_crm.order_info_detail;
+DROP TABLE IF EXISTS ads_crm.order_info_detail;
 
 
-CREATE TABLE cdm_crm.order_info_detail (
+CREATE TABLE ads_crm.order_info_detail (
     country                          VARCHAR,
     sales_area                       VARCHAR  COMMENT '大区',
     sales_district                   VARCHAR  COMMENT '片区 - management_district_code',
@@ -41,5 +41,7 @@ CREATE TABLE cdm_crm.order_info_detail (
     last_grade_change_time           TIMESTAMP,
     order_deal_time                  TIMESTAMP,
     order_deal_date                  DATE,
-    create_time                      TIMESTAMP
-);
+    create_time                      TIMESTAMP,
+    year_month                       VARCHAR,
+    vchr_date                        VARCHAR
+) WITH (partitioned_by = array['year_month', 'vchr_date']);

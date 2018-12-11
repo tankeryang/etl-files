@@ -1,0 +1,7 @@
+type=command
+command=${cmd}
+
+sql.dir=order_info_detail_max_date
+sql.names=create,fully
+
+dependencies=load-order_info_detail

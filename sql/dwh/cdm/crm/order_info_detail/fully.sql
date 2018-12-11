@@ -73,6 +73,17 @@ INSERT INTO cdm_crm.order_info_detail
         IF(COALESCE(try_cast(oi.member_no AS INTEGER), 0) > 0, 
             IF(mi.member_manage_store like '%WWW%', '官网', '门店'
         ), NULL)                                               AS member_register_type,
+        -- 招募会员-有消费会员类型
+        IF(COALESCE(try_cast(oi.member_no AS INTEGER), 0) > 0,
+            IF(oi.order_grade IN (13, 9) AND date(mgl.grade_change_time) = date(oi.order_deal_time),
+                '升级', CASE oi.order_grade
+                WHEN 13 THEN '普通会员'
+                WHEN 9 THEN '普通会员'
+                WHEN 14 THEN 'VIP会员'
+                WHEN 10 THEN 'VIP会员'
+                WHEN 11 THEN 'VIP会员'
+            ELSE NULL END
+        ), NULL)                                               AS member_recruit_type,
         -- 日报会员类型
         IF(COALESCE(try_cast(oi.member_no AS INTEGER), 0) > 0 AND oi.order_grade IN (9, 10, 11, 13, 14),
             IF(date_format(oi.order_deal_time, '%Y-%m-%d') <= date_format(mfo.order_deal_time, '%Y-%m-%d'),
