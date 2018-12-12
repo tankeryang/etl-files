@@ -9,7 +9,7 @@ CREATE TABLE cdm_crm.order_info_detail (
     sales_area                       VARCHAR  COMMENT '大区',
     sales_district                   VARCHAR  COMMENT '片区 - management_district_code',
     order_channel                    VARCHAR  COMMENT '线上, 线下',
-    trade_sourde                     VARCHAR  COMMENT '订单渠道',
+    trade_source                     VARCHAR  COMMENT '订单渠道',
     province                         VARCHAR,
     city                             VARCHAR,
     brand_code                       VARCHAR,
