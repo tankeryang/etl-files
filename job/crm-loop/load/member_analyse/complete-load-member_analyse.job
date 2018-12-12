@@ -1,4 +1,4 @@
 type=command
 command=echo complete-load-member_analyse
 
-dependencies=load-cic_main_page,load-member_analyse_fold_index_label,load-order_info_detail_max_date,load-member_analyse_max_date
+dependencies=load-cic_main_page,load-order_info_detail_max_date
