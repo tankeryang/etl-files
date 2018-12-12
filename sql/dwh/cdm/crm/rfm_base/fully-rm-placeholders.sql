@@ -29,7 +29,5 @@ WITH
             ) AS condition_val
         FROM duration_dimension_map
     )
-    SELECT
-    'rfm_json',
-    array_join(ARRAY_AGG(rfm_json_temp.condition_val), '~')
+    SELECT ARRAY_AGG(rfm_json_temp.condition_val) AS rfm_json
     FROM rfm_json_temp;

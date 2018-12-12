@@ -2,6 +2,5 @@ type=command
 command=${cmd}
 
 sql.dir=cic_main_page
-sql.names=fully
 
 dependencies=load-member_register_detail

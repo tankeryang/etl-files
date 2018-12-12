@@ -1,10 +1,8 @@
 type=command
-command=${cmd}
-#
-#
+command=${phcmd}
+
 sql.dir=member_rfm
 
-placeholder.sql=fully-placeholders
-placeholder.loop=computing_duration:fully
+placeholder.config=fully:fully-placeholders
 
 dependencies=transform-rfm_duration

@@ -1,9 +1,7 @@
 type=command
 command=${cmd}
-#
-#
+
 sql.dir=rfm_base_with_expression
-sql.names=create,fully
 
 dependencies=transform-rfm_base,\
 transform-rfm_base-rf,\

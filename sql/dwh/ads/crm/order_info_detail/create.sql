@@ -9,6 +9,7 @@ CREATE TABLE ads_crm.order_info_detail (
     sales_area                       VARCHAR  COMMENT '大区',
     sales_district                   VARCHAR  COMMENT '片区 - management_district_code',
     order_channel                    VARCHAR  COMMENT '线上, 线下',
+    trade_sourde                     VARCHAR  COMMENT '订单渠道',
     province                         VARCHAR,
     city                             VARCHAR,
     brand_code                       VARCHAR,

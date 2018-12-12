@@ -1,14 +1,11 @@
 type=command
-command=${cmd}
-#
-#
+command=${phcmd}
+
 sql.dir=member_structure_duration_order_store_last_grade_first_order_deal_time_recency_frequency
 
-placeholder.sql=fully-placeholders
-placeholder.loop=computing_duration:fully
+placeholders.config=fully:fully-placeholders
 
 dependencies=transform-member_structure_order_info,\
 transform-member_structure_duration_member_last_grade,\
 transform-member_structure_duration_member_recency,\
 transform-member_structure_duration_member_frequency
-

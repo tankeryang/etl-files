@@ -20,6 +20,7 @@ INSERT INTO cdm_crm.order_info_detail
         si.sales_area                                         AS sales_area,
         cms_si.management_district_code                       AS sales_district,
         IF(oi.order_from = '1', '线上', '线下')                AS order_channel,
+        IF(oi.trade_source IS NULL, '', oi.trade_source)      AS trade_source,
         si.province                                           AS province,
         si.city                                               AS city,
         oi.brand_code                                         AS brand_code,

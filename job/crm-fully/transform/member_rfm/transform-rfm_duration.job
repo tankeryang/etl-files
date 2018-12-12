@@ -1,6 +1,4 @@
 type=command
 command=${cmd}
-#
-#
-sql.dir=rfm_duration
 
+sql.dir=rfm_duration

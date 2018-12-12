@@ -1,13 +1,9 @@
 type=command
-command=${cmd}
-#
-#
+command=${phcmd}
+
 sql.dir=rfm_base
 sql.names=fully-f
-#
-placeholder.sql=fully-f-placeholders
-placeholder.loop=rfm_json:fully-f
-placeholder.loop.value.separator=~
-#
+
+placeholder.config=fully-f:fully-f-placeholders
 
 dependencies=transform-duration_rfm_conf,transform-member_rfm,transform-rfm_base

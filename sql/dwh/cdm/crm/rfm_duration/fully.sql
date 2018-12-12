@@ -1,3 +1,6 @@
+DELETE FROM csm_crm.rfm_duration;
+
+
 INSERT INTO cdm_crm.rfm_duration (
     duration
     )

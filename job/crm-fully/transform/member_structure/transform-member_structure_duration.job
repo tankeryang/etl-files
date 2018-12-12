@@ -1,6 +1,4 @@
 type=command
 command=${cmd}
-#
-#
-sql.dir=member_structure_duration
 
+sql.dir=member_structure_duration

@@ -1,2 +1,1 @@
-SELECT
-    'computing_duration', '30,60,90,180,360';
+SELECT array[30, 60, 90, 180, 360] AS computing_duration;

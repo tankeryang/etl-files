@@ -1,3 +1,6 @@
+DELETE FROM ads-crm.member_structure_asset;
+
+
 INSERT INTO ads_crm.member_structure_asset (
     computing_until_month,
     computing_duration,
