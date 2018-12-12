@@ -17,6 +17,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             t1.store_level,
             t1.channel_type,
             t1.order_channel,
+            t1.trade_source,
             t2.member_type,
             t2.member_newold_type,
             t2.member_level_type,
@@ -38,6 +39,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
                 store_level,
                 channel_type,
                 order_channel,
+                trade_source,
                 order_deal_date AS date,
                 'key' AS key
             FROM cdm_crm.order_info_detail
@@ -81,6 +83,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             oid.store_level,
             oid.channel_type,
             oid.order_channel,
+            oid.trade_source,
             oid.member_type,
             IF (oid.member_newold_type IS NULL, '', oid.member_newold_type) AS member_newold_type,
             IF (oid.member_level_type IS NULL, '', oid.member_level_type) AS member_level_type,
@@ -106,6 +109,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             oid.store_level,
             oid.channel_type,
             oid.order_channel,
+            oid.trade_source,
             oid.member_type,
             oid.member_newold_type,
             oid.member_level_type,
@@ -127,6 +131,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             i.store_level,
             i.channel_type,
             i.order_channel,
+            i.trade_source,
             i.member_type,
             i.member_newold_type,
             i.member_level_type,
@@ -142,6 +147,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             AND tt.brand_code = i.brand_code
             AND tt.brand_name = i.brand_name
             AND tt.order_channel = i.order_channel
+            AND tt.trade_source = i.trade_source
             AND tt.member_type = i.member_type
             AND tt.member_newold_type = i.member_newold_type
             AND tt.member_level_type = i.member_level_type
@@ -163,6 +169,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
         t.store_level,
         t.channel_type,
         t.order_channel,
+        t.trade_source,
         t.member_type,
         t.member_newold_type,
         t.member_level_type,
@@ -186,6 +193,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
         AND t.store_level = lyst_t.store_level
         AND t.channel_type = lyst_t.channel_type
         AND t.order_channel = lyst_t.order_channel
+        AND t.trade_source = lyst_t.trade_source
         AND t.member_type = lyst_t.member_type
         AND t.member_newold_type = lyst_t.member_newold_type
         AND t.member_level_type = lyst_t.member_level_type

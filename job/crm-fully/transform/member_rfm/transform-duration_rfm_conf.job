@@ -1,7 +1,6 @@
 type=command
 command=${cmd}
-#
-#
+
 sql.dir=duration_rfm_conf
 
 dependencies=transform-rfm_duration

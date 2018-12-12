@@ -1,0 +1,6 @@
+type=command
+command=${cmd}
+
+sql.dir=order_info_detail_max_date
+
+dependencies=load-order_info_detail

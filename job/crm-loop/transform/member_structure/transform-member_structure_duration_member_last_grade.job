@@ -1,10 +1,9 @@
 type=command
-command=${cmd}
-#
-#
-sql.dir=member_structure_duration_member_last_grade
+command=${phcmd}
 
-placeholder.sql=fully-placeholders
-placeholder.loop=computing_duration:fully
+sql.dir=member_structure_duration_member_last_grade
+sql.names=create fully
+
+placeholder.config=fully:fully-placeholders
 
 dependencies=transform-member_structure_duration

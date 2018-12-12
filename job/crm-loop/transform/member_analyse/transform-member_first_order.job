@@ -2,4 +2,3 @@ type=command
 command=${cmd}
 
 sql.dir=member_first_order
-sql.names=fully

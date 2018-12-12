@@ -1,7 +1,7 @@
-DELETE FROM ads_crm.member_recruit_analyse_max_date;
+DELETE FROM ads_crm.order_info_detail_max_date;
 
 
-INSERT INTO ads_crm.member_recruit_analyse_max_date
+INSERT INTO ads_crm.order_info_detail_max_date
     SELECT
         date(localtimestamp) - interval '1' day                           AS max_date,
         date_format(date(localtimestamp) - interval '1' day, '%Y-%m-%d')  AS vchr_max_date,

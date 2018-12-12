@@ -1,3 +1,6 @@
+DELETE FROM ads_crm.efm_base;
+
+
 INSERT INTO ads_crm.rfm_base (
     horizon_type,
     vertical_type,

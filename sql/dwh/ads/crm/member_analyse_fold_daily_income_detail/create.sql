@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_fold_daily_income_detail(
     store_level             VARCHAR,
     channel_type            VARCHAR,
     order_channel           VARCHAR,
+    trade_source            VARCHAR,
     -- 需求字段
     member_type             VARCHAR,
     member_newold_type      VARCHAR,
