@@ -1,4 +1,4 @@
-DELETE FROM ads-crm.member_structure_asset;
+DELETE FROM ads_crm.member_structure_asset;
 
 
 INSERT INTO ads_crm.member_structure_asset (
