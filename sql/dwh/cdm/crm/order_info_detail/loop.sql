@@ -16,9 +16,9 @@ INSERT INTO cdm_crm.order_info_detail
         SELECT DISTINCT brand_code, brand_name FROM cdm_cms.store_info
     )
     SELECT
-        cdm_cms_si.country_name                               AS country,
-        si.sales_area                                         AS sales_area,
-        cms_si.management_district_code                       AS sales_district,
+        IF(cdm_cms_si.country_name IS NULL, '', cdm_cms_si.country_name)  AS country,
+        IF(si.sales_area IS NULL, '', si.sales_area)                      AS sales_area,
+        IF(cms_si.management_district_code IS NULL, '', cms_si.management_district_code) AS sales_district,
         IF(oi.order_from = '1', '线上', '线下')                AS order_channel,
         IF(oi.trade_source IS NULL, '', 
             CASE
@@ -30,8 +30,8 @@ INSERT INTO cdm_crm.order_info_detail
                 WHEN oi.trade_source = 'weixin' THEN '官网'
                 WHEN oi.trade_source = 'mobile' THEN '官网'
             ELSE '其他' END)                                   AS trade_source,
-        si.province                                           AS province,
-        si.city                                               AS city,
+        IF(si.province IS NULL, '', si.province)              AS province,
+        IF(si.city IS NULL, '', si.city)                      AS city,
         oi.brand_code                                         AS brand_code,
         cdm_cms_si.brand_name                                 AS brand_name,
         oi.store_code                                         AS store_code,
