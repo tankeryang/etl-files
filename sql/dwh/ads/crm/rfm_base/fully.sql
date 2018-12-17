@@ -1,4 +1,4 @@
-DELETE FROM ads_crm.efm_base;
+DELETE FROM ads_crm.rfm_base;
 
 
 INSERT INTO ads_crm.rfm_base (
