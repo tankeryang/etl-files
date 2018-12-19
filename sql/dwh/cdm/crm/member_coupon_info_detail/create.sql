@@ -1,15 +1,14 @@
-CREATE SCHEMA IF NOT EXISTS ods_crm;
+CREATE SCHEMA IF NOT EXISTS cdm_crm;
 
 
-DROP TABLE IF EXISTS ods_crm.coupon_info;
+DROP TABLE IF EXISTS cdm_crm.member_coupon_info_detail;
 
 
-CREATE TABLE IF NOT EXISTS ods_crm.coupon_info (
+CREATE TABLE IF NOT EXISTS cdm_crm.member_coupon_info_detail (
     member_no            VARCHAR,
     brand_code           VARCHAR,
-    coupon_no            VARCHAR        COMMENT '券号',
-    coupon_template_no   VARCHAR        COMMENT '制券单ID/券批次号/券头号',
-    coupon_template_name VARCHAR        COMMENT '券头',
+    coupon_amount        INTEGER        COMMENT '持有券数量',
+    coupon_template_no   VARCHAR        COMMENT '券批次号',
     coupon_status        VARCHAR        COMMENT '券状态',
     coupon_category      VARCHAR        COMMENT '券类别(现金券/折扣券)',
     coupon_discount      DECIMAL(18, 2) COMMENT '券折扣',
