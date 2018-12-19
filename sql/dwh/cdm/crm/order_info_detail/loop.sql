@@ -7,7 +7,7 @@ INSERT INTO cdm_crm.order_info_detail
             oi_t.order_deal_time,
             max(mgl_t.grade_change_time) AS grade_change_time
         FROM ods_crm.order_info oi_t
-        LEFT JOIN ods_crm.member_grade_log mgl_t
+        LEFT JOIN prod_mysql_crm.crm.member_grade_log mgl_t
         ON oi_t.member_no = mgl_t.member_no
         AND oi_t.brand_code = mgl_t.brand_code
         AND date_format(oi_t.order_deal_time, '%Y-%m-%d') >= date_format(mgl_t.grade_change_time, '%Y-%m-%d')
