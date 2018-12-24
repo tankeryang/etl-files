@@ -40,6 +40,6 @@ INSERT INTO ods_crm.member_info
         mi.modify_time,
         mi.last_update_time,
         localtimestamp
-    FROM dev_mysql_fpsit.crm.member_info mi
-    LEFT JOIN dev_mysql_fpsit.crm.member_info_ec_status me
+    FROM prod_mysql_crm.crm.member_info mi
+    LEFT JOIN prod_mysql_crm.crm.member_info_ec_status me
     ON mi.member_no = me.member_no AND mi.brand_code = me.brand_code;

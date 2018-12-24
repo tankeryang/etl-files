@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS cdm_crm.member_info_detail (
     province                    VARCHAR,
     city                        VARCHAR,
     store_code                  VARCHAR,
+    store_name                  VARCHAR,
     sales_mode                  VARCHAR,
     store_type                  VARCHAR,
     store_level                 VARCHAR,

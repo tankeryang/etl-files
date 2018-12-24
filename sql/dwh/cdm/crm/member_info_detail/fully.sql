@@ -12,6 +12,7 @@ INSERT INTO cdm_crm.member_info_detail
         si.province                      AS province,
         si.city                          AS city,
         mi.member_manage_store           AS store_code,
+        cdm_cms_si.store_name            AS store_name,
         (CASE cms_si.sales_mode
         WHEN 'ZJ' THEN '正价'
         WHEN 'QCT' THEN '长特'

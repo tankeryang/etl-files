@@ -19,6 +19,6 @@ INSERT INTO ods_crm.coupon_info
         ci.coupon_start_time,
         ci.coupon_end_time,
         localtimestamp
-    FROM dev_mysql_fpsit.crm.coupon_info ci
-    LEFT JOIN dev_mysql_fpsit.crm.coupon_template ct
+    FROM prod_mysql_crm.crm.coupon_info ci
+    LEFT JOIN prod_mysql_crm.crm.coupon_template ct
     ON ci.coupon_template_no = ct.coupon_template_no;
