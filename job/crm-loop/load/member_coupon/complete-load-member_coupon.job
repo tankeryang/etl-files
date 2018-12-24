@@ -1,4 +1,4 @@
 type=command
-command=echo complete-transform-member_coupon
+command=echo complete-load-member_coupon
 
-dependencies=transform-member_coupon_order_info_detail
+dependencies=load-member_coupon_order_info_detail
