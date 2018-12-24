@@ -1,0 +1,4 @@
+type=flow
+flow.name=complete-load-member_coupon
+
+dependencies=already-transform-member_coupon,already-transform-member_analyse

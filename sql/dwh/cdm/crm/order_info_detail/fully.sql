@@ -38,6 +38,7 @@ INSERT INTO cdm_crm.order_info_detail
         oi.brand_code                                         AS brand_code,
         cdm_cms_si_bn.brand_name                              AS brand_name,
         oi.store_code                                         AS store_code,
+        si.store_name                                         AS store_name,
         CASE cms_si.sales_mode
             WHEN 'ZJ' THEN '正价'
             WHEN 'QCT' THEN '长特'
@@ -112,7 +113,6 @@ INSERT INTO cdm_crm.order_info_detail
         cast(IF(oi.order_fact_amount > 0, 
             oi.order_fact_amount - COALESCE(ocid.coupon_denomination_sum, 0),
             oi.order_fact_amount) AS DECIMAL(38, 2))           AS order_fact_amount_include_coupon,
-        ocid.pay_type                                          AS order_pay_type,
         CASE
             WHEN oi.order_fact_amount > 0 THEN 1
             WHEN oi.order_fact_amount = 0 THEN 0

@@ -4,4 +4,4 @@ command=${cmd}
 sql.dir=member_info_brand_id
 sql.names=fully
 
-dependencies=extract-store_info,extract-commodity_info
+dependencies=extract-coupon_used

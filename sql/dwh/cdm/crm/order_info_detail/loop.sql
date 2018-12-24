@@ -7,7 +7,7 @@ INSERT INTO cdm_crm.order_info_detail
             oi_t.order_deal_time,
             max(mgl_t.grade_change_time) AS grade_change_time
         FROM ods_crm.order_info oi_t
-        LEFT JOIN prod_mysql_crm.crm.member_grade_log mgl_t
+        LEFT JOIN ods_crm.member_grade_log mgl_t
         ON oi_t.member_no = mgl_t.member_no
         AND oi_t.brand_code = mgl_t.brand_code
         AND date_format(oi_t.order_deal_time, '%Y-%m-%d') >= date_format(mgl_t.grade_change_time, '%Y-%m-%d')
@@ -35,6 +35,7 @@ INSERT INTO cdm_crm.order_info_detail
         oi.brand_code                                         AS brand_code,
         cdm_cms_si.brand_name                                 AS brand_name,
         oi.store_code                                         AS store_code,
+        si.store_name                                         AS store_name,
         CASE cms_si.sales_mode
             WHEN 'ZJ' THEN '正价'
             WHEN 'QCT' THEN '长特'
@@ -109,7 +110,6 @@ INSERT INTO cdm_crm.order_info_detail
         cast(IF(oi.order_fact_amount > 0, 
             oi.order_fact_amount - COALESCE(ocid.coupon_denomination_sum, 0),
             oi.order_fact_amount) AS DECIMAL(38, 2))           AS order_fact_amount_include_coupon,
-        ocid.pay_type                                          AS order_pay_type,
         CASE
             WHEN oi.order_fact_amount > 0 THEN 1
             WHEN oi.order_fact_amount = 0 THEN 0
