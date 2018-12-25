@@ -3,4 +3,4 @@ command=${cmd}
 
 sql.dir=order_item
 
-dependencies=extract-member_info,extract-member_grade_log
+dependencies=extract-member_info
