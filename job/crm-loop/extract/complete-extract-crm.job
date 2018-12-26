@@ -1,4 +1,4 @@
 type=command
 command=echo complete-extract-to-ods_crm
 
-dependencies=extract-member_info_brand_id
+dependencies=extract-coupon_used

@@ -1,0 +1,4 @@
+type=command
+command=echo complete-transform-member_coupon
+
+dependencies=transform-member_coupon_info_detail

@@ -1,0 +1,4 @@
+type=command
+command=echo complete-etl-crm_member_analyse_and_member_coupon
+
+dependencies=already-load-member_analyse,already-load-member_coupon

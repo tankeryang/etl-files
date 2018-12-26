@@ -51,11 +51,11 @@ INSERT INTO cdm_crm.member_rfm (
             mgi.grade_name,
             mgi.grade_code,
             mgl.grade_change_time
-            FROM dev_mysql_fpsit.crm.member_grade_log mgl
+            FROM prod_mysql_crm.crm.member_grade_log mgl
             INNER JOIN order_info_range oi ON mgl.member_no = oi.member_no
-            LEFT JOIN dev_mysql_fpsit.member_grade_info mgi ON mgl.after_grade_id = mgi.grade_id
+            LEFT JOIN prod_mysql_crm.member_grade_info mgi ON mgl.after_grade_id = mgi.grade_id
             WHERE 1 > (SELECT count(*)
-                    FROM dev_mysql_fpsit.crm.member_grade_log
+                    FROM prod_mysql_crm.crm.member_grade_log
                     WHERE member_no = mgl.member_no AND grade_change_time > mgl.grade_change_time)
                 AND date_diff('day', mgl.grade_change_time, date_trunc('month', CURRENT_DATE)) > 0
             ORDER BY mgl.member_no, mgl.grade_change_time DESC

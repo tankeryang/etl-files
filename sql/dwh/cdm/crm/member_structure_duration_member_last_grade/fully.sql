@@ -18,15 +18,15 @@ INSERT INTO cdm_crm.member_structure_duration_member_last_grade (
             mgi.grade_name,
             mgi.grade_code,
             mgl.grade_change_time
-            FROM dev_mysql_fpsit.crm.member_grade_log mgl
+            FROM prod_mysql_crm.crm.member_grade_log mgl
             INNER JOIN ods_crm.order_info oi ON mgl.member_no = oi.member_no
                                                 AND oi.order_deal_time IS NOT NULL
                                                 AND oi.order_deal_time >= date_trunc('month', CURRENT_DATE +
                                                                                                     INTERVAL '-{computing_duration}' MONTH) AND oi.order_deal_time < date_trunc(
                 'month', CURRENT_DATE)
-            INNER JOIN dev_mysql_fpsit.crm.member_grade_info mgi ON mgl.after_grade_id = mgi.grade_id
+            INNER JOIN prod_mysql_crm.crm.member_grade_info mgi ON mgl.after_grade_id = mgi.grade_id
             WHERE 1 > (SELECT COUNT(*)
-                    FROM dev_mysql_crm.crm.member_grade_log
+                    FROM prod_mysql_crm.crm.member_grade_log
                     WHERE member_no = mgl.member_no AND grade_change_time > mgl.grade_change_time)
                 AND date_diff('day', mgl.grade_change_time, date_trunc('month', CURRENT_DATE + INTERVAL '-2' MONTH )) > 0
             ORDER BY mgl.member_no, mgl.grade_change_time DESC

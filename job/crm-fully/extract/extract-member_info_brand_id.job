@@ -1,6 +1,0 @@
-type=command
-command=${cmd}
-
-sql.dir=member_info_brand_id
-
-dependencies=extract-store_info,extract-commodity_info

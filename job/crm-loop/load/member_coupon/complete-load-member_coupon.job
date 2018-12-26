@@ -1,0 +1,4 @@
+type=command
+command=echo complete-load-member_coupon
+
+dependencies=load-member_coupon_order_info_detail

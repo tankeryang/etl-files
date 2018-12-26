@@ -1,6 +1,3 @@
-DELETE FROM ods_crm.coupon_used;
-
-
 INSERT INTO ods_crm.coupon_used
     SELECT
         coupon_no,
@@ -11,4 +8,5 @@ INSERT INTO ods_crm.coupon_used
         order_time,
         localtimestamp
     FROM prod_mysql_crm.crm.coupon_used
-    WHERE order_time < localtimestamp;
+    WHERE order_time < localtimestamp
+        AND order_time > (SELECT max(order_time) FROM ods_crm.coupon_used);
