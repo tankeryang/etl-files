@@ -2,10 +2,13 @@ DELETE FROM cdm_crm.member_info_detail;
 
 
 INSERT INTO cdm_crm.member_info_detail
+    WITH cdm_cms_si_bn AS (
+        SELECT DISTINCT brand_code, brand_name FROM cdm_cms.store_info
+    )
     SELECT
         mi.member_no                     AS member_no,
-        cdm_cms_si.brand_code            AS brand_code,
-        cdm_cms_si.brand_name            AS brand_name,
+        mi.brand_code                    AS brand_code,
+        cdm_cms_si_bn.brand_name         AS brand_name,
         cdm_cms_si.country_name          AS country,
         si.sales_area                    AS sales_area,
         cms_si.management_district_code  AS sales_district,
@@ -53,7 +56,8 @@ INSERT INTO cdm_crm.member_info_detail
         mi.modify_time                   AS modify_time,
         localtimestamp                   AS create_time
     FROM ods_crm.member_info mi
-    LEFT JOIN cdm_cms.store_info cdm_cms_si ON cdm_cms_si.store_code = mi.member_manage_store
+    LEFT JOIN cdm_cms.store_info cdm_cms_si ON mi.member_manage_store = cdm_cms_si.store_code
+    LEFT JOIN cdm_cms_si_bn ON mi.brand_code = cdm_cms_si_bn.brand_code
     LEFT JOIN ods_crm.store_info si ON mi.member_manage_store = si.store_code
     LEFT JOIN ods_cms.store_info cms_si ON mi.member_manage_store = cms_si.store_code
     LEFT JOIN cdm_crm.member_first_order mfo ON mi.member_no = mfo.member_no AND mfo.brand_code = cdm_cms_si.brand_code

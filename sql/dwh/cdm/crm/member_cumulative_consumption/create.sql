@@ -8,7 +8,6 @@ CREATE TABLE cdm_crm.member_cumulative_consumption (
     member_no                         VARCHAR,
     brand_code                        VARCHAR,
     store_code                        VARCHAR,
-    consumption_sku                   VARCHAR        COMMENT '消费商品sku',
     consumption_order_no              VARCHAR        COMMENT '消费单号',
     retail_amount                     DECIMAL(18, 2) COMMENT '吊牌金额',
     consumption_amount                DECIMAL(18, 2) COMMENT '消费金额',

@@ -139,7 +139,5 @@ INSERT INTO cdm_crm.order_info_detail
         AND oi.outer_order_no = mgl.outer_order_no
         AND oi.order_deal_time = mgl.order_deal_time
     WHERE oi.order_status = 'PAYED'
-    AND date_format(oi.order_deal_time, '%Y-%m-%d %T') > (
-        SELECT max(date_format(order_deal_time, '%Y-%m-%d %T')) FROM cdm_crm.order_info_detail
-    )
+    AND oi.order_deal_time > (SELECT max(order_deal_time) FROM cdm_crm.order_info_detail)
     AND date(oi.order_deal_time) < date(localtimestamp);
