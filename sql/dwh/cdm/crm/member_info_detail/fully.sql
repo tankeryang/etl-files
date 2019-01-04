@@ -60,5 +60,5 @@ INSERT INTO cdm_crm.member_info_detail
     LEFT JOIN cdm_cms_si_bn ON mi.brand_code = cdm_cms_si_bn.brand_code
     LEFT JOIN ods_crm.store_info si ON mi.member_manage_store = si.store_code
     LEFT JOIN ods_cms.store_info cms_si ON mi.member_manage_store = cms_si.store_code
-    LEFT JOIN cdm_crm.member_first_order mfo ON mi.member_no = mfo.member_no AND mfo.brand_code = cdm_cms_si.brand_code
-    LEFT JOIN cdm_crm.member_last_order mlo ON mi.member_no = mlo.member_no AND mlo.brand_code = cdm_cms_si.brand_code;
+    LEFT JOIN cdm_crm.member_first_order mfo ON mi.member_no = mfo.member_no AND mfo.brand_code = mi.brand_code
+    LEFT JOIN cdm_crm.member_last_order mlo ON mi.member_no = mlo.member_no AND mlo.brand_code = mi.brand_code;
