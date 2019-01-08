@@ -13,7 +13,7 @@ INSERT INTO ads_crm.member_coupon_order_info_detail
         ci.coupon_status,
         ci.coupon_batch_time,
         ci.coupon_start_time,
-        DATE_FORMAT(ci.coupon_start_time, '%Y-%m-%d'),
+        ci.coupon_start_date,
         ci.coupon_end_time,
         ci.coupon_template_no,
         ci.coupon_template_name,

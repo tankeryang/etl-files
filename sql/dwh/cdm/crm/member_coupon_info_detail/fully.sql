@@ -14,12 +14,16 @@ INSERT INTO cdm_crm.member_coupon_info_detail
         ci.coupon_denomination,
         ci.coupon_type,
         ci.coupon_type_detail,
-        DATE(ci.coupon_batch_time),
+        ci.coupon_batch_time,
+        DATE_FORMAT(ci.coupon_batch_time, '%Y-%m-%d'),
         ci.coupon_batch_status,
-        DATE(ci.coupon_start_time),
-        DATE(ci.coupon_end_time),
+        ci.coupon_start_time,
+        DATE_FORMAT(ci.coupon_start_time, '%Y-%m-%d'),
+        ci.coupon_end_time,
+        DATE_FORMAT(ci.coupon_end_time, '%Y-%m-%d'),
         cu.outer_order_no,
-        DATE(cu.order_time),
+        cu.order_time,
+        DATE_FORMAT(cu.order_time, '%Y-%m-%d'),
         localtimestamp
     FROM ods_crm.coupon_info ci
     LEFT JOIN ods_crm.coupon_used cu
