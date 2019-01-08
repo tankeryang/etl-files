@@ -14,12 +14,12 @@ INSERT INTO cdm_crm.member_coupon_info_detail
         ci.coupon_denomination,
         ci.coupon_type,
         ci.coupon_type_detail,
-        ci.coupon_batch_time,
+        DATE(ci.coupon_batch_time),
         ci.coupon_batch_status,
-        ci.coupon_start_time,
-        ci.coupon_end_time,
+        DATE(ci.coupon_start_time),
+        DATE(ci.coupon_end_time),
         cu.outer_order_no,
-        cu.order_time,
+        DATE(cu.order_time),
         localtimestamp
     FROM ods_crm.coupon_info ci
     LEFT JOIN ods_crm.coupon_used cu
