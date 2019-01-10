@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_cumulative_consumption_daily_detail (
     brand_code                            VARCHAR,
     cml_consumption_store                 ARRAY<VARCHAR>,
     cml_consumption_times                 INTEGER,
+    cml_consumption_item_quantity         INTEGER,
     cml_consumption_retail_amount         DECIMAL(18, 2),
     cml_consumption_amount                DECIMAL(18, 2),
     cml_consumption_amount_include_coupon DECIMAL(18, 2),
