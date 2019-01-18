@@ -12,8 +12,8 @@ INSERT INTO cdm_crm.order_info_detail
         FROM ods_crm.order_info oi_t
         LEFT JOIN prod_mysql_crm.crm.member_grade_log mgl_t
         ON oi_t.member_no = mgl_t.member_no
-        AND oi_t.brand_code = mgl_t.brand_code
-        AND date_format(oi_t.order_deal_time, '%Y-%m-%d') >= date_format(mgl_t.grade_change_time, '%Y-%m-%d')
+            AND oi_t.brand_code = mgl_t.brand_code
+            AND date(oi_t.order_deal_time) >= date(mgl_t.grade_change_time)
         GROUP BY oi_t.member_no, oi_t.brand_code, oi_t.outer_order_no, oi_t.order_deal_time
     ), cdm_cms_si_bn AS (
         SELECT DISTINCT brand_code, brand_name FROM cdm_cms.store_info

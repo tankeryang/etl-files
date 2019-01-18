@@ -11,10 +11,10 @@ INSERT INTO cdm_crm.order_item_detail
         oit.product_code,
         oit.product_color_code,
         oit.product_size_code,
-        ci.main_cate,
-        ci.sub_cate,
-        ci.leaf_cate,
-        ci.lining,
+        -- ci.main_cate,
+        -- ci.sub_cate,
+        -- ci.leaf_cate,
+        -- ci.lining,
         oit.quantity,
         cast(oit.total_amount AS DECIMAL(18, 2)),
         cast(oit.fact_amount AS DECIMAL(18, 2)),
@@ -22,5 +22,5 @@ INSERT INTO cdm_crm.order_item_detail
         oif.order_deal_time,
         localtimestamp
     FROM ods_crm.order_item oit
-    LEFT JOIN ods_crm.order_info oif ON oit.outer_order_no = oif.outer_order_no
-    LEFT JOIN ods_crm.commodity_info ci ON oit.product_code = ci.product_code;
+    LEFT JOIN ods_crm.order_info oif ON oit.outer_order_no = oif.outer_order_no;
+    -- LEFT JOIN ods_crm.commodity_info ci ON oit.product_code = ci.product_code
