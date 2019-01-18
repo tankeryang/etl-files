@@ -1,0 +1,5 @@
+type=command
+command=${cmd}
+
+sql.dir=member_cumulative_consumption_daily_detail
+sql.names=loop

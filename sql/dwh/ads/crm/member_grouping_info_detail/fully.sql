@@ -7,7 +7,7 @@ INSERT INTO ads_crm.member_grouping_info_detail
         mi.brand_code,
         DATE_FORMAT(mi.member_birthday, '%m-%d'),
         DATE_FORMAT(mi.member_birthday, '%m'),
-        IF(mi.member_gender NOT IN ('男', '女') OR mi.member_gender IS NULL, '其他'),
+        IF(mi.member_gender NOT IN ('男', '女') OR mi.member_gender IS NULL, '其他', mi.member_gender),
         CAST(DATE_DIFF('year', mi.member_birthday, localtimestamp) AS INTEGER),
         CASE
             WHEN mi.member_status = 1 AND mi.member_ec_status = 1 THEN '正常'
@@ -22,7 +22,7 @@ INSERT INTO ads_crm.member_grouping_info_detail
         CASE
             WHEN mi.member_register_store LIKE '%WWW%' THEN '官网'
             WHEN mi.member_register_store IS NULL THEN '其他'
-        ELSE mi.store_code END,
+        ELSE mi.member_register_store END,
         mi.member_reg_source,
         IF(mi.member_mobile IS NOT NULL, 1, 0),
         IF(mi.member_mobile IS NOT NULL, 1, 0),
@@ -41,7 +41,8 @@ INSERT INTO ads_crm.member_grouping_info_detail
         mlc.consumption_item_quantity,
         mlc.consumption_amount,
         mlc.consumption_amount_include_coupon,
-        localtimestamp
+        localtimestamp,
+        1
     FROM cdm_crm.member_info_detail mi
     LEFT JOIN cdm_crm.member_first_consumption mfc ON mi.member_no = mfc.member_no
         AND mi.brand_code = mfc.brand_code

@@ -1,4 +1,4 @@
 type=command
 command=echo complete-etl-crm
 
-dependencies=already-load-rfm_base,already-load-member_structure,already-load-member_analyse,already-load-member_coupon
+dependencies=already-load-rfm_base,already-load-member_structure,already-load-member_analyse,already-load-member_coupon,already-load-member_grouping

@@ -1,4 +1,4 @@
 type=command
-command=echo complete-et-crm-member_rfm_tag_advanced
+command=echo complete-etl-crm-member_grouping
 
-dependencies=already-transform-member_grouping
+dependencies=already-load-member_grouping

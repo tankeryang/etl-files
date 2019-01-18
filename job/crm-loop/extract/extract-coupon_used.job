@@ -3,4 +3,4 @@ command=${cmd}
 
 sql.dir=coupon_used
 
-dependencies=extract-commodity_info,extract-store_info
+dependencies=extract-store_info

@@ -4,4 +4,4 @@ command=${cmd}
 sql.dir=commodity_info
 sql.names=fully
 
-dependencies=extract-order_info,extract-order_pay_item
+# dependencies=extract-order_info,extract-order_pay_item
