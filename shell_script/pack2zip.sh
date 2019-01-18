@@ -1,8 +1,8 @@
 #! /bin/bash
 
-BASE_PATH=$(cd `dirname $0`; cd ..; pwd)
+BASE_PATH=$(cd `dirname $0`; cd ..; cd dwh; pwd)
 JOB_PATH=$(cd ${BASE_PATH}/job; pwd)
-ZIP_PATH=$(cd ${BASE_PATH}/zip; pwd)
+ZIP_PATH=$(cd ${BASE_PATH}; cd ../zip; pwd)
 
 OPT=`getopt -o n:d: --long zip-name:,dir-name:`
 
