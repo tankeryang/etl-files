@@ -24,5 +24,5 @@ INSERT INTO ads_crm.member_cumulative_consumption_daily_detail
         (consumption_order_no IS NULL AND return_order_no IS NOT NULL) OR
         (consumption_order_no IS NOT NULL AND return_order_no IS NULL)
     )
-        AND consumption_date > (SELECT max_date FROM ads_crm.member_cumulate_consumption_max_date)
+        AND consumption_date > (SELECT max_date FROM ads_crm.member_cumulative_consumption_max_date)
     GROUP BY member_no, brand_code, consumption_date;
