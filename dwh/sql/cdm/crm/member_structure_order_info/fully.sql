@@ -18,7 +18,7 @@ INSERT INTO cdm_crm.member_structure_order_info (
         order_info_range AS (
             SELECT *
             FROM member_structure_order_info_range
-            WHERE computing_until_month = date_format(DATE('{current_date}') + INTERVAL '-1' MONTH, '%Y-%m')
+            WHERE computing_until_month = date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m')
                 AND computing_duration = CAST('{computing_duration}' AS INTEGER)
         ),
         --0、正价单
@@ -51,7 +51,7 @@ INSERT INTO cdm_crm.member_structure_order_info (
                                 FROM member_purchase_from_return)
         )
     SELECT
-        date_format(DATE('{current_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+        date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
         CAST('{computing_duration}' AS INTEGER)                  AS computing_duration,
         order_id,
         outer_order_no,

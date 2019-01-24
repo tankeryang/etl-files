@@ -16,14 +16,14 @@ INSERT INTO member_structure_duration_order_store (
     --       order_info_range AS (
     --         SELECT *
     --         FROM member_structure_order_info_range
-    --         WHERE computing_until_month = date_format(DATE('{current_date}') + INTERVAL '-1' MONTH, '%Y-%m')
+    --         WHERE computing_until_month = date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m')
     --               AND computing_duration = CAST('{computing_duration}' AS INTEGER)
     --     ),
         --订单(正价、退换货并购买等）
         order_info AS (
             SELECT *
             FROM member_structure_order_info
-            WHERE computing_until_month = date_format(DATE('{current_date}') + INTERVAL '-1' MONTH, '%Y-%m')
+            WHERE computing_until_month = date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m')
                 AND computing_duration = CAST('{computing_duration}' AS INTEGER)
         ),
         --扣减现金券后的订单金额
@@ -39,7 +39,7 @@ INSERT INTO member_structure_duration_order_store (
             GROUP BY oi.order_id
         )
     SELECT
-        date_format(DATE('{current_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+        date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
         CAST('{computing_duration}' AS INTEGER)                  AS computing_duration,
         oi.order_id,
         osca.total_sub_coupon_amount                               AS order_fact_amount,

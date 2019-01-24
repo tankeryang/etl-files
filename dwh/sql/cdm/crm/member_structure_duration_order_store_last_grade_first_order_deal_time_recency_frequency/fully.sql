@@ -33,9 +33,9 @@ INSERT INTO cdm_crm.member_structure_duration_order_store_last_grade_first_order
             ELSE dmlg.grade_code END as grade_code,
             dos.order_deal_time,
             mfo.order_deal_time       as member_frist_order_deal_time,
-            CASE WHEN mfo.order_deal_time >= date_trunc('month', DATE('{current_date}') +
+            CASE WHEN mfo.order_deal_time >= date_trunc('month', DATE('{c_date}') +
                                                                         INTERVAL '-{computing_duration}' MONTH) AND mfo.order_deal_time < date_trunc(
-                'month', DATE('{current_date}'))
+                'month', DATE('{c_date}'))
                 THEN 'NEW'
             ELSE 'OLD' END            AS member_type,
             dmr.recency,
