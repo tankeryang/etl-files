@@ -51,7 +51,7 @@ INSERT INTO cdm_crm.member_rfm (
             mgl.grade_change_time
             FROM prod_mysql_crm.crm.member_grade_log mgl
             INNER JOIN order_info_range oi ON mgl.member_no = oi.member_no
-            LEFT JOIN prod_mysql_crm.member_grade_info mgi ON mgl.after_grade_id = mgi.grade_id
+            LEFT JOIN prod_mysql_crm.crm.member_grade_info mgi ON mgl.after_grade_id = mgi.grade_id
             WHERE 1 > (SELECT count(*)
                     FROM prod_mysql_crm.crm.member_grade_log
                     WHERE member_no = mgl.member_no AND grade_change_time > mgl.grade_change_time)
