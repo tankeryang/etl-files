@@ -2,3 +2,4 @@ type=command
 command=${cmd}
 
 sql.dir=rfm_base
+sql.names=loop

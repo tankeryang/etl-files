@@ -18,5 +18,6 @@ CREATE TABLE ads_crm.member_structure_active (
     total_repurchased_order_fact_amount DECIMAL(38, 2),
     total_repurchased_percentage        DECIMAL(38, 4),
     member_existing_percentage          DECIMAL(38, 4),
-    create_time                         TIMESTAMP
-);
+    create_time                         TIMESTAMP,
+    vchr_computing_until_month          VARCHAR
+) WITH partition_by (partitioned_by = array['vchr_computing_until_month']);
