@@ -19,4 +19,4 @@ CREATE TABLE ads_crm.member_structure_asset (
     order_fact_amount_percentage DECIMAL(38, 4),
     total_order_count            BIGINT,
     create_time                  TIMESTAMP
-) WITH partition_by (partitioned_by = array['vchr_computing_until_month']);
+) WITH (partitioned_by = array['vchr_computing_until_month']);
