@@ -1,0 +1,1 @@
+SELECT ARRAY['2018-10-01'] AS current_date;

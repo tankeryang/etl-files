@@ -106,8 +106,8 @@ INSERT INTO cdm_crm.member_structure_asset (
             -- WHERE oi.store_code = si.store_code
             --       AND oi.order_deal_time IS NOT NULL
             --       AND oi.order_deal_time BETWEEN date_trunc('month',
-            --                                                 CURRENT_DATE + INTERVAL '-{computing_duration}' MONTH) AND date_trunc(
-            --     'month', CURRENT_DATE)
+            --                                                 DATE('{current_date}') + INTERVAL '-{computing_duration}' MONTH) AND date_trunc(
+            --     'month', DATE('{current_date}'))
             GROUP BY computing_until_month, computing_duration
         ),
         --非会员

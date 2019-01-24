@@ -11,7 +11,7 @@ INSERT INTO cdm_crm.member_structure_asset_duration_potential_reg_source (
         --潜在客户-注册来源
         duration_potential_reg_source AS (
             SELECT
-            date_format(CURRENT_DATE + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+            date_format(DATE('{current_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
             CAST('{computing_duration}' AS INTEGER)                  AS computing_duration,
             mi.member_no,
             mi.reg_source,
@@ -20,9 +20,9 @@ INSERT INTO cdm_crm.member_structure_asset_duration_potential_reg_source (
             si.city                                                  AS store_region
             FROM ods_crm.member_info mi, ods_crm.store_info si
             WHERE mi.member_register_store = si.store_code AND
-                mi.member_register_time >= date_trunc('month', CURRENT_DATE +
+                mi.member_register_time >= date_trunc('month', DATE('{current_date}') +
                                                                                             INTERVAL '-{computing_duration}' MONTH) AND mi.member_register_time < date_trunc(
-                'month', CURRENT_DATE) AND
+                'month', DATE('{current_date}')) AND
                 mi.member_no NOT IN (
                     SELECT DISTINCT member_no
                     FROM ods_crm.order_info

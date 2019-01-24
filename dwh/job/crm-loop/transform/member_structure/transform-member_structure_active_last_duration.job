@@ -2,5 +2,6 @@ type=command
 command=${cmd}
 
 sql.dir=member_structure_active_last_duration
+placeholder.config=fully:fully-placeholders
 
 dependencies=transform-member_structure_duration

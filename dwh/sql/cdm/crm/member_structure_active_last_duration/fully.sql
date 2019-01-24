@@ -22,31 +22,31 @@ INSERT INTO cdm_crm.member_structure_active_last_duration (
     WITH
         active_last_duration AS (
         SELECT
-            date_format(CURRENT_DATE + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+            date_format(DATE('{current_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
             duration                                                 AS computing_duration,
             duration                                                 AS last_computing_duration_end,
             date_trunc('month', date_add('month', -1 * duration,
-                                        CURRENT_DATE))              AS last_computing_duration_time_end,
+                                        DATE('{current_date}')))              AS last_computing_duration_time_end,
             duration +
             duration                                                 AS last_computing_duration_start,
             date_trunc('month', date_add('month', -1 * (duration + duration),
-                                        CURRENT_DATE))              AS last_computing_duration_time_start,
+                                        DATE('{current_date}')))              AS last_computing_duration_time_start,
             2 *
             duration                                                 AS double_last_computing_duration_end,
             date_trunc('month', date_add('month', -1 * (2 * duration),
-                                        CURRENT_DATE))              AS double_last_computing_duration_time_end,
+                                        DATE('{current_date}')))              AS double_last_computing_duration_time_end,
             2 * duration +
             duration                                                 AS double_last_computing_duration_start,
             date_trunc('month', date_add('month', -1 * (2 * duration + duration),
-                                        CURRENT_DATE))              AS double_last_computing_duration_time_start,
+                                        DATE('{current_date}')))              AS double_last_computing_duration_time_start,
             3 *
             duration                                                 AS triple_last_computing_duration_end,
             date_trunc('month', date_add('month', -1 * (3 * duration),
-                                        CURRENT_DATE))              AS triple_last_computing_duration_time_end,
+                                        DATE('{current_date}')))              AS triple_last_computing_duration_time_end,
             3 * duration +
             duration                                                 AS triple_last_computing_duration_start,
             date_trunc('month', date_add('month', -1 * (3 * duration + duration),
-                                        CURRENT_DATE))              AS triple_last_computing_duration_time_start
+                                        DATE('{current_date}')))              AS triple_last_computing_duration_time_start
         FROM member_structure_duration
     )
 
