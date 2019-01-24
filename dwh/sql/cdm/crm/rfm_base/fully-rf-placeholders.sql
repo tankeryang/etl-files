@@ -30,5 +30,7 @@ WITH
             ) AS condition_val
         FROM duration_dimension_map
     )
-    SELECT ARRAY_AGG(rfm_json_temp.condition_val) AS rfm_json
+    SELECT
+        ARRAY_AGG(rfm_json_temp.condition_val) AS rfm_json,
+        ARRAY['2018-10-01'] AS c_date
     FROM rfm_json_temp;

@@ -19,10 +19,8 @@ INSERT INTO cdm_crm.member_rfm (
         order_info_range AS (
             SELECT *
             FROM ods_crm.order_info
-            WHERE cast(member_no AS INTEGER) > 0 AND
-                order_deal_time >= date_trunc('month',
-                                                    CURRENT_DATE + INTERVAL '-{computing_duration}' YEAR) AND order_deal_time < date_trunc(
-                    'month', CURRENT_DATE)
+            WHERE cast(member_no AS INTEGER) > 0
+            AND order_deal_time >= date_trunc('month', DATE('{c_date}') + INTERVAL '-{computing_duration}' YEAR) AND order_deal_time < date_trunc('month', DATE('{c_date}'))
         ),
         --指定时间段内会员购买时间间隔、购买次数（一天消费多次只算一次）、订单数量(基于正价单、退换货(并买新商品)、累计金额、客单价、最小、最大下单时间，及下单日期的数组
         member_recency_frequency_order_count_min_max_order_deal_date_n_arr_monetary_total_n_per_order AS (
@@ -32,7 +30,7 @@ INSERT INTO cdm_crm.member_rfm (
             min(oi.order_deal_time)                                                         AS     min_order_deal_date,
             max(oi.order_deal_time)                                                         AS     max_order_deal_date,
             date_diff('day', DATE(max(oi.order_deal_time)),
-                        date_trunc('month', CURRENT_DATE) + INTERVAL '-1' DAY) recency,
+                        date_trunc('month', DATE('{c_date}')) + INTERVAL '-1' DAY) recency,
             count(DISTINCT date_format(oi.order_deal_time, '%Y-%m-%d'))                     AS     frequency,
             sum(CASE WHEN oit.sub_coupon_amount IS NOT NULL
                 THEN oit.sub_coupon_amount
@@ -53,11 +51,11 @@ INSERT INTO cdm_crm.member_rfm (
             mgl.grade_change_time
             FROM prod_mysql_crm.crm.member_grade_log mgl
             INNER JOIN order_info_range oi ON mgl.member_no = oi.member_no
-            LEFT JOIN prod_mysql_crm.member_grade_info mgi ON mgl.after_grade_id = mgi.grade_id
+            LEFT JOIN prod_mysql_crm.crm.member_grade_info mgi ON mgl.after_grade_id = mgi.grade_id
             WHERE 1 > (SELECT count(*)
                     FROM prod_mysql_crm.crm.member_grade_log
                     WHERE member_no = mgl.member_no AND grade_change_time > mgl.grade_change_time)
-                AND date_diff('day', mgl.grade_change_time, date_trunc('month', CURRENT_DATE)) > 0
+                AND date_diff('day', mgl.grade_change_time, date_trunc('month', DATE('{c_date}'))) > 0
             ORDER BY mgl.member_no, mgl.grade_change_time DESC
         )
 
@@ -86,7 +84,7 @@ INSERT INTO cdm_crm.member_rfm (
                                     rfm.frequency AS
                                     DECIMAL(38, 2))), 0)) AS INTEGER)
         END                                                      AS circle_average_repurchase,
-        date_format(CURRENT_DATE + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+        date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
         LOCALTIMESTAMP                                           AS create_time
     FROM member_recency_frequency_order_count_min_max_order_deal_date_n_arr_monetary_total_n_per_order rfm
         LEFT JOIN member_last_log mll

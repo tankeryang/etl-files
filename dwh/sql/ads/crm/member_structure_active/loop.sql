@@ -1,6 +1,3 @@
-DELETE FROM ads_crm.member_structure_active;
-
-
 INSERT INTO ads_crm.member_structure_active (
     computing_until_month,
     computing_duration,
