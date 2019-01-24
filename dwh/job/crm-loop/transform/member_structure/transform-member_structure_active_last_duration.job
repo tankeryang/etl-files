@@ -1,5 +1,5 @@
 type=command
-command=${cmd}
+command=${phcmd}
 
 sql.dir=member_structure_active_last_duration
 placeholder.config=fully:fully-placeholders

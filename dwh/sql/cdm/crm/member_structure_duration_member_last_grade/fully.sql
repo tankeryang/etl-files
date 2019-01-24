@@ -2,7 +2,7 @@ INSERT INTO cdm_crm.member_structure_duration_member_last_grade (
     computing_until_month,
     computing_duration,
     member_no,
-    after_grade_id,
+    current_grade_id,
     grade_name,
     grade_code,
     grade_change_time

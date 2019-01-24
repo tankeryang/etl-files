@@ -14,7 +14,7 @@ INSERT INTO cdm_crm.member_structure_asset_duration_potential_reg_source (
             date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
             CAST('{computing_duration}' AS INTEGER)                  AS computing_duration,
             mi.member_no,
-            mi.reg_source,
+            mi.member_reg_source,
             si.channel_type,
             si.sales_area,
             si.city                                                  AS store_region
