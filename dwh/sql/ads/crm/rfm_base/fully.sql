@@ -474,12 +474,12 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
         --横维度合计， 横维度：R 纵维度：0 的客户数、客户占比、累计金、客单价
         r AS (
             SELECT
-            horizon_type,
-            vertical_type,
-            horizon_type_range,
-            vertical_type_range,
-            rfm_base_with_expr.horizon_expression,
-            rfm_base_with_expr.vertical_expression,
+            CAST(horizon_type AS VARCHAR(255)),
+            CAST(vertical_type AS VARCHAR(255)),
+            CAST(horizon_type_range AS VARCHAR(255)),
+            CAST(vertical_type_range AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
             rfm_base_with_expr.computing_until_month,
             CAST(rfm_base_with_expr.member_count AS INTEGER),
@@ -507,12 +507,12 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
         --f维度合计， 横维度：F 纵维度：0 的客户数、客户占比、累计金、客单价
         f AS (
             SELECT
-            horizon_type,
-            vertical_type,
-            horizon_type_range,
-            vertical_type_range,
-            rfm_base_with_expr.horizon_expression,
-            rfm_base_with_expr.vertical_expression,
+            CAST(horizon_type AS VSRCHAR(255)),
+            CAST(vertical_type AS VSRCHAR(255)),
+            CAST(horizon_type_range AS VSRCHAR(255)),
+            CAST(vertical_type_range AS VSRCHAR(255)),
+            CAST(rfm_base_with_expr.horizon_expression AS VSRCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_expression AS VSRCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
             rfm_base_with_expr.computing_until_month,
             CAST(rfm_base_with_expr.member_count AS INTEGER),
@@ -540,12 +540,12 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
         --M维度合计， 横维度：M 纵维度：0 的客户数、客户占比、累计金、客单价
         m AS (
             SELECT
-            rfm_base_with_expr.horizon_type,
-            rfm_base_with_expr.vertical_type,
-            horizon_type_range,
-            vertical_type_range,
-            rfm_base_with_expr.horizon_expression,
-            rfm_base_with_expr.vertical_expression,
+            CAST(rfm_base_with_expr.horizon_type AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_type AS VARCHAR(255)),
+            CAST(horizon_type_range AS VARCHAR(255)),
+            CAST(vertical_type_range AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
             rfm_base_with_expr.computing_until_month,
             CAST(rfm_base_with_expr.member_count AS INTEGER),
@@ -573,12 +573,12 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
         --G维度合计， 横维度：G 纵维度：0 的客户数、客户占比、累计金、客单价
         g AS (
             SELECT
-            rfm_base_with_expr.horizon_type,
-            rfm_base_with_expr.vertical_type,
-            horizon_type_range,
-            vertical_type_range,
-            rfm_base_with_expr.horizon_expression,
-            rfm_base_with_expr.vertical_expression,
+            CAST(rfm_base_with_expr.horizon_type AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_type AS VARCHAR(255)),
+            CAST(horizon_type_range AS VARCHAR(255)),
+            CAST(vertical_type_range AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
             rfm_base_with_expr.computing_until_month,
             CAST(rfm_base_with_expr.member_count AS INTEGER),
@@ -606,12 +606,12 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
         --总合计， 横维度：0 纵维度：0 的客户数、客户占比、累计金、客单价
         total AS (
             SELECT
-            horizon_type,
-            vertical_type,
-            horizon_type_range,
-            vertical_type_range,
-            rfm_base_with_expr.horizon_expression,
-            rfm_base_with_expr.vertical_expression,
+            CAST(horizon_type AS VARCHAR(255)),
+            CAST(vertical_type AS VARCHAR(255)),
+            CAST(horizon_type_range AS VARCHAR(255)),
+            CAST(vertical_type_range AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
             rfm_base_with_expr.computing_until_month,
             CAST(rfm_base_with_expr.member_count AS INTEGER),
@@ -641,12 +641,12 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
         --横维度：R 纵维度：F 交集的客户数、客户占比、累计金、客单价
         r_f AS (
             SELECT
-            rfm_base_with_expr.horizon_type,
-            rfm_base_with_expr.vertical_type,
-            horizon_type_range,
-            vertical_type_range,
-            rfm_base_with_expr.horizon_expression,
-            rfm_base_with_expr.vertical_expression,
+            CAST(rfm_base_with_expr.horizon_type AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_type AS VARCHAR(255)),
+            CAST(horizon_type_range AS VARCHAR(255)),
+            CAST(vertical_type_range AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
             rfm_base_with_expr.computing_until_month,
             CAST(rfm_base_with_expr.member_count AS INTEGER),
@@ -674,12 +674,12 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
         --横维度：R 纵维度：M 交集的客户数、客户占比、累计金、客单价
         r_m AS (
             SELECT
-            rfm_base_with_expr.horizon_type,
-            rfm_base_with_expr.vertical_type,
-            horizon_type_range,
-            vertical_type_range,
-            rfm_base_with_expr.horizon_expression,
-            rfm_base_with_expr.vertical_expression,
+            CAST(rfm_base_with_expr.horizon_type AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_type AS VARCHAR(255)),
+            CAST(horizon_type_range AS VARCHAR(255)),
+            CAST(vertical_type_range AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
             rfm_base_with_expr.computing_until_month,
             CAST(rfm_base_with_expr.member_count AS INTEGER),
@@ -707,12 +707,12 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
         --横维度：R 纵维度：G 交集的客户数、客户占比、累计金、客单价
         r_g AS (
             SELECT
-            rfm_base_with_expr.horizon_type,
-            rfm_base_with_expr.vertical_type,
-            horizon_type_range,
-            vertical_type_range,
-            rfm_base_with_expr.horizon_expression,
-            rfm_base_with_expr.vertical_expression,
+            CAST(rfm_base_with_expr.horizon_type AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_type AS VARCHAR(255)),
+            CAST(horizon_type_range AS VARCHAR(255)),
+            CAST(vertical_type_range AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
             rfm_base_with_expr.computing_until_month,
             CAST(rfm_base_with_expr.member_count AS INTEGER),
@@ -741,12 +741,12 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
         --横维度：F 纵维度：M 交集的客户数、客户占比、累计金、客单价
         f_m AS (
             SELECT
-            rfm_base_with_expr.horizon_type,
-            rfm_base_with_expr.vertical_type,
-            horizon_type_range,
-            vertical_type_range,
-            rfm_base_with_expr.horizon_expression,
-            rfm_base_with_expr.vertical_expression,
+            CAST(rfm_base_with_expr.horizon_type AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_type AS VARCHAR(255)),
+            CAST(horizon_type_range AS VARCHAR(255)),
+            CAST(vertical_type_range AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
             rfm_base_with_expr.computing_until_month,
             CAST(rfm_base_with_expr.member_count AS INTEGER),
@@ -774,12 +774,12 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
         --横维度合计， 横维度：R 纵维度：0 交集的客户数、客户占比、累计金、客单价
         f_g AS (
             SELECT
-            rfm_base_with_expr.horizon_type,
-            rfm_base_with_expr.vertical_type,
-            horizon_type_range,
-            vertical_type_range,
-            rfm_base_with_expr.horizon_expression,
-            rfm_base_with_expr.vertical_expression,
+            CAST(rfm_base_with_expr.horizon_type AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_type AS VARCHAR(255)),
+            CAST(horizon_type_range AS VARCHAR(255)),
+            CAST(vertical_type_range AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
             rfm_base_with_expr.computing_until_month,
             CAST(rfm_base_with_expr.member_count AS INTEGER),
@@ -806,12 +806,12 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
         --横维度合计， 横维度：R 纵维度：0 交集的客户数、客户占比、累计金、客单价
         m_g AS (
             SELECT
-            rfm_base_with_expr.horizon_type,
-            rfm_base_with_expr.vertical_type,
-            horizon_type_range,
-            vertical_type_range,
-            rfm_base_with_expr.horizon_expression,
-            rfm_base_with_expr.vertical_expression,
+            CAST(rfm_base_with_expr.horizon_type AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_type AS VARCHAR(255)),
+            CAST(horizon_type_range AS VARCHAR(255)),
+            CAST(vertical_type_range AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
             rfm_base_with_expr.computing_until_month,
             CAST(rfm_base_with_expr.member_count AS INTEGER),
