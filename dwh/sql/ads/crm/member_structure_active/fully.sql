@@ -2,7 +2,6 @@ DELETE FROM ads_crm.member_structure_active;
 
 
 INSERT INTO ads_crm.member_structure_active (
-    computing_until_month,
     computing_duration,
     channel_type,
     sales_area,
@@ -19,7 +18,7 @@ INSERT INTO ads_crm.member_structure_active (
     total_repurchased_percentage,
     member_existing_percentage,
     create_time,
-    vchr_computing_until_month
+    computing_until_month
     )
     WITH
         --***各渠道、区域下活跃新老客户-购买次数分组统计，客户数、成交额、人均成交额

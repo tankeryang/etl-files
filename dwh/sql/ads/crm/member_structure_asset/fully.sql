@@ -2,7 +2,6 @@ DELETE FROM ads_crm.member_structure_asset;
 
 
 INSERT INTO ads_crm.member_structure_asset (
-    computing_until_month,
     computing_duration,
     channel_type,
     sales_area,
@@ -19,7 +18,7 @@ INSERT INTO ads_crm.member_structure_asset (
     order_fact_amount_percentage,
     total_order_count,
     create_time,
-    vchr_computing_until_month
+    computing_until_month
     )
     WITH
         --各渠道、区域下各等级下的新老会员下的recency统计

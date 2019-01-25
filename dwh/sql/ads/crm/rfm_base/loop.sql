@@ -6,7 +6,6 @@ INSERT INTO ads_crm.rfm_base (
     horizon_expression,
     vertical_expression,
     computing_duration,
-    computing_until_month,
     member_count,
     member_percentage,
     order_count,
@@ -15,7 +14,7 @@ INSERT INTO ads_crm.rfm_base (
     order_count_per_member,
     monetary_per_member,
     create_time,
-    vchr_computing_until_month
+    computing_until_month
     )
     WITH
         --1、2年范围的总人数
