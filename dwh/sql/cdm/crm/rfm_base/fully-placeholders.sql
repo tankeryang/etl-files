@@ -1,4 +1,4 @@
 SELECT
     ARRAY_AGG(duration) AS computing_duration,
-    ARRAY['2019-01-01'] AS c_date
+    ARRAY[current_date] AS c_date
 FROM cdm_crm.rfm_duration;

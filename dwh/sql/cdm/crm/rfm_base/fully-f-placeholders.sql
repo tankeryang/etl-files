@@ -27,5 +27,5 @@ WITH
     )
     SELECT
         ARRAY_AGG(rfm_json_temp.condition_val) AS rfm_json,
-        ARRAY['2019-01-01'] AS c_date
+        ARRAY[current_date] AS c_date
     FROM rfm_json_temp;
