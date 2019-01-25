@@ -1,1 +1,1 @@
-SELECT ARRAY['2018-11-01'] AS c_date;
+SELECT ARRAY['2018-12-01'] AS c_date;
