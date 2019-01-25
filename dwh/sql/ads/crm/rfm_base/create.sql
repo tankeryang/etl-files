@@ -13,7 +13,6 @@ CREATE TABLE ads_crm.rfm_base (
     horizon_expression         VARCHAR,
     vertical_expression        VARCHAR,
     computing_duration         INTEGER,
-    computing_until_month      VARCHAR,
     member_count               BIGINT,
     member_percentage          DECIMAL(38, 4),
     order_count                BIGINT,
@@ -22,5 +21,5 @@ CREATE TABLE ads_crm.rfm_base (
     order_count_per_member     DECIMAL(38, 2),
     monetary_per_member        DECIMAL(38, 2),
     create_time                TIMESTAMP,
-    vchr_computing_until_month VARCHAR
-) WITH (partitioned_by = array['vchr_computing_until_month']);
+    computing_until_month      VARCHAR
+) WITH (partitioned_by = array['computing_until_month']);

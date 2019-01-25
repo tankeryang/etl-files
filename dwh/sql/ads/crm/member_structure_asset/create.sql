@@ -2,7 +2,6 @@ CREATE SCHEMA IF NOT EXISTS ads_crm;
 DROP TABLE IF EXISTS ads_crm.member_structure_asset;
 
 CREATE TABLE ads_crm.member_structure_asset (
-    computing_until_month        VARCHAR,
     computing_duration           INTEGER,
     channel_type                 VARCHAR,
     sales_area                   VARCHAR,
@@ -19,5 +18,5 @@ CREATE TABLE ads_crm.member_structure_asset (
     order_fact_amount_percentage DECIMAL(38, 4),
     total_order_count            BIGINT,
     create_time                  TIMESTAMP,
-    vchr_computing_until_month   VARCHAR
-) WITH (partitioned_by = array['vchr_computing_until_month']);
+    computing_until_month        VARCHAR
+) WITH (partitioned_by = array['computing_until_month']);

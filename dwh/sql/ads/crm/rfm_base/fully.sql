@@ -42,7 +42,6 @@ INSERT INTO ads_crm.rfm_base (
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
             rfm_base_with_expr.computing_duration,
-            rfm_base_with_expr.computing_until_month,
             rfm_base_with_expr.member_count,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -76,7 +75,6 @@ INSERT INTO ads_crm.rfm_base (
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
             rfm_base_with_expr.computing_duration,
-            rfm_base_with_expr.computing_until_month,
             rfm_base_with_expr.member_count,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -110,7 +108,6 @@ INSERT INTO ads_crm.rfm_base (
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
             rfm_base_with_expr.computing_duration,
-            rfm_base_with_expr.computing_until_month,
             rfm_base_with_expr.member_count,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 / duration_member_count_temp.member_count AS
@@ -144,7 +141,6 @@ INSERT INTO ads_crm.rfm_base (
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
             rfm_base_with_expr.computing_duration,
-            rfm_base_with_expr.computing_until_month,
             rfm_base_with_expr.member_count,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -178,7 +174,6 @@ INSERT INTO ads_crm.rfm_base (
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
             rfm_base_with_expr.computing_duration,
-            rfm_base_with_expr.computing_until_month,
             rfm_base_with_expr.member_count,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -214,7 +209,6 @@ INSERT INTO ads_crm.rfm_base (
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
             rfm_base_with_expr.computing_duration,
-            rfm_base_with_expr.computing_until_month,
             rfm_base_with_expr.member_count,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -248,7 +242,6 @@ INSERT INTO ads_crm.rfm_base (
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
             rfm_base_with_expr.computing_duration,
-            rfm_base_with_expr.computing_until_month,
             rfm_base_with_expr.member_count,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 / duration_member_count_temp.member_count AS
@@ -282,7 +275,6 @@ INSERT INTO ads_crm.rfm_base (
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
             rfm_base_with_expr.computing_duration,
-            rfm_base_with_expr.computing_until_month,
             rfm_base_with_expr.member_count,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -317,7 +309,6 @@ INSERT INTO ads_crm.rfm_base (
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
             rfm_base_with_expr.computing_duration,
-            rfm_base_with_expr.computing_until_month,
             rfm_base_with_expr.member_count,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 / duration_member_count_temp.member_count AS
@@ -351,7 +342,6 @@ INSERT INTO ads_crm.rfm_base (
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
             rfm_base_with_expr.computing_duration,
-            rfm_base_with_expr.computing_until_month,
             rfm_base_with_expr.member_count,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -384,7 +374,6 @@ INSERT INTO ads_crm.rfm_base (
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
             rfm_base_with_expr.computing_duration,
-            rfm_base_with_expr.computing_until_month,
             rfm_base_with_expr.member_count,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /

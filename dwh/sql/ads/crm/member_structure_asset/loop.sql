@@ -102,7 +102,6 @@ INSERT INTO ads_crm.member_structure_asset (
         --各渠道、区域下各等级下的新老会员下的recency统计 + 会员、金额占比
         grade_new_old_member_recency_with_percentage AS (
             SELECT
-            gnomr.computing_until_month,
             gnomr.computing_duration,
             gnomr.channel_type,
             gnomr.sales_area,
@@ -121,7 +120,7 @@ INSERT INTO ads_crm.member_structure_asset (
                                 gnom.total_order_fact_amount AS DECIMAL(38, 4))), 0) AS order_fact_amount_percentage,
             gnomr.total_order_count,
             LOCALTIMESTAMP                                                         AS create_time,
-            gnomr.computing_until_month                                            AS vchr_computing_until_month
+            gnomr.computing_until_month                                            AS computing_until_month
             FROM grade_new_old_member_recency_type gnomr, grade_new_old_member gnom
             WHERE gnomr.computing_until_month = gnom.computing_until_month AND
                 gnomr.computing_duration = gnom.computing_duration AND
@@ -159,7 +158,6 @@ INSERT INTO ads_crm.member_structure_asset (
         --各渠道、区域下各等级下的新老会员统计 + 会员、金额占比
         grade_new_old_member_with_percentage AS (
             SELECT
-            gnom.computing_until_month,
             gnom.computing_duration,
             gnom.channel_type,
             gnom.sales_area,
@@ -178,7 +176,7 @@ INSERT INTO ads_crm.member_structure_asset (
                                 gm.total_order_fact_amount AS DECIMAL(38, 4))), 0) AS order_fact_amount_percentage,
             gnom.total_order_count,
             LOCALTIMESTAMP                                                       AS create_time,
-            gnom.computing_until_month                                           AS vchr_computing_until_month
+            gnom.computing_until_month                                           AS computing_until_month
             FROM grade_new_old_member gnom, grade_member gm
             WHERE gnom.computing_until_month = gm.computing_until_month AND
                 gnom.computing_duration = gm.computing_duration AND
@@ -215,7 +213,6 @@ INSERT INTO ads_crm.member_structure_asset (
         --各渠道、区域下各等级的会员统计 + 会员、金额占比
         grade_member_with_percentage AS (
             SELECT
-            gm.computing_until_month,
             gm.computing_duration,
             gm.channel_type,
             gm.sales_area,
@@ -234,7 +231,7 @@ INSERT INTO ads_crm.member_structure_asset (
                                 tm.total_order_fact_amount AS DECIMAL(38, 4))), 0) AS order_fact_amount_percentage,
             gm.total_order_count,
             LOCALTIMESTAMP                                                       AS create_time,
-            gm.computing_until_month                                             AS vchr_computing_until_month
+            gm.computing_until_month                                             AS computing_until_month
             FROM grade_member gm, total_member tm
             WHERE gm.computing_until_month = tm.computing_until_month AND
                 gm.computing_duration = tm.computing_duration AND
@@ -270,7 +267,6 @@ INSERT INTO ads_crm.member_structure_asset (
         --各渠道、区域下有消费
         purchased_member AS (
             SELECT
-            computing_until_month,
             computing_duration,
             channel_type,
             sales_area,
@@ -287,7 +283,7 @@ INSERT INTO ads_crm.member_structure_asset (
             NULL                         AS order_fact_amount_percentage,
             sum(total_order_count)       AS total_order_count,
             LOCALTIMESTAMP               AS create_time,
-            computing_until_month        AS vchr_computing_until_month
+            computing_until_month        AS computing_until_month
             FROM cdm_crm.member_structure_asset
             WHERE purchase_type = 'PURCHASED' AND vip_type IS NULL
             GROUP BY computing_until_month, computing_duration, channel_type, sales_area, store_region
@@ -295,7 +291,6 @@ INSERT INTO ads_crm.member_structure_asset (
         --各渠道、区域下非会员 + 会员、金额占比
         not_member_with_percentage AS (
             SELECT
-            nm.computing_until_month,
             nm.computing_duration,
             nm.channel_type,
             nm.sales_area,
@@ -314,7 +309,7 @@ INSERT INTO ads_crm.member_structure_asset (
                                 pm.total_order_fact_amount AS DECIMAL(38, 4))), 0) AS order_fact_amount_percentage,
             nm.total_order_count,
             LOCALTIMESTAMP                                                       AS create_time,
-            nm.computing_until_month                                             AS vchr_computing_until_month
+            nm.computing_until_month                                             AS computing_until_month
             FROM not_member nm, purchased_member pm
             WHERE nm.computing_until_month = pm.computing_until_month AND
                 nm.computing_duration = pm.computing_duration AND
@@ -326,7 +321,6 @@ INSERT INTO ads_crm.member_structure_asset (
         --各渠道、区域下会员 + 会员、金额占比
         total_member_with_percentage AS (
             SELECT
-            tm.computing_until_month,
             tm.computing_duration,
             tm.channel_type,
             tm.sales_area,
@@ -345,7 +339,7 @@ INSERT INTO ads_crm.member_structure_asset (
                                 pm.total_order_fact_amount AS DECIMAL(38, 4))), 0) AS order_fact_amount_percentage,
             tm.total_order_count,
             LOCALTIMESTAMP                                                       AS create_time,
-            tm.computing_until_month                                             AS vchr_computing_until_month
+            tm.computing_until_month                                             AS computing_until_month
             FROM total_member tm, purchased_member pm
             WHERE tm.computing_until_month = pm.computing_until_month AND
                 tm.computing_duration = pm.computing_duration AND
@@ -403,7 +397,6 @@ INSERT INTO ads_crm.member_structure_asset (
         --各渠道、区域下潜在客户-注册来源
         potential_member_reg_source_with_percentage AS (
             SELECT
-            pmrs.computing_until_month,
             pmrs.computing_duration,
             pmrs.channel_type,
             pmrs.sales_area,
@@ -421,7 +414,7 @@ INSERT INTO ads_crm.member_structure_asset (
             NULL                                                            AS order_fact_amount_percentage,
             pmrs.total_order_count,
             LOCALTIMESTAMP                                                  AS create_time,
-            pmrs.computing_until_month                                      AS vchr_computing_until_month
+            pmrs.computing_until_month                                      AS computing_until_month
             FROM potential_member_reg_source pmrs, potential_member pm
             WHERE pmrs.computing_until_month = pm.computing_until_month AND
                 pmrs.computing_duration = pm.computing_duration AND
@@ -434,7 +427,6 @@ INSERT INTO ads_crm.member_structure_asset (
         --各渠道、区域下总会员资产
         total_member_asset AS (
             SELECT
-            computing_until_month,
             computing_duration,
             channel_type,
             sales_area,
@@ -451,7 +443,7 @@ INSERT INTO ads_crm.member_structure_asset (
             NULL                         AS order_fact_amount_percentage,
             sum(total_order_count)       AS total_order_count,
             LOCALTIMESTAMP               AS create_time,
-            computing_until_month        AS vchr_computing_until_month
+            computing_until_month        AS computing_until_month
             FROM cdm_crm.member_structure_asset
             WHERE purchase_type IS NULL
             GROUP BY computing_until_month, computing_duration, channel_type, sales_area, store_region

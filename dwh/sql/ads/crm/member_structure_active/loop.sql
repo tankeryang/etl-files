@@ -69,7 +69,6 @@ INSERT INTO ads_crm.member_structure_active (
         --各渠道、区域下活跃新老客户-购买次数分组统计，客户数、成交额、人均成交额 + 人数占比
         total_active_member_type_frequency_member_with_percentage AS (
             SELECT
-            frequncy.computing_until_month,
             frequncy.computing_duration,
             frequncy.channel_type,
             frequncy.sales_area,
@@ -123,7 +122,6 @@ INSERT INTO ads_crm.member_structure_active (
         --各渠道、区域下活跃-重复购买-新老客户统计，总客户数、总成交额、人均成交额、重复购买人数、重复购买金额、重复购买率 + 人数占比
         total_active_n_repurchased_member_type_member_with_percentage AS (
             SELECT
-            memberType.computing_until_month,
             memberType.computing_duration,
             memberType.channel_type,
             memberType.sales_area,
@@ -187,7 +185,6 @@ INSERT INTO ads_crm.member_structure_active (
         --***活跃老客户本月、季度、半年、年等之前的最近一次购买分布在上(及上上、上上上、...等)月、季度、半年、年等的哪个区间 + 客户保持率 + 客户占比
         total_active_old_recency_type_member_with_existing_percentage_with_percentage AS (
             SELECT
-            existing.computing_until_month,
             existing.computing_duration,
             existing.channel_type,
             existing.sales_area,
