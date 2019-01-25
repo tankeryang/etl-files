@@ -496,8 +496,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             COALESCE(
                 TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
-            LOCALTIMESTAMP                                                                    AS create_time,
-            rfm_base_with_expr.computing_until_month
+            LOCALTIMESTAMP                                                                    AS create_time
             FROM cdm_crm.rfm_base_with_expression rfm_base_with_expr, duration_member_count_temp
             WHERE rfm_base_with_expr.computing_duration = duration_member_count_temp.computing_duration
                 AND rfm_base_with_expr.computing_until_month = duration_member_count_temp.computing_until_month
@@ -530,8 +529,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             COALESCE(
                 TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
-            LOCALTIMESTAMP                                                                    AS create_time,
-            rfm_base_with_expr.computing_until_month
+            LOCALTIMESTAMP                                                                    AS create_time
             FROM cdm_crm.rfm_base_with_expression rfm_base_with_expr, duration_member_count_temp
             WHERE rfm_base_with_expr.computing_duration = duration_member_count_temp.computing_duration
                 AND rfm_base_with_expr.computing_until_month = duration_member_count_temp.computing_until_month
@@ -565,8 +563,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             COALESCE(
                 TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                 AS monetary_per_member,
-            LOCALTIMESTAMP                         AS create_time,
-            rfm_base_with_expr.computing_until_month
+            LOCALTIMESTAMP                         AS create_time
             FROM cdm_crm.rfm_base_with_expression rfm_base_with_expr, duration_member_count_temp
             WHERE rfm_base_with_expr.computing_duration = duration_member_count_temp.computing_duration
                 AND rfm_base_with_expr.computing_until_month = duration_member_count_temp.computing_until_month
@@ -598,8 +595,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             COALESCE(
                 TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
-            LOCALTIMESTAMP                                                                    AS create_time,
-            rfm_base_with_expr.computing_until_month
+            LOCALTIMESTAMP                                                                    AS create_time
             FROM cdm_crm.rfm_base_with_expression rfm_base_with_expr, duration_member_count_temp
             WHERE rfm_base_with_expr.computing_duration = duration_member_count_temp.computing_duration
                 AND rfm_base_with_expr.computing_until_month = duration_member_count_temp.computing_until_month
@@ -632,8 +628,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             COALESCE(
                 TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
-            LOCALTIMESTAMP                                                                    AS create_time,
-            rfm_base_with_expr.computing_until_month
+            LOCALTIMESTAMP                                                                    AS create_time
             FROM cdm_crm.rfm_base_with_expression rfm_base_with_expr, duration_member_count_temp
             WHERE rfm_base_with_expr.computing_duration = duration_member_count_temp.computing_duration
                 AND rfm_base_with_expr.computing_until_month = duration_member_count_temp.computing_until_month
@@ -668,8 +663,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             COALESCE(
                 TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
-            LOCALTIMESTAMP                                                                    AS create_time,
-            rfm_base_with_expr.computing_until_month
+            LOCALTIMESTAMP                                                                    AS create_time
             FROM cdm_crm.rfm_base_with_expression rfm_base_with_expr, duration_member_count_temp
             WHERE rfm_base_with_expr.computing_duration = duration_member_count_temp.computing_duration
                 AND rfm_base_with_expr.computing_until_month = duration_member_count_temp.computing_until_month
@@ -703,8 +697,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             COALESCE(
                 TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                 AS monetary_per_member,
-            LOCALTIMESTAMP                         AS create_time,
-            rfm_base_with_expr.computing_until_month
+            LOCALTIMESTAMP                         AS create_time
             FROM cdm_crm.rfm_base_with_expression rfm_base_with_expr, duration_member_count_temp
             WHERE rfm_base_with_expr.computing_duration = duration_member_count_temp.computing_duration
                 AND rfm_base_with_expr.computing_until_month = duration_member_count_temp.computing_until_month
@@ -736,8 +729,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             COALESCE(
                 TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
-            LOCALTIMESTAMP                                                                    AS create_time,
-            rfm_base_with_expr.computing_until_month
+            LOCALTIMESTAMP                                                                    AS create_time
             FROM cdm_crm.rfm_base_with_expression rfm_base_with_expr, duration_member_count_temp
             WHERE rfm_base_with_expr.computing_duration = duration_member_count_temp.computing_duration
                 AND rfm_base_with_expr.computing_until_month = duration_member_count_temp.computing_until_month
@@ -772,8 +764,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             COALESCE(
                 TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                 AS monetary_per_member,
-            LOCALTIMESTAMP                         AS create_time,
-            rfm_base_with_expr.computing_until_month
+            LOCALTIMESTAMP                         AS create_time
             FROM cdm_crm.rfm_base_with_expression rfm_base_with_expr, duration_member_count_temp
             WHERE rfm_base_with_expr.computing_duration = duration_member_count_temp.computing_duration
                 AND rfm_base_with_expr.computing_until_month = duration_member_count_temp.computing_until_month
@@ -805,8 +796,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             COALESCE(
                 TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
-            LOCALTIMESTAMP                                                                    AS create_time,
-            rfm_base_with_expr.computing_until_month
+            LOCALTIMESTAMP                                                                    AS create_time
             FROM cdm_crm.rfm_base_with_expression rfm_base_with_expr, duration_member_count_temp
             WHERE rfm_base_with_expr.computing_duration = duration_member_count_temp.computing_duration
                 AND rfm_base_with_expr.computing_until_month = duration_member_count_temp.computing_until_month
@@ -838,8 +828,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             COALESCE(
                 TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
-            LOCALTIMESTAMP                                                                    AS create_time,
-            rfm_base_with_expr.computing_until_month
+            LOCALTIMESTAMP                                                                    AS create_time
             FROM cdm_crm.rfm_base_with_expression rfm_base_with_expr, duration_member_count_temp
             WHERE rfm_base_with_expr.computing_duration = duration_member_count_temp.computing_duration
                 AND rfm_base_with_expr.computing_until_month = duration_member_count_temp.computing_until_month
