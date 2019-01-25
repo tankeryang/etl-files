@@ -480,21 +480,21 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             vertical_type_range,
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
-            rfm_base_with_expr.computing_duration,
+            CAST(rfm_base_with_expr.computing_duration) AS SMALLINT,
             rfm_base_with_expr.computing_until_month,
-            rfm_base_with_expr.member_count,
+            CAST(rfm_base_with_expr.member_count) AS INTEGER,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
                                 duration_member_count_temp.member_count AS DECIMAL(38, 4))), 0) AS member_percentage,
-            rfm_base_with_expr.order_count,
-            rfm_base_with_expr.member_spent,
+            CAST(rfm_base_with_expr.order_count) AS INTEGER,
+            CAST(rfm_base_with_expr.member_spent) AS DECIMAL(38, 4),
             COALESCE(TRY(CAST(rfm_base_with_expr.member_spent * 1.00 /
-                                rfm_base_with_expr.order_count AS DECIMAL(38, 2))), 0)          AS monetary_per_order,
+                                rfm_base_with_expr.order_count AS DECIMAL(38, 4))), 0)          AS monetary_per_order,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS order_count_per_member,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
             LOCALTIMESTAMP                                                                    AS create_time,
             rfm_base_with_expr.computing_until_month
@@ -514,21 +514,21 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             vertical_type_range,
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
-            rfm_base_with_expr.computing_duration,
+            CAST(rfm_base_with_expr.computing_duration) AS SMALLINT,
             rfm_base_with_expr.computing_until_month,
-            rfm_base_with_expr.member_count,
+            CAST(rfm_base_with_expr.member_count) AS INTEGER,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
                                 duration_member_count_temp.member_count AS DECIMAL(38, 4))), 0) AS member_percentage,
-            rfm_base_with_expr.order_count,
-            rfm_base_with_expr.member_spent,
+            CAST(rfm_base_with_expr.order_count) AS INTEGER,
+            CAST(rfm_base_with_expr.member_spent) AS DECIMAL(38, 4),
             COALESCE(TRY(CAST(rfm_base_with_expr.member_spent * 1.00 /
-                                rfm_base_with_expr.order_count AS DECIMAL(38, 2))), 0)          AS monetary_per_order,
+                                rfm_base_with_expr.order_count AS DECIMAL(38, 4))), 0)          AS monetary_per_order,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS order_count_per_member,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
             LOCALTIMESTAMP                                                                    AS create_time,
             rfm_base_with_expr.computing_until_month
@@ -548,22 +548,22 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             vertical_type_range,
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
-            rfm_base_with_expr.computing_duration,
+            CAST(rfm_base_with_expr.computing_duration) AS SMALLINT,
             rfm_base_with_expr.computing_until_month,
-            rfm_base_with_expr.member_count,
+            CAST(rfm_base_with_expr.member_count) AS INTEGER,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 / duration_member_count_temp.member_count AS
                                 DECIMAL(38, 4))), 0) AS member_percentage,
-            rfm_base_with_expr.order_count,
-            rfm_base_with_expr.member_spent,
+            CAST(rfm_base_with_expr.order_count) AS INTEGER,
+            CAST(rfm_base_with_expr.member_spent) AS DECIMAL(38, 4),
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.order_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.order_count AS DECIMAL(38, 4))),
                 0)                                 AS monetary_per_order,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                 AS order_count_per_member,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                 AS monetary_per_member,
             LOCALTIMESTAMP                         AS create_time,
             rfm_base_with_expr.computing_until_month
@@ -582,21 +582,21 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             vertical_type_range,
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
-            rfm_base_with_expr.computing_duration,
+            CAST(rfm_base_with_expr.computing_duration) AS SMALLINT,
             rfm_base_with_expr.computing_until_month,
-            rfm_base_with_expr.member_count,
+            CAST(rfm_base_with_expr.member_count) AS INTEGER,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
                                 duration_member_count_temp.member_count AS DECIMAL(38, 4))), 0) AS member_percentage,
-            rfm_base_with_expr.order_count,
-            rfm_base_with_expr.member_spent,
+            CAST(rfm_base_with_expr.order_count) AS INTEGER,
+            CAST(rfm_base_with_expr.member_spent) AS DECIMAL(38, 4),
             COALESCE(TRY(CAST(rfm_base_with_expr.member_spent * 1.00 /
-                                rfm_base_with_expr.order_count AS DECIMAL(38, 2))), 0)          AS monetary_per_order,
+                                rfm_base_with_expr.order_count AS DECIMAL(38, 4))), 0)          AS monetary_per_order,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS order_count_per_member,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
             LOCALTIMESTAMP                                                                    AS create_time,
             rfm_base_with_expr.computing_until_month
@@ -616,21 +616,21 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             vertical_type_range,
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
-            rfm_base_with_expr.computing_duration,
+            CAST(rfm_base_with_expr.computing_duration) AS SMALLINT,
             rfm_base_with_expr.computing_until_month,
-            rfm_base_with_expr.member_count,
+            CAST(rfm_base_with_expr.member_count) AS INTEGER,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
                                 duration_member_count_temp.member_count AS DECIMAL(38, 4))), 0) AS member_percentage,
-            rfm_base_with_expr.order_count,
-            rfm_base_with_expr.member_spent,
+            CAST(rfm_base_with_expr.order_count) AS INTEGER,
+            CAST(rfm_base_with_expr.member_spent) AS DECIMAL(38, 4),
             COALESCE(TRY(CAST(rfm_base_with_expr.member_spent * 1.00 /
-                                rfm_base_with_expr.order_count AS DECIMAL(38, 2))), 0)          AS monetary_per_order,
+                                rfm_base_with_expr.order_count AS DECIMAL(38, 4))), 0)          AS monetary_per_order,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS order_count_per_member,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
             LOCALTIMESTAMP                                                                    AS create_time,
             rfm_base_with_expr.computing_until_month
@@ -652,21 +652,21 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             vertical_type_range,
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
-            rfm_base_with_expr.computing_duration,
+            CAST(rfm_base_with_expr.computing_duration) AS SMALLINT,
             rfm_base_with_expr.computing_until_month,
-            rfm_base_with_expr.member_count,
+            CAST(rfm_base_with_expr.member_count) AS INTEGER,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
                                 duration_member_count_temp.member_count AS DECIMAL(38, 4))), 0) AS member_percentage,
-            rfm_base_with_expr.order_count,
-            rfm_base_with_expr.member_spent,
+            CAST(rfm_base_with_expr.order_count) AS INTEGER,
+            CAST(rfm_base_with_expr.member_spent) AS DECIMAL(38, 4),
             COALESCE(TRY(CAST(rfm_base_with_expr.member_spent * 1.00 /
-                                rfm_base_with_expr.order_count AS DECIMAL(38, 2))), 0)          AS monetary_per_order,
+                                rfm_base_with_expr.order_count AS DECIMAL(38, 4))), 0)          AS monetary_per_order,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS order_count_per_member,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
             LOCALTIMESTAMP                                                                    AS create_time,
             rfm_base_with_expr.computing_until_month
@@ -686,22 +686,22 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             vertical_type_range,
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
-            rfm_base_with_expr.computing_duration,
+            CAST(rfm_base_with_expr.computing_duration) AS SMALLINT,
             rfm_base_with_expr.computing_until_month,
-            rfm_base_with_expr.member_count,
+            CAST(rfm_base_with_expr.member_count) AS INTEGER,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 / duration_member_count_temp.member_count AS
                                 DECIMAL(38, 4))), 0) AS member_percentage,
-            rfm_base_with_expr.order_count,
-            rfm_base_with_expr.member_spent,
+            CAST(rfm_base_with_expr.order_count) AS INTEGER,
+            CAST(rfm_base_with_expr.member_spent) AS DECIMAL(38, 4),
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.order_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.order_count AS DECIMAL(38, 4))),
                 0)                                 AS monetary_per_order,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                 AS order_count_per_member,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                 AS monetary_per_member,
             LOCALTIMESTAMP                         AS create_time,
             rfm_base_with_expr.computing_until_month
@@ -720,21 +720,21 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             vertical_type_range,
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
-            rfm_base_with_expr.computing_duration,
+            CAST(rfm_base_with_expr.computing_duration) AS SMALLINT,
             rfm_base_with_expr.computing_until_month,
-            rfm_base_with_expr.member_count,
+            CAST(rfm_base_with_expr.member_count) AS INTEGER,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
                                 duration_member_count_temp.member_count AS DECIMAL(38, 4))), 0) AS member_percentage,
-            rfm_base_with_expr.order_count,
-            rfm_base_with_expr.member_spent,
+            CAST(rfm_base_with_expr.order_count) AS INTEGER,
+            CAST(rfm_base_with_expr.member_spent) AS DECIMAL(38, 4),
             COALESCE(TRY(CAST(rfm_base_with_expr.member_spent * 1.00 /
-                                rfm_base_with_expr.order_count AS DECIMAL(38, 2))), 0)          AS monetary_per_order,
+                                rfm_base_with_expr.order_count AS DECIMAL(38, 4))), 0)          AS monetary_per_order,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS order_count_per_member,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
             LOCALTIMESTAMP                                                                    AS create_time,
             rfm_base_with_expr.computing_until_month
@@ -755,22 +755,22 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             vertical_type_range,
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
-            rfm_base_with_expr.computing_duration,
+            CAST(rfm_base_with_expr.computing_duration) AS SMALLINT,
             rfm_base_with_expr.computing_until_month,
-            rfm_base_with_expr.member_count,
+            CAST(rfm_base_with_expr.member_count) AS INTEGER,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 / duration_member_count_temp.member_count AS
                                 DECIMAL(38, 4))), 0) AS member_percentage,
-            rfm_base_with_expr.order_count,
-            rfm_base_with_expr.member_spent,
+            CAST(rfm_base_with_expr.order_count) AS INTEGER,
+            CAST(rfm_base_with_expr.member_spent) AS DECIMAL(38, 4),
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.order_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.order_count AS DECIMAL(38, 4))),
                 0)                                 AS monetary_per_order,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                 AS order_count_per_member,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                 AS monetary_per_member,
             LOCALTIMESTAMP                         AS create_time,
             rfm_base_with_expr.computing_until_month
@@ -789,21 +789,21 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             vertical_type_range,
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
-            rfm_base_with_expr.computing_duration,
+            CAST(rfm_base_with_expr.computing_duration) AS SMALLINT,
             rfm_base_with_expr.computing_until_month,
-            rfm_base_with_expr.member_count,
+            CAST(rfm_base_with_expr.member_count) AS INTEGER,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
                                 duration_member_count_temp.member_count AS DECIMAL(38, 4))), 0) AS member_percentage,
-            rfm_base_with_expr.order_count,
-            rfm_base_with_expr.member_spent,
+            CAST(rfm_base_with_expr.order_count) AS INTEGER,
+            CAST(rfm_base_with_expr.member_spent) AS DECIMAL(38, 4),
             COALESCE(TRY(CAST(rfm_base_with_expr.member_spent * 1.00 /
-                                rfm_base_with_expr.order_count AS DECIMAL(38, 2))), 0)          AS monetary_per_order,
+                                rfm_base_with_expr.order_count AS DECIMAL(38, 4))), 0)          AS monetary_per_order,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS order_count_per_member,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
             LOCALTIMESTAMP                                                                    AS create_time,
             rfm_base_with_expr.computing_until_month
@@ -822,21 +822,21 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             vertical_type_range,
             rfm_base_with_expr.horizon_expression,
             rfm_base_with_expr.vertical_expression,
-            rfm_base_with_expr.computing_duration,
+            CAST(rfm_base_with_expr.computing_duration) AS SMALLINT,
             rfm_base_with_expr.computing_until_month,
-            rfm_base_with_expr.member_count,
+            CAST(rfm_base_with_expr.member_count) AS INTEGER,
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
                                 duration_member_count_temp.member_count AS DECIMAL(38, 4))), 0) AS member_percentage,
-            rfm_base_with_expr.order_count,
-            rfm_base_with_expr.member_spent,
+            CAST(rfm_base_with_expr.order_count) AS INTEGER,
+            CAST(rfm_base_with_expr.member_spent) AS DECIMAL(38, 4),
             COALESCE(TRY(CAST(rfm_base_with_expr.member_spent * 1.00 /
-                                rfm_base_with_expr.order_count AS DECIMAL(38, 2))), 0)          AS monetary_per_order,
+                                rfm_base_with_expr.order_count AS DECIMAL(38, 4))), 0)          AS monetary_per_order,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.order_count * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS order_count_per_member,
             COALESCE(
-                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 2))),
+                TRY(CAST(rfm_base_with_expr.member_spent * 1.00 / rfm_base_with_expr.member_count AS DECIMAL(38, 4))),
                 0)                                                                            AS monetary_per_member,
             LOCALTIMESTAMP                                                                    AS create_time,
             rfm_base_with_expr.computing_until_month
