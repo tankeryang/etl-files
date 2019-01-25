@@ -1,5 +1,8 @@
 CREATE SCHEMA IF NOT EXISTS ads_crm;
+
+
 DROP TABLE IF EXISTS ads_crm.member_structure_active;
+
 
 CREATE TABLE ads_crm.member_structure_active (
     computing_until_month               VARCHAR,
