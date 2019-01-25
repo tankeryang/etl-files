@@ -481,7 +481,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
-            rfm_base_with_expr.computing_until_month,
+            CAST(rfm_base_with_expr.computing_until_month AS VARCHAR(255)),
             CAST(rfm_base_with_expr.member_count AS INTEGER),
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -514,7 +514,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
-            rfm_base_with_expr.computing_until_month,
+            CAST(rfm_base_with_expr.computing_until_month AS VARCHAR(255)),
             CAST(rfm_base_with_expr.member_count AS INTEGER),
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -547,7 +547,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
-            rfm_base_with_expr.computing_until_month,
+            CAST(rfm_base_with_expr.computing_until_month AS VARCHAR(255)),
             CAST(rfm_base_with_expr.member_count AS INTEGER),
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 / duration_member_count_temp.member_count AS
@@ -580,7 +580,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
-            rfm_base_with_expr.computing_until_month,
+            CAST(rfm_base_with_expr.computing_until_month AS VARCHAR(255)),
             CAST(rfm_base_with_expr.member_count AS INTEGER),
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -613,7 +613,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
-            rfm_base_with_expr.computing_until_month,
+            CAST(rfm_base_with_expr.computing_until_month AS VARCHAR(255)),
             CAST(rfm_base_with_expr.member_count AS INTEGER),
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -648,7 +648,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
-            rfm_base_with_expr.computing_until_month,
+            CAST(rfm_base_with_expr.computing_until_month AS VARCHAR(255)),
             CAST(rfm_base_with_expr.member_count AS INTEGER),
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -681,7 +681,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
-            rfm_base_with_expr.computing_until_month,
+            CAST(rfm_base_with_expr.computing_until_month AS VARCHAR(255)),
             CAST(rfm_base_with_expr.member_count AS INTEGER),
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 / duration_member_count_temp.member_count AS
@@ -714,7 +714,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
-            rfm_base_with_expr.computing_until_month,
+            CAST(rfm_base_with_expr.computing_until_month AS VARCHAR(255)),
             CAST(rfm_base_with_expr.member_count AS INTEGER),
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -748,7 +748,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
-            rfm_base_with_expr.computing_until_month,
+            CAST(rfm_base_with_expr.computing_until_month AS VARCHAR(255)),
             CAST(rfm_base_with_expr.member_count AS INTEGER),
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 / duration_member_count_temp.member_count AS
@@ -781,7 +781,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
-            rfm_base_with_expr.computing_until_month,
+            CAST(rfm_base_with_expr.computing_until_month AS VARCHAR(255)),
             CAST(rfm_base_with_expr.member_count AS INTEGER),
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
@@ -813,7 +813,7 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
             CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
-            rfm_base_with_expr.computing_until_month,
+            CAST(rfm_base_with_expr.computing_until_month AS VARCHAR(255)),
             CAST(rfm_base_with_expr.member_count AS INTEGER),
             --t4.member_count AS total_member_count,
             COALESCE(TRY(CAST(rfm_base_with_expr.member_count * 1.00 /
