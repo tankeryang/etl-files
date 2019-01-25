@@ -504,12 +504,12 @@ INSERT INTO prod_mysql_crm_report_server.crm_mine.rfm_base (
         --f维度合计， 横维度：F 纵维度：0 的客户数、客户占比、累计金、客单价
         f AS (
             SELECT
-            CAST(horizon_type AS VSRCHAR(255)),
-            CAST(vertical_type AS VSRCHAR(255)),
-            CAST(horizon_type_range AS VSRCHAR(255)),
-            CAST(vertical_type_range AS VSRCHAR(255)),
-            CAST(rfm_base_with_expr.horizon_expression AS VSRCHAR(255)),
-            CAST(rfm_base_with_expr.vertical_expression AS VSRCHAR(255)),
+            CAST(horizon_type AS VARCHAR(255)),
+            CAST(vertical_type AS VARCHAR(255)),
+            CAST(horizon_type_range AS VARCHAR(255)),
+            CAST(vertical_type_range AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.horizon_expression AS VARCHAR(255)),
+            CAST(rfm_base_with_expr.vertical_expression AS VARCHAR(255)),
             CAST(rfm_base_with_expr.computing_duration AS SMALLINT),
             rfm_base_with_expr.computing_until_month,
             CAST(rfm_base_with_expr.member_count AS INTEGER),
