@@ -12,4 +12,4 @@ INSERT INTO cdm_crm.order_coupon_info_detail
     FROM ods_crm.coupon_used cu
     LEFT JOIN ods_crm.coupon_info ci ON cu.coupon_no = ci.coupon_no
     WHERE cu.order_time < DATE_PARSE(DATE_FORMAT(localtimestamp, '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')
-    GROUP BY cu.outer_order_no, ci.coupon_category;
+    GROUP BY cu.outer_order_no, cu.order_time, ci.coupon_category;
