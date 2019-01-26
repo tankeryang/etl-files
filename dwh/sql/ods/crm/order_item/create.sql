@@ -5,6 +5,8 @@ DROP TABLE IF EXISTS ods_crm.order_item;
 
 
 CREATE TABLE ods_crm.order_item (
+    brand_code         VARCHAR,
+    member_no          VARCHAR,
     order_item_no      VARCHAR,
     order_from         INTEGER        COMMENT '订单来源(1=线上/2=线下)',
     order_id           INTEGER        COMMENT '订单id',

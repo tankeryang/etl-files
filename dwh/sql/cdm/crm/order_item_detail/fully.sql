@@ -3,8 +3,8 @@ DELETE FROM cdm_crm.order_item_detail;
 
 INSERT INTO cdm_crm.order_item_detail
     SELECT
-        oif.brand_code,
-        oif.member_no,
+        oit.brand_code,
+        oit.member_no,
         oit.outer_order_no,
         oit.item_type,
         oit.product_item_code,
