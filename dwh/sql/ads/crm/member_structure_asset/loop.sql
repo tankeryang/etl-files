@@ -32,9 +32,9 @@ INSERT INTO ads_crm.member_structure_asset (
             grade_code,
             member_type,
             recency,
-            sum(total_member_count)      AS total_member_count,
-            sum(total_order_fact_amount) AS total_order_fact_amount,
-            sum(total_order_count)       AS total_order_count
+            SUM(total_member_count)      AS total_member_count,
+            SUM(total_order_fact_amount) AS total_order_fact_amount,
+            SUM(total_order_count)       AS total_order_count
             FROM cdm_crm.member_structure_asset
             WHERE purchase_type = 'PURCHASED' AND vip_type = 'VIP' AND reg_source IS NULL AND
                 grade_code IS NOT NULL AND member_type IS NOT NULL AND recency IS NOT NULL
@@ -70,9 +70,9 @@ INSERT INTO ads_crm.member_structure_asset (
             grade_code,
             member_type,
             recency_type,
-            sum(total_member_count)      AS total_member_count,
-            sum(total_order_fact_amount) AS total_order_fact_amount,
-            sum(total_order_count)       AS total_order_count
+            SUM(total_member_count)      AS total_member_count,
+            SUM(total_order_fact_amount) AS total_order_fact_amount,
+            SUM(total_order_count)       AS total_order_count
             FROM grade_new_old_member_recency_range
             GROUP BY computing_until_month, computing_duration, channel_type, sales_area, store_region, purchase_type,
             vip_type, reg_source, grade_code, member_type, recency_type
@@ -91,9 +91,9 @@ INSERT INTO ads_crm.member_structure_asset (
             grade_code,
             member_type,
             NULL                         AS recency_type,
-            sum(total_member_count)      AS total_member_count,
-            sum(total_order_fact_amount) AS total_order_fact_amount,
-            sum(total_order_count)       AS total_order_count
+            SUM(total_member_count)      AS total_member_count,
+            SUM(total_order_fact_amount) AS total_order_fact_amount,
+            SUM(total_order_count)       AS total_order_count
             FROM grade_new_old_member_recency
             GROUP BY computing_until_month, computing_duration, channel_type, sales_area, store_region, purchase_type,
             vip_type, reg_source, grade_code, member_type
@@ -147,9 +147,9 @@ INSERT INTO ads_crm.member_structure_asset (
             grade_code,
             NULL                         AS member_type,
             NULL                         AS recency_type,
-            sum(total_member_count)      AS total_member_count,
-            sum(total_order_fact_amount) AS total_order_fact_amount,
-            sum(total_order_count)       AS total_order_count
+            SUM(total_member_count)      AS total_member_count,
+            SUM(total_order_fact_amount) AS total_order_fact_amount,
+            SUM(total_order_count)       AS total_order_count
             FROM grade_new_old_member
             GROUP BY computing_until_month, computing_duration, channel_type, sales_area, store_region, purchase_type,
             vip_type, reg_source, grade_code
@@ -201,9 +201,9 @@ INSERT INTO ads_crm.member_structure_asset (
             NULL                         AS grade_code,
             NULL                         AS member_type,
             NULL                         AS recency_type,
-            sum(total_order_fact_amount) AS total_order_fact_amount,
-            sum(total_order_count)       AS total_order_count,
-            sum(total_member_count)      AS total_member_count,
+            SUM(total_order_fact_amount) AS total_order_fact_amount,
+            SUM(total_order_count)       AS total_order_count,
+            SUM(total_member_count)      AS total_member_count,
             LOCALTIMESTAMP               AS create_time
             FROM grade_member
             GROUP BY computing_until_month, computing_duration, channel_type, sales_area, store_region, purchase_type,
@@ -255,8 +255,8 @@ INSERT INTO ads_crm.member_structure_asset (
             NULL                         AS grade_code,
             NULL                         AS member_type,
             NULL                         AS recency_type,
-            sum(total_order_fact_amount) AS total_order_fact_amount,
-            sum(total_order_count)       AS total_order_count,
+            SUM(total_order_fact_amount) AS total_order_fact_amount,
+            SUM(total_order_count)       AS total_order_count,
             0                            AS total_member_count,
             LOCALTIMESTAMP               AS create_time
             FROM cdm_crm.member_structure_asset
@@ -276,11 +276,11 @@ INSERT INTO ads_crm.member_structure_asset (
             NULL                         AS grade_code,
             NULL                         AS member_type,
             NULL                         AS recency_type,
-            sum(total_member_count)      AS total_member_count,
+            SUM(total_member_count)      AS total_member_count,
             NULL                         AS member_count_percentage,
-            sum(total_order_fact_amount) AS total_order_fact_amount,
+            SUM(total_order_fact_amount) AS total_order_fact_amount,
             NULL                         AS order_fact_amount_percentage,
-            sum(total_order_count)       AS total_order_count,
+            SUM(total_order_count)       AS total_order_count,
             LOCALTIMESTAMP               AS create_time,
             computing_until_month        AS computing_until_month
             FROM cdm_crm.member_structure_asset
@@ -364,7 +364,7 @@ INSERT INTO ads_crm.member_structure_asset (
             NULL                    AS recency_type,
             NULL                    AS total_order_fact_amount,
             NULL                    AS total_order_count,
-            sum(total_member_count) AS total_member_count
+            SUM(total_member_count) AS total_member_count
             FROM cdm_crm.member_structure_asset
             WHERE purchase_type = 'POTENTIAL'
             GROUP BY computing_until_month, computing_duration, channel_type, sales_area, store_region, reg_source
@@ -383,7 +383,7 @@ INSERT INTO ads_crm.member_structure_asset (
             NULL                    AS grade_code,
             NULL                    AS member_type,
             NULL                    AS recency_type,
-            sum(total_member_count) AS total_member_count,
+            SUM(total_member_count) AS total_member_count,
             NULL                    AS member_count_percentage,
             NULL                    AS total_order_fact_amount,
             NULL                    AS order_fact_amount_percentage,
@@ -436,11 +436,11 @@ INSERT INTO ads_crm.member_structure_asset (
             NULL                         AS grade_code,
             NULL                         AS member_type,
             NULL                         AS recency_type,
-            sum(total_member_count)      AS total_member_count,
+            SUM(total_member_count)      AS total_member_count,
             NULL                         AS member_count_percentage,
-            sum(total_order_fact_amount) AS total_order_fact_amount,
+            SUM(total_order_fact_amount) AS total_order_fact_amount,
             NULL                         AS order_fact_amount_percentage,
-            sum(total_order_count)       AS total_order_count,
+            SUM(total_order_count)       AS total_order_count,
             LOCALTIMESTAMP               AS create_time,
             computing_until_month        AS computing_until_month
             FROM cdm_crm.member_structure_asset

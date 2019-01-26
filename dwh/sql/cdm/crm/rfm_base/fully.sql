@@ -12,10 +12,10 @@ INSERT INTO cdm_crm.rfm_base (
         0                                                                  AS rfm_conf_dimension_first,
         0                                                                  AS rfm_conf_dimension_second,
         CAST('{computing_duration}' AS INTEGER)                            AS computing_duration,
-        date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
-        count(member_no)                                                   AS member_count,
-        sum(order_count)                                                   AS order_count,
-        sum(monetary_total)                                                AS member_spent,
+        DATE_FORMAT(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+        COUNT(member_no)                                                   AS member_count,
+        SUM(order_count)                                                   AS order_count,
+        SUM(monetary_total)                                                AS member_spent,
         localtimestamp                                                     AS create_time
     FROM cdm_crm.member_rfm
     WHERE computing_duration = CAST('{computing_duration}' AS INTEGER);

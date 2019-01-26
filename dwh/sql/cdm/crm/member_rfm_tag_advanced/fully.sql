@@ -20,7 +20,7 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
         order_info_range AS (
             SELECT *
             FROM ods_crm.order_info
-            WHERE cast(member_no AS INTEGER) > 0 AND order_deal_time IS NOT NULL AND
+            WHERE CAST(member_no AS INTEGER) > 0 AND order_deal_time IS NOT NULL AND
                 order_deal_time >= (CURRENT_DATE + INTERVAL '-1' DAY +
                                         INTERVAL '-{computing_duration}' DAY) AND order_deal_time < CURRENT_DATE
         ),
@@ -57,9 +57,9 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
         member_order_date AS (
             SELECT
             member_no,
-            date_format(order_deal_time, '%Y-%m-%d') AS order_deal_date
+            DATE_FORMAT(order_deal_time, '%Y-%m-%d') AS order_deal_date
             FROM union_all_order_info_n_member_purchase_from_return
-            GROUP BY member_no, date_format(order_deal_time, '%Y-%m-%d')
+            GROUP BY member_no, DATE_FORMAT(order_deal_time, '%Y-%m-%d')
         ),
         --指定时间段内会员的购买次数（一天消费多次只算一次）
         member_frequency AS (
@@ -74,11 +74,11 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
             SELECT
             oi.brand_code,
             oi.member_no,
-            min(oi.order_deal_time)     AS min_order_deal_time,
-            max(oi.order_deal_time)     AS max_order_deal_time,
-            count(DISTINCT oi.order_id) AS total_order_count,
-            --         sum(order_item_quantity) AS total_order_item_quantity,
-            sum(oit.quantity)             AS total_order_item_quantity
+            MIN(oi.order_deal_time)     AS min_order_deal_time,
+            MAX(oi.order_deal_time)     AS max_order_deal_time,
+            COUNT(DISTINCT oi.order_id) AS total_order_count,
+            --         SUM(order_item_quantity) AS total_order_item_quantity,
+            SUM(oit.quantity)             AS total_order_item_quantity
             FROM union_all_order_info_n_member_purchase_from_return oi, ods_crm.order_item oit
             WHERE oi.order_id = oit.order_id AND
                 oit.quantity > 0
@@ -89,7 +89,7 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
             SELECT
             oi.brand_code,
             oi.member_no,
-            sum(CASE WHEN oit.sub_coupon_amount IS NOT NULL
+            SUM(CASE WHEN oit.sub_coupon_amount IS NOT NULL
                 THEN oit.sub_coupon_amount
                 ELSE oit.fact_amount END) AS total_order_fact_amount
             FROM union_all_order_info_n_member_purchase_from_return oi, ods_crm.order_item oit
@@ -104,7 +104,7 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
             mocic.member_no,
             COALESCE(TRY(CAST(total_order_fact_amount * 1.00 / total_order_count AS DECIMAL(38, 2))),
                     0) AS average_order_amount,
-            --           date_diff('day', DATE(max(min_order_deal_time)), date(max_order_deal_time)) as days,
+            --           date_diff('day', DATE(MAX(min_order_deal_time)), date(max_order_deal_time)) as days,
             COALESCE(TRY(CAST(date_diff('day', DATE(min_order_deal_time), date(max_order_deal_time)) * 1.00 /
                                 total_order_count AS DECIMAL(38, 2))),
                     0) AS average_purchase_interval
@@ -115,13 +115,13 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
         return_count_monetary AS (
             SELECT
             member_no,
-            count(order_id)        AS total_return_count,
-            sum(order_fact_amount) AS total_return_amount
+            COUNT(order_id)        AS total_return_count,
+            SUM(order_fact_amount) AS total_return_amount
             FROM return_order_info
             GROUP BY member_no
         )
     SELECT
-        date_format(CURRENT_DATE + INTERVAL '-1' DAY, '%Y-%m-%d') AS computing_until_date,
+        DATE_FORMAT(CURRENT_DATE + INTERVAL '-1' DAY, '%Y-%m-%d') AS computing_until_date,
         CAST('{computing_duration}' AS INTEGER)                   AS computing_duration,
         average.brand_code,
         average.member_no,

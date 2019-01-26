@@ -9,7 +9,7 @@ INSERT INTO cdm_crm.member_info_detail
         mi.member_no                     AS member_no,
         mi.brand_code                    AS brand_code,
         cdm_cms_si_bn.brand_name         AS brand_name,
-        cdm_cms_si.country_name          AS country,
+        cdm_cms_si.counTRY_name          AS country,
         si.sales_area                    AS sales_area,
         cms_si.management_district_code  AS sales_district,
         si.province                      AS province,

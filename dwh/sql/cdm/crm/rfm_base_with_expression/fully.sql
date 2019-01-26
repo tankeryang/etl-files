@@ -24,13 +24,13 @@ INSERT INTO cdm_crm.rfm_base_with_expression (
             rf.type                 AS horizon_type,
             rf.condition_expression AS horizon_expression,
             CASE WHEN rf.type = 'R' AND rb.rfm_conf_dimension_first > 0
-                THEN cast(rf.greater_than AS VARCHAR) || ',' || cast(rf.not_greater_than AS VARCHAR)
+                THEN CAST(rf.greater_than AS VARCHAR) || ',' || CAST(rf.not_greater_than AS VARCHAR)
             WHEN rf.type = 'F' AND rb.rfm_conf_dimension_first > 0
-                THEN cast(rf.not_less_than AS VARCHAR) || ',' || cast(rf.less_than AS VARCHAR)
+                THEN CAST(rf.not_less_than AS VARCHAR) || ',' || CAST(rf.less_than AS VARCHAR)
             WHEN rf.type = 'M' AND rb.rfm_conf_dimension_first > 0
-                THEN cast(rf.greater_than AS VARCHAR) || ',' || cast(rf.not_greater_than AS VARCHAR)
+                THEN CAST(rf.greater_than AS VARCHAR) || ',' || CAST(rf.not_greater_than AS VARCHAR)
             WHEN rf.type = 'G' AND rb.rfm_conf_dimension_first > 0
-                THEN cast(rf.rfm_conf_id AS VARCHAR)
+                THEN CAST(rf.rfm_conf_id AS VARCHAR)
             ELSE NULL END           AS horizon_type_range,
             rb.*
             FROM cdm_crm.rfm_base rb
@@ -42,13 +42,13 @@ INSERT INTO cdm_crm.rfm_base_with_expression (
             rf.type                 AS vertical_type,
             rf.condition_expression AS vertical_expression,
             CASE WHEN rf.type = 'R' AND rb.rfm_conf_dimension_second > 0
-                THEN cast(rf.greater_than AS VARCHAR) || ',' || cast(rf.not_greater_than AS VARCHAR)
+                THEN CAST(rf.greater_than AS VARCHAR) || ',' || CAST(rf.not_greater_than AS VARCHAR)
             WHEN rf.type = 'F' AND rb.rfm_conf_dimension_second > 0
-                THEN cast(rf.not_less_than AS VARCHAR) || ',' || cast(rf.less_than AS VARCHAR)
+                THEN CAST(rf.not_less_than AS VARCHAR) || ',' || CAST(rf.less_than AS VARCHAR)
             WHEN rf.type = 'M' AND rb.rfm_conf_dimension_second > 0
-                THEN cast(rf.greater_than AS VARCHAR) || ',' || cast(rf.not_greater_than AS VARCHAR)
+                THEN CAST(rf.greater_than AS VARCHAR) || ',' || CAST(rf.not_greater_than AS VARCHAR)
             WHEN rf.type = 'G' AND rb.rfm_conf_dimension_second > 0
-                THEN cast(rf.rfm_conf_id AS VARCHAR)
+                THEN CAST(rf.rfm_conf_id AS VARCHAR)
             ELSE NULL END           AS vertical_type_range,
             rb.*
             FROM cdm_crm.rfm_base rb

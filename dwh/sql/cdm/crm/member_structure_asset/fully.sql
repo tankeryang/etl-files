@@ -32,12 +32,12 @@ INSERT INTO cdm_crm.member_structure_asset (
             grade_code,
             member_type,
             recency,
-            sum(order_fact_amount)    AS total_order_fact_amount,
+            SUM(order_fact_amount)    AS total_order_fact_amount,
             COUNT(order_id)           AS total_order_count,
             COUNT(DISTINCT member_no) AS total_member_count,
             LOCALTIMESTAMP            AS create_time
             FROM member_structure_duration_order_store_last_grade_first_order_deal_time_recency_frequency
-            WHERE cast(member_no AS INTEGER) > 0
+            WHERE CAST(member_no AS INTEGER) > 0
             GROUP BY computing_until_month, computing_duration, grade_code, member_type, recency
         ),
         --全渠道、全国区域下各等级下的新老会员统计
@@ -54,9 +54,9 @@ INSERT INTO cdm_crm.member_structure_asset (
             grade_code,
             member_type,
             NULL                         AS recency,
-            sum(total_order_fact_amount) AS total_order_fact_amount,
-            sum(total_order_count)       AS total_order_count,
-            sum(total_member_count)      AS total_member_count,
+            SUM(total_order_fact_amount) AS total_order_fact_amount,
+            SUM(total_order_count)       AS total_order_count,
+            SUM(total_member_count)      AS total_member_count,
             LOCALTIMESTAMP               AS create_time
             FROM grade_new_old_member_recency
             GROUP BY computing_until_month, computing_duration, grade_code, member_type
@@ -75,9 +75,9 @@ INSERT INTO cdm_crm.member_structure_asset (
             grade_code,
             NULL                         AS member_type,
             NULL                         AS recency,
-            sum(total_order_fact_amount) AS total_order_fact_amount,
-            sum(total_order_count)       AS total_order_count,
-            sum(total_member_count)      AS total_member_count,
+            SUM(total_order_fact_amount) AS total_order_fact_amount,
+            SUM(total_order_count)       AS total_order_count,
+            SUM(total_member_count)      AS total_member_count,
             LOCALTIMESTAMP               AS create_time
             FROM grade_new_old_member
             GROUP BY computing_until_month, computing_duration, grade_code
@@ -96,9 +96,9 @@ INSERT INTO cdm_crm.member_structure_asset (
             NULL                         AS grade_code,
             NULL                         AS member_type,
             NULL                         AS recency,
-            sum(total_order_fact_amount) AS total_order_fact_amount,
-            sum(total_order_count)       AS total_order_count,
-            sum(total_member_count)      AS total_member_count,
+            SUM(total_order_fact_amount) AS total_order_fact_amount,
+            SUM(total_order_count)       AS total_order_count,
+            SUM(total_member_count)      AS total_member_count,
             LOCALTIMESTAMP               AS create_time
             FROM grade_member
             --duration_order_store
@@ -124,12 +124,12 @@ INSERT INTO cdm_crm.member_structure_asset (
             NULL                   AS grade_code,
             NULL                   AS member_type,
             NULL                   AS recency,
-            sum(order_fact_amount) AS total_order_fact_amount,
+            SUM(order_fact_amount) AS total_order_fact_amount,
             COUNT(order_id)        AS total_order_count,
             0                      AS total_member_count,
             LOCALTIMESTAMP         AS create_time
             FROM member_structure_duration_order_store_last_grade_first_order_deal_time_recency_frequency
-            WHERE cast(member_no AS INTEGER) <= 0
+            WHERE CAST(member_no AS INTEGER) <= 0
             GROUP BY computing_until_month, computing_duration
         ),
         --有消费
@@ -176,7 +176,7 @@ INSERT INTO cdm_crm.member_structure_asset (
             NULL                      AS recency,
             NULL                      AS total_order_fact_amount,
             NULL                      AS total_order_count,
-            count(DISTINCT member_no) AS total_member_count,
+            COUNT(DISTINCT member_no) AS total_member_count,
             LOCALTIMESTAMP            AS create_time
             FROM member_structure_asset_duration_potential_reg_source
             GROUP BY computing_until_month, computing_duration, reg_source
@@ -197,7 +197,7 @@ INSERT INTO cdm_crm.member_structure_asset (
             NULL                    AS recency,
             NULL                    AS total_order_fact_amount,
             NULL                    AS total_order_count,
-            sum(total_member_count) AS total_member_count,
+            SUM(total_member_count) AS total_member_count,
             LOCALTIMESTAMP          AS create_time
             FROM potential_member_reg_source
             GROUP BY computing_until_month, computing_duration

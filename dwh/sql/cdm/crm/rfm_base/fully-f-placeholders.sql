@@ -11,7 +11,7 @@ WITH
         SELECT
             'where_conditions',
             json_format(
-                cast(
+                CAST(
                     MAP(
                         ARRAY ['computing_duration', 'rfm_conf_id', 'not_less_than', 'less_than'],
                         ARRAY [

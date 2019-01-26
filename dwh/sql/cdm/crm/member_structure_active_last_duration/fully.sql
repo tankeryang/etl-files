@@ -22,7 +22,7 @@ INSERT INTO cdm_crm.member_structure_active_last_duration (
     WITH
         active_last_duration AS (
         SELECT
-            date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+            DATE_FORMAT(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
             duration                                                 AS computing_duration,
             duration                                                 AS last_computing_duration_end,
             date_trunc('month', date_add('month', -1 * duration,

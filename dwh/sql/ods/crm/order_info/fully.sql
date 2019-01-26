@@ -5,7 +5,7 @@ INSERT INTO ods_crm.order_info
     SELECT
         order_id,
         outer_order_no,
-        cast(order_from AS VARCHAR),
+        CAST(order_from AS VARCHAR),
         trade_source,
         brand_code,
         store_code,
@@ -19,5 +19,6 @@ INSERT INTO ods_crm.order_info
         outer_return_order_no,
         localtimestamp
     FROM prod_mysql_crm.crm.order_info
-    WHERE date(pay_time) < date(localtimestamp)
-    AND order_status = 'PAYED';
+    WHERE order_status = 'PAYED'
+        AND pay_time <  DATE_PARSE(DATE_FORMAT(localtimestamp, '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')
+        AND brand_code IN ('2', '3', '6');

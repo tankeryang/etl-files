@@ -16,10 +16,9 @@ INSERT INTO cdm_crm.order_item_detail
         -- ci.leaf_cate,
         -- ci.lining,
         oit.quantity,
-        cast(oit.total_amount AS DECIMAL(18, 2)),
-        cast(oit.fact_amount AS DECIMAL(18, 2)),
-        cast(oit.discount_rate AS DECIMAL(18, 2)),
-        oif.order_deal_time,
+        CAST(oit.total_amount AS DECIMAL(18, 2)),
+        CAST(oit.fact_amount AS DECIMAL(18, 2)),
+        CAST(oit.discount_rate AS DECIMAL(18, 2)),
+        oit.order_deal_time,
         localtimestamp
-    FROM ods_crm.order_item oit
-    LEFT JOIN ods_crm.order_info oif ON oit.outer_order_no = oif.outer_order_no;
+    FROM ods_crm.order_item oit;

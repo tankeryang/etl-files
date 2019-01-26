@@ -11,7 +11,7 @@ INSERT INTO cdm_crm.member_structure_duration_member_last_grade (
         --指定时间段内会员的最新等级
         duration_member_last_grade AS (
             SELECT DISTINCT
-            date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+            DATE_FORMAT(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
             CAST('{computing_duration}' AS INTEGER)                                     AS computing_duration,
             mgl.member_no,
             mgl.after_grade_id,

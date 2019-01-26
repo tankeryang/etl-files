@@ -12,7 +12,7 @@ WITH
         SELECT
             'where_conditions',
             json_format(
-                cast(
+                CAST(
                     MAP(
                         ARRAY ['computing_duration', 'h_id', 'v_id', 'h_greater_than', 'h_not_greater_than', 'v_equals'],
                         ARRAY [

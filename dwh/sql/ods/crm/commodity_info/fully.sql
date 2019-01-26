@@ -12,5 +12,5 @@ INSERT INTO ods_crm.commodity_info
         series,
         lining,
         list_date,
-        cast(retail_price AS DECIMAL(18, 2))
+        CAST(retail_price AS DECIMAL(18, 2))
     FROM prod_mysql_mms.mms.commodity_info;

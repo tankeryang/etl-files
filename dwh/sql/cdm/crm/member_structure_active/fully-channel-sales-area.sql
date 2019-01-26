@@ -39,8 +39,8 @@ INSERT INTO cdm_crm.member_structure_active (
             frequency_type,
             NULL                      AS recency_type,
             COUNT(DISTINCT member_no) AS total_member_count,
-            sum(order_fact_amount)    AS total_order_fact_amount,
-            COALESCE(TRY(CAST(sum(order_fact_amount) * 1.00 / COUNT(DISTINCT member_no) AS DECIMAL(38, 2))),
+            SUM(order_fact_amount)    AS total_order_fact_amount,
+            COALESCE(TRY(CAST(SUM(order_fact_amount) * 1.00 / COUNT(DISTINCT member_no) AS DECIMAL(38, 2))),
                     0)               AS monetary_per_member,
             NULL                      AS total_repurchased_member_count,
             NULL                      AS total_repurchased_order_fact_amount,
@@ -57,9 +57,9 @@ INSERT INTO cdm_crm.member_structure_active (
             channel_type,
             sales_area,
             member_type,
-            sum(total_member_count)      AS total_member_count,
-            sum(total_order_fact_amount) AS total_order_fact_amount,
-            COALESCE(TRY(CAST(sum(total_order_fact_amount) * 1.00 / sum(total_member_count) AS DECIMAL(38, 2))),
+            SUM(total_member_count)      AS total_member_count,
+            SUM(total_order_fact_amount) AS total_order_fact_amount,
+            COALESCE(TRY(CAST(SUM(total_order_fact_amount) * 1.00 / SUM(total_member_count) AS DECIMAL(38, 2))),
                     0)                  AS monetary_per_member
             FROM total_active_member_type_frequency_member
             GROUP BY computing_until_month, computing_duration, channel_type, sales_area, member_type
@@ -79,7 +79,7 @@ INSERT INTO cdm_crm.member_structure_active (
             sales_area,
             member_type,
             COUNT(DISTINCT member_no) AS total_repurchased_member_count,
-            sum(order_fact_amount)    AS total_repurchased_order_fact_amount
+            SUM(order_fact_amount)    AS total_repurchased_order_fact_amount
             FROM active_repurchased_member_type_member
             GROUP BY computing_until_month, computing_duration, channel_type, sales_area, member_type
         ),
@@ -121,13 +121,13 @@ INSERT INTO cdm_crm.member_structure_active (
             NULL                                     AS member_type,
             NULL                                     AS frequency_type,
             NULL                                     AS recency_type,
-            sum(total_member_count)                  AS total_member_count,
-            sum(total_order_fact_amount)             AS total_order_fact_amount,
-            COALESCE(TRY(CAST(sum(total_order_fact_amount) * 1.00 / sum(total_member_count) AS DECIMAL(38, 2))),
+            SUM(total_member_count)                  AS total_member_count,
+            SUM(total_order_fact_amount)             AS total_order_fact_amount,
+            COALESCE(TRY(CAST(SUM(total_order_fact_amount) * 1.00 / SUM(total_member_count) AS DECIMAL(38, 2))),
                     0)                              AS monetary_per_member,
-            sum(total_repurchased_member_count)      AS total_repurchased_member_count,
-            sum(total_repurchased_order_fact_amount) AS total_repurchased_order_fact_amount,
-            COALESCE(TRY(CAST(sum(total_repurchased_member_count) * 1.00 / sum(total_member_count) AS DECIMAL(38, 4))),
+            SUM(total_repurchased_member_count)      AS total_repurchased_member_count,
+            SUM(total_repurchased_order_fact_amount) AS total_repurchased_order_fact_amount,
+            COALESCE(TRY(CAST(SUM(total_repurchased_member_count) * 1.00 / SUM(total_member_count) AS DECIMAL(38, 4))),
                     0)                              AS total_repurchased_percentage,
             LOCALTIMESTAMP                           AS create_time
             FROM total_active_n_repurchased_member_type_member
@@ -141,7 +141,7 @@ INSERT INTO cdm_crm.member_structure_active (
             channel_type,
             sales_area,
             member_no,
-            sum(order_fact_amount) AS total_order_fact_amount
+            SUM(order_fact_amount) AS total_order_fact_amount
             FROM member_structure_duration_order_store_last_grade_first_order_deal_time_recency_frequency
             WHERE member_type = 'OLD'
             GROUP BY computing_until_month, computing_duration, channel_type, sales_area, member_no
@@ -186,8 +186,8 @@ INSERT INTO cdm_crm.member_structure_active (
             NULL                         AS frequency_type,
             recency_type,
             COUNT(member_no)             AS total_member_count,
-            sum(total_order_fact_amount) AS total_order_fact_amount,
-            COALESCE(TRY(CAST(sum(total_order_fact_amount) * 1.00 / COUNT(member_no) AS DECIMAL(38, 2))),
+            SUM(total_order_fact_amount) AS total_order_fact_amount,
+            COALESCE(TRY(CAST(SUM(total_order_fact_amount) * 1.00 / COUNT(member_no) AS DECIMAL(38, 2))),
                     0)                  AS monetary_per_member,
             NULL                         AS total_repurchased_member_count,
             NULL                         AS total_repurchased_order_fact_amount,

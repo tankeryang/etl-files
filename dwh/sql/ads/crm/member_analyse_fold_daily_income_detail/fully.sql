@@ -18,16 +18,16 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         t.order_channel,
         t.trade_source,
         t.member_type,
-        IF (t.member_newold_type = '', NULL, t.member_newold_type) AS member_newold_type,
-        IF (t.member_level_type = '', NULL, t.member_level_type) AS member_level_type,
-        cast(sum(t.sales_income) AS DECIMAL(18, 3)),
-        cast(sum(t.sales_item_quantity) AS INTEGER),
-        cast(sum(t.lyst_sales_income) AS DECIMAL(18, 3)),
-        array_distinct(flatten(array_agg(t.customer_array))),
-        cast(sum(t.order_amount) AS INTEGER),
+        IF(t.member_newold_type = '', NULL, t.member_newold_type) AS member_newold_type,
+        IF(t.member_level_type = '', NULL, t.member_level_type) AS member_level_type,
+        CAST(SUM(t.sales_income) AS DECIMAL(18, 3)),
+        CAST(SUM(t.sales_item_quantity) AS INTEGER),
+        CAST(SUM(t.lyst_sales_income) AS DECIMAL(18, 3)),
+        ARRAY_DISTINCT(FLATTEN(ARRAY_AGG(t.customer_array))),
+        CAST(SUM(t.order_amount) AS INTEGER),
         t.date,
         concat(t.year, '-', t.month) AS year_month,
-        date_format(t.date, '%Y-%m-%d') AS vchr_date
+        DATE_FORMAT(t.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t
     GROUP BY DISTINCT
         t.country,
@@ -72,14 +72,14 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         '整体' AS member_type,
         NULL AS member_newold_type,
         NULL AS member_level_type,
-        cast(sum(t1.sales_income) AS DECIMAL(18, 3)),
-        cast(sum(t1.sales_item_quantity) AS INTEGER),
-        cast(sum(t1.lyst_sales_income) AS DECIMAL(18, 3)),
-        array_distinct(flatten(array_agg(t1.customer_array))),
-        cast(sum(t1.order_amount) AS INTEGER),
+        CAST(SUM(t1.sales_income) AS DECIMAL(18, 3)),
+        CAST(SUM(t1.sales_item_quantity) AS INTEGER),
+        CAST(SUM(t1.lyst_sales_income) AS DECIMAL(18, 3)),
+        ARRAY_DISTINCT(FLATTEN(ARRAY_AGG(t1.customer_array))),
+        CAST(SUM(t1.order_amount) AS INTEGER),
         t1.date,
         concat(t1.year, '-', t1.month) AS year_month,
-        date_format(t1.date, '%Y-%m-%d') AS vchr_date
+        DATE_FORMAT(t1.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t1
     GROUP BY
         t1.country,
@@ -118,14 +118,14 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         NULL AS member_type,
         '会员' AS member_newold_type,
         NULL AS member_level_type,
-        cast(sum(t2.sales_income) AS DECIMAL(18, 3)),
-        cast(sum(t2.sales_item_quantity) AS INTEGER),
-        cast(sum(t2.lyst_sales_income) AS DECIMAL(18, 3)),
-        array_distinct(flatten(array_agg(t2.customer_array))),
-        cast(sum(t2.order_amount) AS INTEGER),
+        CAST(SUM(t2.sales_income) AS DECIMAL(18, 3)),
+        CAST(SUM(t2.sales_item_quantity) AS INTEGER),
+        CAST(SUM(t2.lyst_sales_income) AS DECIMAL(18, 3)),
+        ARRAY_DISTINCT(FLATTEN(ARRAY_AGG(t2.customer_array))),
+        CAST(SUM(t2.order_amount) AS INTEGER),
         t2.date,
         concat(t2.year, '-', t2.month) AS year_month,
-        date_format(t2.date, '%Y-%m-%d') AS vchr_date
+        DATE_FORMAT(t2.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t2
     WHERE t2.member_type = '会员'
     GROUP BY
@@ -165,14 +165,14 @@ INSERT INTO ads_crm.member_analyse_fold_daily_income_detail
         NULL AS member_type,
         NULL AS member_newold_type,
         '会员' AS member_level_type,
-        cast(sum(t3.sales_income) AS DECIMAL(18, 3)),
-        cast(sum(t3.sales_item_quantity) AS INTEGER),
-        cast(sum(t3.lyst_sales_income) AS DECIMAL(18, 3)),
-        array_distinct(flatten(array_agg(t3.customer_array))),
-        cast(sum(t3.order_amount) AS INTEGER),
+        CAST(SUM(t3.sales_income) AS DECIMAL(18, 3)),
+        CAST(SUM(t3.sales_item_quantity) AS INTEGER),
+        CAST(SUM(t3.lyst_sales_income) AS DECIMAL(18, 3)),
+        ARRAY_DISTINCT(FLATTEN(ARRAY_AGG(t3.customer_array))),
+        CAST(SUM(t3.order_amount) AS INTEGER),
         t3.date,
         concat(t3.year, '-', t3.month) AS year_month,
-        date_format(t3.date, '%Y-%m-%d') AS vchr_date
+        DATE_FORMAT(t3.date, '%Y-%m-%d') AS vchr_date
     FROM ads_crm.member_analyse_daily_income_detail t3
     WHERE t3.member_type = '会员'
     GROUP BY

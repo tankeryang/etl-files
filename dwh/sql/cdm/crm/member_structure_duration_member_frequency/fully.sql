@@ -14,9 +14,9 @@ INSERT INTO cdm_crm.member_structure_duration_member_frequency (
             computing_until_month,
             computing_duration,
             member_no,
-            date_format(order_deal_time, '%Y-%m-%d') AS order_deal_date
+            DATE_FORMAT(order_deal_time, '%Y-%m-%d') AS order_deal_date
             FROM member_structure_duration_order_store
-            GROUP BY computing_until_month, computing_duration, member_no, date_format(order_deal_time, '%Y-%m-%d')
+            GROUP BY computing_until_month, computing_duration, member_no, DATE_FORMAT(order_deal_time, '%Y-%m-%d')
             ORDER BY computing_until_month, computing_duration, member_no DESC
         ),
         --指定时间段内会员的购买次数（一天消费多次只算一次）

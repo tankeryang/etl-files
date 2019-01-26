@@ -26,5 +26,6 @@ CREATE TABLE ods_crm.order_item (
     return_quantity    INTEGER        COMMENT '退货数',
     return_amount      DECIMAL(38, 2) COMMENT '退货金额',
     sub_coupon_amount  DECIMAL(38, 2) COMMENT '扣券后金额',
+    order_deal_time    TIMESTAMP      COMMENT '关联订单表-pay_time',
     create_time        TIMESTAMP
 );

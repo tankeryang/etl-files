@@ -58,7 +58,7 @@ INSERT INTO cdm_crm.member_structure_duration_order_store_last_grade_first_order
                 ON dos.member_no = dmf.member_no AND
                 dos.computing_until_month = dmf.computing_until_month AND
                 dos.computing_duration = dmf.computing_duration
-            WHERE dos.computing_duration = cast('{computing_duration}' AS INTEGER)
+            WHERE dos.computing_duration = CAST('{computing_duration}' AS INTEGER)
         )
     SELECT *
     FROM duration_order_store_last_grade_first_order_deal_time_recency_frequency;

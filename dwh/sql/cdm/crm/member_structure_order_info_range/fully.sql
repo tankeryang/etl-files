@@ -15,7 +15,7 @@ INSERT INTO cdm_crm.member_structure_order_info_range (
     )
     -----------1, 3, 6, 12月时间段------------------------------------------------------------------------------------------------
     SELECT
-        date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+        DATE_FORMAT(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
         CAST('{computing_duration}' AS INTEGER)                  AS computing_duration,
         order_id,
         outer_order_no,
@@ -29,6 +29,6 @@ INSERT INTO cdm_crm.member_structure_order_info_range (
         order_status,
         outer_return_order_no
     FROM ods_crm.order_info
-    WHERE cast(member_no AS INTEGER) > 0 AND order_deal_time IS NOT NULL
+    WHERE CAST(member_no AS INTEGER) > 0 AND order_deal_time IS NOT NULL
     AND order_deal_time >= date_trunc('month', DATE('{c_date}') + INTERVAL '-{computing_duration}' MONTH)
     AND order_deal_time < date_trunc('month', DATE('{c_date}'));

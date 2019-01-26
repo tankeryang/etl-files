@@ -13,7 +13,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
         order_info_range AS (
             SELECT *
             FROM ods_crm.order_info
-            WHERE cast(member_no AS INTEGER) > 0 AND
+            WHERE CAST(member_no AS INTEGER) > 0 AND
                 order_deal_time IS NOT NULL AND
                 order_deal_time <
                 date_trunc('month', date_add('month', -1 * CAST('{computing_duration}' AS INTEGER), DATE('{c_date}')))
@@ -51,7 +51,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
         last_duration_max_order AS (
             SELECT
             member_no,
-            max(order_deal_time) AS max_order_deal_time
+            MAX(order_deal_time) AS max_order_deal_time
             FROM union_all_order_info_n_member_purchase_from_return
             GROUP BY member_no
         ),
@@ -60,7 +60,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
             SELECT
             si.channel_type,
             oi.member_no,
-            max(oi.order_deal_time) AS max_order_deal_time
+            MAX(oi.order_deal_time) AS max_order_deal_time
             FROM union_all_order_info_n_member_purchase_from_return oi, ods_crm.store_info si
             WHERE oi.store_code = si.store_code
             GROUP BY si.channel_type, oi.member_no
@@ -70,7 +70,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
             SELECT
             si.sales_area,
             oi.member_no,
-            max(oi.order_deal_time) AS max_order_deal_time
+            MAX(oi.order_deal_time) AS max_order_deal_time
             FROM union_all_order_info_n_member_purchase_from_return oi, ods_crm.store_info si
             WHERE oi.store_code = si.store_code
             GROUP BY si.sales_area, oi.member_no
@@ -80,7 +80,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
             SELECT
             si.city                 AS store_region,
             oi.member_no,
-            max(oi.order_deal_time) AS max_order_deal_time
+            MAX(oi.order_deal_time) AS max_order_deal_time
             FROM union_all_order_info_n_member_purchase_from_return oi, ods_crm.store_info si
             WHERE oi.store_code = si.store_code
             GROUP BY si.city, oi.member_no
@@ -91,7 +91,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
             si.channel_type,
             si.sales_area,
             oi.member_no,
-            max(oi.order_deal_time) AS max_order_deal_time
+            MAX(oi.order_deal_time) AS max_order_deal_time
             FROM union_all_order_info_n_member_purchase_from_return oi, ods_crm.store_info si
             WHERE oi.store_code = si.store_code
             GROUP BY si.channel_type, si.sales_area, member_no
@@ -102,7 +102,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
             si.channel_type,
             si.city                 AS store_region,
             oi.member_no,
-            max(oi.order_deal_time) AS max_order_deal_time
+            MAX(oi.order_deal_time) AS max_order_deal_time
             FROM union_all_order_info_n_member_purchase_from_return oi, ods_crm.store_info si
             WHERE oi.store_code = si.store_code
             GROUP BY si.channel_type, si.city, oi.member_no
@@ -113,7 +113,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
             si.sales_area,
             si.city                 AS store_region,
             oi.member_no,
-            max(oi.order_deal_time) AS max_order_deal_time
+            MAX(oi.order_deal_time) AS max_order_deal_time
             FROM union_all_order_info_n_member_purchase_from_return oi, ods_crm.store_info si
             WHERE oi.store_code = si.store_code
             GROUP BY si.sales_area, si.city, oi.member_no
@@ -125,13 +125,13 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
             si.sales_area,
             si.city                 AS store_region,
             oi.member_no,
-            max(oi.order_deal_time) AS max_order_deal_time
+            MAX(oi.order_deal_time) AS max_order_deal_time
             FROM union_all_order_info_n_member_purchase_from_return oi, ods_crm.store_info si
             WHERE oi.store_code = si.store_code
             GROUP BY si.channel_type, si.sales_area, si.city, oi.member_no
         )
     SELECT
-        date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+        DATE_FORMAT(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
         CAST('{computing_duration}' AS INTEGER)                  AS computing_duration,
         NULL                                                     AS channel_type,
         NULL                                                     AS sales_area,
@@ -141,7 +141,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
     FROM last_duration_max_order
     UNION ALL
     SELECT
-        date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+        DATE_FORMAT(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
         CAST('{computing_duration}' AS INTEGER)                  AS computing_duration,
         channel_type,
         NULL                                                     AS sales_area,
@@ -151,7 +151,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
     FROM last_duration_channel_type_max_order
     UNION ALL
     SELECT
-        date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+        DATE_FORMAT(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
         CAST('{computing_duration}' AS INTEGER)                  AS computing_duration,
         NULL                                                     AS channel_type,
         sales_area,
@@ -161,7 +161,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
     FROM last_duration_sales_area_max_order
     UNION ALL
     SELECT
-        date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+        DATE_FORMAT(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
         CAST('{computing_duration}' AS INTEGER)                  AS computing_duration,
         NULL                                                     AS channel_type,
         NULL                                                     AS sales_area,
@@ -171,7 +171,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
     FROM last_duration_store_region_max_order
     UNION ALL
     SELECT
-        date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+        DATE_FORMAT(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
         CAST('{computing_duration}' AS INTEGER)                  AS computing_duration,
         channel_type,
         sales_area,
@@ -181,7 +181,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
     FROM last_duration_channel_type_sales_area_max_order
     UNION ALL
     SELECT
-        date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+        DATE_FORMAT(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
         CAST('{computing_duration}' AS INTEGER)                  AS computing_duration,
         channel_type,
         NULL                                                     AS sales_area,
@@ -191,7 +191,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
     FROM last_duration_channel_type_store_region_max_order
     UNION ALL
     SELECT
-        date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+        DATE_FORMAT(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
         CAST('{computing_duration}' AS INTEGER)                  AS computing_duration,
         NULL                                                     AS channel_type,
         sales_area,
@@ -201,7 +201,7 @@ INSERT INTO cdm_crm.member_structure_before_duration_max_order (
     FROM last_duration_sales_area_store_region_max_order
     UNION ALL
     SELECT
-        date_format(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
+        DATE_FORMAT(DATE('{c_date}') + INTERVAL '-1' MONTH, '%Y-%m') AS computing_until_month,
         CAST('{computing_duration}' AS INTEGER)                  AS computing_duration,
         channel_type,
         sales_area,

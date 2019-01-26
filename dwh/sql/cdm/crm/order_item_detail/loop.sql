@@ -13,15 +13,12 @@ INSERT INTO cdm_crm.order_item_detail
         -- ci.leaf_cate,
         -- ci.lining,
         oit.quantity,
-        cast(oit.total_amount AS DECIMAL(18, 2)),
-        cast(oit.fact_amount AS DECIMAL(18, 2)),
-        cast(oit.discount_rate AS DECIMAL(18, 2)),
-        oif.order_deal_time,
+        CAST(oit.total_amount AS DECIMAL(18, 2)),
+        CAST(oit.fact_amount AS DECIMAL(18, 2)),
+        CAST(oit.discount_rate AS DECIMAL(18, 2)),
+        oit.order_deal_time,
         localtimestamp
     FROM ods_crm.order_item oit
-    LEFT JOIN ods_crm.order_info oif ON oit.outer_order_no = oif.outer_order_no
     -- LEFT JOIN ods_crm.commodity_info ci ON oit.product_code = ci.product_code
-    WHERE date_format(oif.order_deal_time, '%Y-%m-%d %T') > (
-        SELECT max(date_format(order_deal_time, '%Y-%m-%d %T')) FROM cdm_crm.order_item_detail
-    )
-    AND date(oif.order_deal_time) < date(localtimestamp);
+    WHERE oit.order_deal_time > (SELECT MAX(order_deal_time) FROM cdm_crm.order_item_detail)
+    AND oit.order_deal_time < DATE_PARSE(DATE_FORMAT(localtimestamp, '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T');

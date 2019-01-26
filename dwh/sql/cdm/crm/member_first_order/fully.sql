@@ -6,14 +6,14 @@ INSERT INTO cdm_crm.member_first_order
         SELECT
             member_no,
             brand_code,
-            min(order_deal_time) AS order_deal_time
+            MIN(order_deal_time) AS order_deal_time
         FROM ods_crm.order_info
         GROUP BY member_no, brand_code
     )
     SELECT DISTINCT
         mft.member_no,
         mft.brand_code,
-        cast(sum(oi.order_fact_amount) AS DECIMAL(18, 2)),
+        CAST(SUM(oi.order_fact_amount) AS DECIMAL(18, 2)),
         mft.order_deal_time
     FROM mft LEFT JOIN ods_crm.order_info oi
     ON mft.member_no = oi.member_no

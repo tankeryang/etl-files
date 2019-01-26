@@ -41,7 +41,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
                 'key' AS key
             FROM cdm_crm.order_info_detail
             WHERE order_deal_date < date(localtimestamp)
-                AND order_deal_date > (SELECT max(date) FROM ads_crm.member_analyse_daily_income_detail)
+                AND order_deal_date > (SELECT MAX(date) FROM ads_crm.member_analyse_daily_income_detail)
         ) t1
         FULL JOIN (
             SELECT DISTINCT
@@ -84,17 +84,17 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             oid.order_channel,
             oid.trade_source,
             oid.member_type,
-            IF (oid.member_newold_type IS NULL, '', oid.member_newold_type) AS member_newold_type,
-            IF (oid.member_level_type IS NULL, '', oid.member_level_type) AS member_level_type,
-            IF (oid.member_upgrade_type IS NULL, '', oid.member_upgrade_type) AS member_upgrade_type,
-            IF (oid.member_register_type IS NULL, '', oid.member_register_type) AS member_register_type,
-            cast(sum(oid.order_fact_amount) AS DECIMAL(18, 3)) AS sales_income,
-            cast(sum(oid.order_item_quantity) AS INTEGER) AS sales_item_quantity,
-            IF(oid.member_type = '会员', array_agg(oid.member_no), array[]) AS customer_array,
-            cast(sum(oid.order_type_num) AS INTEGER) AS order_amount,
+            IF(oid.member_newold_type IS NULL, '', oid.member_newold_type) AS member_newold_type,
+            IF(oid.member_level_type IS NULL, '', oid.member_level_type) AS member_level_type,
+            IF(oid.member_upgrade_type IS NULL, '', oid.member_upgrade_type) AS member_upgrade_type,
+            IF(oid.member_register_type IS NULL, '', oid.member_register_type) AS member_register_type,
+            CAST(SUM(oid.order_fact_amount) AS DECIMAL(18, 3)) AS sales_income,
+            CAST(SUM(oid.order_item_quantity) AS INTEGER) AS sales_item_quantity,
+            IF(oid.member_type = '会员', ARRAY_AGG(oid.member_no), array[]) AS customer_array,
+            CAST(SUM(oid.order_type_num) AS INTEGER) AS order_amount,
             oid.order_deal_date AS date
         FROM cdm_crm.order_info_detail oid
-        WHERE oid.order_deal_date > (SELECT max(date) FROM ads_crm.member_analyse_daily_income_detail)
+        WHERE oid.order_deal_date > (SELECT MAX(date) FROM ads_crm.member_analyse_daily_income_detail)
         AND oid.order_deal_date < date(localtimestamp)
         GROUP BY 
             oid.country,
@@ -138,10 +138,10 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             i.member_level_type,
             i.member_upgrade_type,
             i.member_register_type,
-            IF (tt.sales_income IS NULL, cast(0 AS DECIMAL(18, 3)), tt.sales_income) AS sales_income,
-            IF (tt.sales_item_quantity IS NULL, cast(0 AS INTEGER), tt.sales_item_quantity) AS sales_item_quantity,
-            IF (tt.customer_array IS NULL, array[], tt.customer_array) AS customer_array,
-            IF (tt.order_amount IS NULL, cast(0 AS INTEGER), tt.order_amount) AS order_amount,
+            IF(tt.sales_income IS NULL, CAST(0 AS DECIMAL(18, 3)), tt.sales_income) AS sales_income,
+            IF(tt.sales_item_quantity IS NULL, CAST(0 AS INTEGER), tt.sales_item_quantity) AS sales_item_quantity,
+            IF(tt.customer_array IS NULL, array[], tt.customer_array) AS customer_array,
+            IF(tt.order_amount IS NULL, CAST(0 AS INTEGER), tt.order_amount) AS order_amount,
             i.date
         FROM i
         LEFT JOIN tt ON tt.store_code = i.store_code
@@ -178,12 +178,12 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
         t.member_register_type,
         t.sales_income,
         t.sales_item_quantity,
-        cast(IF(lyst_t.sales_income IS NOT NULL, lyst_t.sales_income, 0) AS DECIMAL(18, 3)),
+        CAST(IF(lyst_t.sales_income IS NOT NULL, lyst_t.sales_income, 0) AS DECIMAL(18, 3)),
         t.customer_array,
         t.order_amount,
         t.date,
-        cast(year(t.date) AS VARCHAR) AS year,
-        date_format(t.date, '%m')     AS month
+        CAST(year(t.date) AS VARCHAR) AS year,
+        DATE_FORMAT(t.date, '%m')     AS month
     FROM t
     LEFT JOIN t lyst_t ON t.city = lyst_t.city
         AND t.brand_code = lyst_t.brand_code

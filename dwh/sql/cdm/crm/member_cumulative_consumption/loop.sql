@@ -15,4 +15,4 @@ INSERT INTO cdm_crm.member_cumulative_consumption
         localtimestamp
     FROM cdm_crm.order_info_detail oif
     WHERE CAST(oif.member_no AS INTEGER) > 0
-        AND oif.order_deal_time > (SELECT max(consumption_time) FROM cdm_crm.member_cumulative_consumption);
+        AND oif.order_deal_time > (SELECT MAX(consumption_time) FROM cdm_crm.member_cumulative_consumption);
