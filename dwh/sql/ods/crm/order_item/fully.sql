@@ -27,6 +27,6 @@ INSERT INTO ods_crm.order_item
         oif.pay_time,
         localtimestamp
     FROM prod_mysql_crm.crm.order_item oit
-    INNER JOIN prod_mysql_crm.order_info oif ON oit.outer_order_no = oif.outer_order_no
+    INNER JOIN prod_mysql_crm.crm.order_info oif ON oit.outer_order_no = oif.outer_order_no
     WHERE oif.pay_time < DATE_PARSE(DATE_FORMAT(localtimestamp, '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')
         AND oif.brand_code IN ('2', '3', '6');
