@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS ods_crm.coupon_info (
     member_no            VARCHAR,
     brand_code           VARCHAR,
     coupon_no            VARCHAR        COMMENT '券号',
+    coupon_name          VARCHAR        COMMENT '券名称',
+    coupon_passcode      VARCHAR        COMMENT '券密码',
     coupon_template_no   VARCHAR        COMMENT '制券单ID/券批次号/券头号',
     coupon_template_name VARCHAR        COMMENT '券头',
     coupon_status        VARCHAR        COMMENT '券状态',

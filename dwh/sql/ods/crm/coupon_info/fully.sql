@@ -6,6 +6,8 @@ INSERT INTO ods_crm.coupon_info
         ci.member_no,
         ci.brand_code,
         ci.coupon_no,
+        ci.coupon_name,
+        ci.coupon_passcode,
         ci.coupon_template_no,
         ct.coupon_template_name,
         CAST(ci.coupon_status AS VARCHAR),

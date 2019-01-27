@@ -1,5 +1,7 @@
 INSERT INTO ods_crm.order_item
     SELECT
+        oif.brand_code,
+        oif.member_no,
         CAST(oit.order_item_no AS VARCHAR),
         CAST(oit.order_from AS INTEGER),
         oit.order_id,
