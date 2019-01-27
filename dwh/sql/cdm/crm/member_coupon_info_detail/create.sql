@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS cdm_crm.member_coupon_info_detail (
     member_no            VARCHAR,
     brand_code           VARCHAR,
     coupon_no            VARCHAR        COMMENT '券号',
+    coupon_name          VARCHAR        COMMENT '券/全活动名称',
+    coupon_passcode      VARCHAR        COMMENT '券密码',
     coupon_template_no   VARCHAR        COMMENT '券批次号',
     coupon_template_name VARCHAR        COMMENT '券头',
     coupon_status        VARCHAR        COMMENT '券状态',

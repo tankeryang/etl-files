@@ -34,7 +34,7 @@ CREATE TABLE ads_crm.member_coupon_order_info_detail (
     order_store_code                 VARCHAR,
     order_store_name                 VARCHAR,
     order_trade_source               VARCHAR,
-    order_grade_id                   VARCHAR,
+    order_grade_id                   INTEGER,
     order_retail_amount              DECIMAL(18, 2),
     order_fact_amount                DECIMAL(18, 2),
     order_fact_amount_include_coupon DECIMAL(18, 2),

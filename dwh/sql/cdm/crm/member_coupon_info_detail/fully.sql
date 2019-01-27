@@ -6,6 +6,8 @@ INSERT INTO cdm_crm.member_coupon_info_detail
         ci.member_no,
         ci.brand_code,
         ci.coupon_no,
+        ci.coupon_name,
+        ci.coupon_passcode,
         ci.coupon_template_no,
         ci.coupon_template_name,
         ci.coupon_status,
