@@ -4,7 +4,7 @@ INSERT INTO cdm_crm.order_coupon_info_detail
         IF(ARRAY_AGG(cu.coupon_no) != array[''], ARRAY_AGG(cu.coupon_no), NULL),
         ci.coupon_category,
         CAST(SUM(ci.coupon_denomination) AS DECIMAL(18, 2)),
-        cu.order_deal_time,
+        cu.order_time,
         localtimestamp
     FROM ods_crm.coupon_used cu
     LEFT JOIN ods_crm.coupon_info ci ON cu.coupon_no = ci.coupon_no
