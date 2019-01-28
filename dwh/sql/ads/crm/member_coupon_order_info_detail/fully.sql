@@ -3,7 +3,7 @@ DELETE FROM ads_crm.member_coupon_order_info_detail;
 
 INSERT INTO ads_crm.member_coupon_order_info_detail
     SELECT
-        mi.brand_code,
+        ci.brand_code,
         mi.member_no,
         mi.member_name,
         mi.member_mobile,
