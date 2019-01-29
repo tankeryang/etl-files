@@ -42,5 +42,5 @@ INSERT INTO ads_crm.member_coupon_order_info_detail
     LEFT JOIN cdm_crm.member_info_detail mi ON ci.member_no = mi.member_no
         AND ci.brand_code = mi.brand_code
     LEFT JOIN cdm_crm.order_info_detail oi ON ci.member_no = oi.member_no
-        AND ci.brand_code = mi.brand_code
+        AND ci.brand_code = oi.brand_code
         AND ci.coupon_used_order_no = oi.outer_order_no;
