@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_grouping_info_detail (
     member_is_batch_taobao                INTEGER        COMMENT '会员是否绑定淘宝(1:是/0:否)',
     member_grade_id                       INTEGER        COMMENT '会员等级',
     member_grade_expiration               DATE           COMMENT '会员等级到期日期',
+    member_score                          DECIMAL(11, 2) COMMENT '会员积分',
+    member_will_score                     DECIMAL(11, 2) COMMENT '会员未到账积分',
     -- 最近消费
     lst_consumption_date                  DATE           COMMENT '最近消费日期',
     lst_consumption_gap                   INTEGER        COMMENT '最近消费间隙(最近一次消费时间距离今天的间隔天数)',

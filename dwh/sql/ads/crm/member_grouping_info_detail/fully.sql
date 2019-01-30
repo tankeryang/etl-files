@@ -29,6 +29,8 @@ INSERT INTO ads_crm.member_grouping_info_detail
         IF(mi.member_mobile IS NOT NULL, 1, 0),
         mi.member_grade_id,
         DATE(mi.member_grade_expiration),
+        mi.member_score,
+        mi.member_will_score,
         mfc.consumption_date,
         mfc.consumption_gap,
         mfc.store_code,
