@@ -43,11 +43,9 @@ INSERT INTO ads_crm.member_grouping_info_detail
         mlc.consumption_item_quantity,
         mlc.consumption_amount,
         mlc.consumption_amount_include_coupon,
-        localtimestamp,
-        1
+        localtimestamp
     FROM cdm_crm.member_info_detail mi
     LEFT JOIN cdm_crm.member_first_consumption mfc ON mi.member_no = mfc.member_no
         AND mi.brand_code = mfc.brand_code
     LEFT JOIN cdm_crm.member_last_consumption mlc ON mi.member_no = mlc.member_no
         AND mi.brand_code = mlc.brand_code;
-    

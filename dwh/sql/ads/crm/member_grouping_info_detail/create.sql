@@ -49,6 +49,5 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_grouping_info_detail (
     -- cml_return_amount                     DECIMAL(18, 2) COMMENT '累计退款金额',
     -- cml_consumption_date                  DATE           COMMENT '累计消费日期',
     -- cml_consumption_year_month            VARCHAR        COMMENT '累计消费年-月',
-    create_time                           TIMESTAMP,
-    flag                                  INTEGER
+    create_time                           TIMESTAMP
 );
