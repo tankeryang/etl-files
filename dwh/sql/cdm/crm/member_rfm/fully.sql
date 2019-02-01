@@ -35,7 +35,7 @@ INSERT INTO cdm_crm.member_rfm (
             SUM(CASE WHEN oit.sub_coupon_amount IS NOT NULL
                 THEN oit.sub_coupon_amount
                 ELSE oit.fact_amount END)                                                   AS     monetary_total,
-            ARRAY_SORT(ARRAY_DISTINCT(ARRAY_AGG(DATE_FORMAT(order_deal_time, '%Y-%m-%d')))) AS     order_deal_date
+            ARRAY_SORT(ARRAY_DISTINCT(ARRAY_AGG(DATE_FORMAT(oi.order_deal_time, '%Y-%m-%d')))) AS     order_deal_date
             FROM order_info_range oi, ods_crm.order_item oit
             WHERE oi.order_id = oit.order_id AND
                 oit.quantity > 0
