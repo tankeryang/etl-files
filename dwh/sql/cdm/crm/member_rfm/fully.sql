@@ -39,7 +39,7 @@ INSERT INTO cdm_crm.member_rfm (
             FROM order_info_range oi, ods_crm.order_item oit
             WHERE oi.order_id = oit.order_id AND
                 oit.quantity > 0
-            GROUP BY member_no
+            GROUP BY oi.member_no
         ),
         --指定时间段内会员的最新等级
         member_last_log AS (
