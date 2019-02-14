@@ -16,4 +16,4 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_fold_index_label (
     member_type            VARCHAR,
     member_newold_type     VARCHAR,
     member_level_type      VARCHAR
-);
+) WITH (format = 'ORC');

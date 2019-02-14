@@ -12,4 +12,4 @@ CREATE TABLE IF NOT EXISTS ods_crm.coupon_used (
     brand_code     VARCHAR,
     order_time     TIMESTAMP,
     create_time    TIMESTAMP
-);
+) WITH (format = 'ORC');

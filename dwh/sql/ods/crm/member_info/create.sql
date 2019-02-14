@@ -42,4 +42,4 @@ CREATE TABLE ods_crm.member_info (
     modify_time                 TIMESTAMP,
     last_update_time            TIMESTAMP,
     create_time                 TIMESTAMP
-);
+) WITH (format = 'ORC');

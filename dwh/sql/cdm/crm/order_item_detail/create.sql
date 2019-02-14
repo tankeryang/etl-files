@@ -23,4 +23,4 @@ CREATE TABLE IF NOT EXISTS cdm_crm.order_item_detail (
     discount_rate      DECIMAL(18, 2),
     order_deal_time    TIMESTAMP,
     create_time        TIMESTAMP
-);
+) WITH (format = 'ORC');

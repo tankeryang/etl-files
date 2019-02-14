@@ -1,5 +1,8 @@
 CREATE SCHEMA IF NOT EXISTS cdm_crm;
+
+
 DROP TABLE IF EXISTS cdm_crm.member_structure_duration_order_store;
+
 
 CREATE TABLE cdm_crm.member_structure_duration_order_store (
     computing_until_month VARCHAR,
@@ -13,4 +16,4 @@ CREATE TABLE cdm_crm.member_structure_duration_order_store (
     channel_type          VARCHAR,
     sales_area            VARCHAR,
     store_region          VARCHAR
-);
+) WITH (format = 'ORC');

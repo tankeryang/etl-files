@@ -18,4 +18,4 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_cumulative_consumption_daily_detail (
     cml_order_deal_date                   DATE,
     vchr_cml_order_deal_year_month        VARCHAR,
     vchr_cml_order_deal_date              VARCHAR
-) WITH (partitioned_by = ARRAY['vchr_cml_order_deal_year_month', 'vchr_cml_order_deal_date']);
+) WITH (partitioned_by = ARRAY['vchr_cml_order_deal_year_month', 'vchr_cml_order_deal_date'], format = 'ORC');

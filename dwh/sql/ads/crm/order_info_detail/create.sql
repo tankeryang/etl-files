@@ -45,4 +45,4 @@ CREATE TABLE ads_crm.order_info_detail (
     create_time                      TIMESTAMP,
     year_month                       VARCHAR,
     vchr_date                        VARCHAR
-) WITH (partitioned_by = array['year_month', 'vchr_date']);
+) WITH (partitioned_by = array['year_month', 'vchr_date'], format = 'ORC');

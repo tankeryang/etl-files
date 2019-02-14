@@ -15,4 +15,4 @@ CREATE TABLE cdm_crm.member_structure_order_info_range (
     order_fact_amount     DECIMAL(38, 2),
     order_status          VARCHAR,
     outer_return_order_no VARCHAR
-);
+) WITH (format = 'ORC');

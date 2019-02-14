@@ -1,5 +1,8 @@
 CREATE SCHEMA IF NOT EXISTS cdm_crm;
+
+
 DROP TABLE IF EXISTS cdm_crm.rfm_dimension_map;
+
 
 CREATE TABLE cdm_crm.rfm_dimension_map (
     horizontal             VARCHAR,
@@ -18,4 +21,4 @@ CREATE TABLE cdm_crm.rfm_dimension_map (
     v_equals               VARCHAR,
     v_not_less_than        INTEGER,
     v_less_than            INTEGER
-);
+) WITH (format = 'ORC');

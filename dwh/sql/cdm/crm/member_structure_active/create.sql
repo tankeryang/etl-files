@@ -18,4 +18,4 @@ CREATE TABLE member_structure_active (
     total_repurchased_percentage        DECIMAL(38, 4),
     --total_order_count         BIGINT,
     create_time                         TIMESTAMP
-);
+) WITH (format = 'ORC');

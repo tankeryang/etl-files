@@ -45,4 +45,4 @@ CREATE TABLE IF NOT EXISTS cdm_crm.member_info_detail (
     member_ec_status            INTEGER,
     modify_time                 TIMESTAMP,
     create_time                 TIMESTAMP
-);
+) WITH (format = 'ORC');

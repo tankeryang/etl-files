@@ -9,4 +9,4 @@ CREATE TABLE cdm_crm.member_first_order (
     brand_code        VARCHAR,
     order_fact_amount DECIMAL(18, 2),
     order_deal_time   TIMESTAMP
-);
+) WITH (format = 'ORC');

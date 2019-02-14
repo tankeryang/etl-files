@@ -15,4 +15,4 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_recruit_analyse_fold_index_label (
     brand_name              VARCHAR,
     member_recruit_type     VARCHAR,
     member_register_type    VARCHAR
-);
+) WITH (format = 'ORC');

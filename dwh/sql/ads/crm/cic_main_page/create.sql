@@ -10,4 +10,4 @@ CREATE TABLE IF NOT EXISTS ads_crm.cic_main_page(
     rma_compared_with_ydst DECIMAL(18, 4),
     rma_compared_with_lwst DECIMAL(18, 4),
     rma_compared_with_lmst DECIMAL(18, 4)
-);
+) WITH (format = 'ORC');

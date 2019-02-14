@@ -15,4 +15,4 @@ CREATE TABLE IF NOT EXISTS ods_crm.commodity_info (
     lining       VARCHAR,
     list_date    VARCHAR,
     retail_price DECIMAL(18, 2)
-);
+) WITH (format = 'ORC');

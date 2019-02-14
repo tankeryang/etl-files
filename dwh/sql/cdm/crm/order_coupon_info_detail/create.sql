@@ -11,4 +11,4 @@ CREATE TABLE cdm_crm.order_coupon_info_detail (
     coupon_denomination_sum DECIMAL(18, 2),
     order_time              TIMESTAMP,
     create_time             TIMESTAMP
-);
+) WITH (format = 'ORC');

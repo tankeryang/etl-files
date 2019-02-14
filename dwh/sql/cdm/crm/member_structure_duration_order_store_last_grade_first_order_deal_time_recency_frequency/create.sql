@@ -1,5 +1,8 @@
 CREATE SCHEMA IF NOT EXISTS cdm_crm;
+
+
 DROP TABLE IF EXISTS cdm_crm.member_structure_duration_order_store_last_grade_first_order_deal_time_recency_frequency;
+
 
 CREATE TABLE cdm_crm.member_structure_duration_order_store_last_grade_first_order_deal_time_recency_frequency (
     computing_until_month        VARCHAR,
@@ -16,5 +19,5 @@ CREATE TABLE cdm_crm.member_structure_duration_order_store_last_grade_first_orde
     order_fact_amount            DECIMAL(38, 2),
     order_id                     INTEGER,
     member_no                    VARCHAR
-);
+) WITH (format = 'ORC');
 

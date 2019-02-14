@@ -3,31 +3,26 @@ DELETE FROM cdm_crm.member_info_detail;
 
 INSERT INTO cdm_crm.member_info_detail
     WITH cdm_cms_si_bn AS (
-        SELECT DISTINCT brand_code, brand_name FROM cdm_cms.store_info
+        SELECT DISTINCT brand_code, brand_name FROM cdm_cms.cms_store
     )
     SELECT
         mi.member_no                     AS member_no,
         mi.brand_code                    AS brand_code,
         cdm_cms_si_bn.brand_name         AS brand_name,
-        cdm_cms_si.counTRY_name          AS country,
+        si.cms_country                   AS country,
         si.sales_area                    AS sales_area,
-        cms_si.management_district_code  AS sales_district,
+        si.sales_district                AS sales_district,
         si.province                      AS province,
         si.city                          AS city,
         mi.member_manage_store           AS store_code,
-        cdm_cms_si.store_name            AS store_name,
-        (CASE cms_si.sales_mode
-        WHEN 'ZJ' THEN '正价'
-        WHEN 'QCT' THEN '长特'
-        WHEN 'BCT' THEN '长特'
-        WHEN 'DT' THEN '短特'
-        ELSE NULL END)                   AS sales_mode,
+        si.store_name                    AS store_name,
+        si.sales_mode                    AS sales_mode,
         (CASE si.store_type
-        WHEN 'BH' THEN '百货'
-        WHEN 'ZMD' THEN '专卖店'
-        WHEN 'MALL' THEN 'MALL'
+            WHEN 'BH' THEN '百货'
+            WHEN 'ZMD' THEN '专卖店'
+            WHEN 'MALL' THEN 'MALL'
         ELSE NULL END)                   AS store_type,
-        cms_si.store_level               AS store_level,
+        si.store_level                   AS store_level,
         si.channel_type                  AS channel_type,
         mi.member_wechat_id              AS member_wechat_id,
         mi.member_taobao_nick            AS member_taobao_nick,
@@ -56,9 +51,7 @@ INSERT INTO cdm_crm.member_info_detail
         mi.modify_time                   AS modify_time,
         localtimestamp                   AS create_time
     FROM ods_crm.member_info mi
-    LEFT JOIN cdm_cms.store_info cdm_cms_si ON mi.member_manage_store = cdm_cms_si.store_code
+    LEFT JOIN cdm_crm.store_info_detail si ON mi.member_manage_store = si.store_code
     LEFT JOIN cdm_cms_si_bn ON mi.brand_code = cdm_cms_si_bn.brand_code
-    LEFT JOIN ods_crm.store_info si ON mi.member_manage_store = si.store_code
-    LEFT JOIN ods_cms.store_info cms_si ON mi.member_manage_store = cms_si.store_code
     LEFT JOIN cdm_crm.member_first_order mfo ON mi.member_no = mfo.member_no AND mfo.brand_code = mi.brand_code
     LEFT JOIN cdm_crm.member_last_order mlo ON mi.member_no = mlo.member_no AND mlo.brand_code = mi.brand_code;

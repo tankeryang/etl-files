@@ -40,4 +40,4 @@ CREATE TABLE ads_crm.member_coupon_order_info_detail (
     order_fact_amount_include_coupon DECIMAL(18, 2),
     order_discount                   DECIMAL(18, 2),
     order_item_quantity              INTEGER
-);
+) WITH (format = 'ORC');

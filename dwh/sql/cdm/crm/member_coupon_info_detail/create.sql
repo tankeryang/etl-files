@@ -29,4 +29,4 @@ CREATE TABLE IF NOT EXISTS cdm_crm.member_coupon_info_detail (
     coupon_used_time     TIMESTAMP      COMMENT '券使用时间',
     coupon_used_date     VARCHAR        COMMENT '券使用日期',
     create_time          TIMESTAMP
-);
+) WITH (format = 'ORC');

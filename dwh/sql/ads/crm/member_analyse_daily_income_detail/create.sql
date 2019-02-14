@@ -34,4 +34,4 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_daily_income_detail(
     date                    DATE,
     year                    VARCHAR,
     month                   VARCHAR
-);
+) WITH (format = 'ORC');

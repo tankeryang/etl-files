@@ -23,4 +23,4 @@ CREATE TABLE IF NOT EXISTS cdm_crm.member_analyse_index_label (
     member_newold_type     VARCHAR,
     member_level_type      VARCHAR,
     dr_member_type         VARCHAR
-);
+) WITH (format = 'ORC');

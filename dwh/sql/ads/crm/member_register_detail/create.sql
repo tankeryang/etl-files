@@ -19,4 +19,4 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_register_detail (
     channel_type             VARCHAR,
     register_member_array    ARRAY<VARCHAR>,
     date                     DATE
-);
+) WITH (format = 'ORC');

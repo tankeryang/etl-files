@@ -1,5 +1,8 @@
 CREATE SCHEMA IF NOT EXISTS cdm_crm;
+
+
 DROP TABLE IF EXISTS cdm_crm.member_structure_asset;
+
 --member_structure_all全体客户结构分析统计表
 CREATE TABLE member_structure_asset (
     computing_until_month   VARCHAR,
@@ -26,4 +29,4 @@ CREATE TABLE member_structure_asset (
     --   #   total_return_amount DECIMAL (38, 2
     -- ),
     create_time             TIMESTAMP
-);
+) WITH (format = 'ORC');

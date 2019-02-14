@@ -18,4 +18,4 @@ CREATE TABLE cdm_crm.member_cumulative_consumption (
     consumption_date                  DATE           COMMENT '消费日期',
     consumption_time                  TIMESTAMP      COMMENT '消费时间',
     create_time                       TIMESTAMP
-);
+) WITH (format = 'ORC');

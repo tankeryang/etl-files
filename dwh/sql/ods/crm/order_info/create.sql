@@ -19,4 +19,4 @@ CREATE TABLE ods_crm.order_info (
     order_status          VARCHAR        COMMENT '订单状态',
     outer_return_order_no VARCHAR        COMMENT '外部退货订单号',
     create_time           TIMESTAMP
-);
+) WITH (format = 'ORC');

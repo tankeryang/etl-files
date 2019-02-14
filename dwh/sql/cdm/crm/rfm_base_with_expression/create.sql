@@ -1,5 +1,8 @@
 CREATE SCHEMA IF NOT EXISTS cdm_crm;
+
+
 DROP TABLE IF EXISTS cdm_crm.rfm_base_with_expression;
+
 
 CREATE TABLE cdm_crm.rfm_base_with_expression (
     horizon_type              VARCHAR,
@@ -17,4 +20,4 @@ CREATE TABLE cdm_crm.rfm_base_with_expression (
     vertical_type             VARCHAR,
     vertical_expression       VARCHAR,
     vertical_type_range       VARCHAR
-);
+) WITH (format = 'ORC');

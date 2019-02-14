@@ -18,7 +18,7 @@ CREATE TABLE cdm_crm.member_rfm (
     circle_average_repurchase BIGINT,
     computing_until_month     VARCHAR,
     create_time               TIMESTAMP
-);
+) WITH (format = 'ORC');
 
 
 

@@ -22,4 +22,4 @@ CREATE TABLE ads_crm.member_structure_active (
     member_existing_percentage          DECIMAL(38, 4),
     create_time                         TIMESTAMP,
     computing_until_month               VARCHAR
-) WITH (partitioned_by = array['computing_until_month']);
+) WITH (partitioned_by = array['computing_until_month'], format = 'ORC');

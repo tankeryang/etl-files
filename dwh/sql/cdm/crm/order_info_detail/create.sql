@@ -12,6 +12,7 @@ CREATE TABLE cdm_crm.order_info_detail (
     trade_source                     VARCHAR  COMMENT '订单渠道',
     province                         VARCHAR,
     city                             VARCHAR,
+    company_name                     VARCHAR  COMMENT '公司',
     brand_code                       VARCHAR,
     brand_name                       VARCHAR,
     store_code                       VARCHAR,
@@ -43,4 +44,4 @@ CREATE TABLE cdm_crm.order_info_detail (
     order_deal_time                  TIMESTAMP,
     order_deal_date                  DATE,
     create_time                      TIMESTAMP
-);
+) WITH (format = 'ORC');

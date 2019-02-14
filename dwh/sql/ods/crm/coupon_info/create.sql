@@ -23,4 +23,4 @@ CREATE TABLE IF NOT EXISTS ods_crm.coupon_info (
     coupon_start_time    TIMESTAMP      COMMENT '券开始时间',
     coupon_end_time      TIMESTAMP      COMMENT '券截止时间',
     create_time          TIMESTAMP
-);
+) WITH (format = 'ORC');

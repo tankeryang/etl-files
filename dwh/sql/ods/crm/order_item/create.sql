@@ -30,4 +30,4 @@ CREATE TABLE ods_crm.order_item (
     sub_coupon_amount  DECIMAL(38, 2) COMMENT '扣券后金额',
     order_deal_time    TIMESTAMP      COMMENT '关联订单表-pay_time',
     create_time        TIMESTAMP
-);
+) WITH (format = 'ORC');

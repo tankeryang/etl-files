@@ -52,4 +52,4 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_analyse_group_info_detail (
     return_count                           INTEGER,
     return_amount                          DECIMAL(18, 4),
     rfm_advanced_computing_duration        VARCHAR
-);
+) WITH (format = 'ORC');

@@ -14,4 +14,4 @@ CREATE TABLE cdm_crm.member_last_consumption (
     consumption_date                  DATE           COMMENT '最近消费日期',
     consumption_gap                   INTEGER        COMMENT '最近消费间隙(最近一次消费时间距离今天的间隔天数)',
     create_time                       TIMESTAMP
-);
+) WITH (format = 'ORC');

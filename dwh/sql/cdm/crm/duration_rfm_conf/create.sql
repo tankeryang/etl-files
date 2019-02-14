@@ -14,4 +14,4 @@ CREATE TABLE cdm_crm.duration_rfm_conf (
     not_less_than        INTEGER,
     less_than            INTEGER,
     condition_expression VARCHAR
-);
+) WITH (format = 'ORC');

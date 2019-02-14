@@ -22,4 +22,4 @@ CREATE TABLE ads_crm.rfm_base (
     monetary_per_member        DECIMAL(38, 2),
     create_time                TIMESTAMP,
     computing_until_month      VARCHAR
-) WITH (partitioned_by = array['computing_until_month']);
+) WITH (partitioned_by = array['computing_until_month'], format = 'ORC');

@@ -15,4 +15,4 @@ CREATE TABLE ods_crm.order_pay_item (
     coupon_no       VARCHAR        COMMENT '券号',
     order_deal_time TIMESTAMP      COMMENT '关联订单表-pay_time',
     create_time     TIMESTAMP
-);
+) WITH (format = 'ORC');
