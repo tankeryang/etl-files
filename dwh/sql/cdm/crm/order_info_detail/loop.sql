@@ -32,7 +32,7 @@ INSERT INTO cdm_crm.order_info_detail
             ELSE '其他' END)                                               AS trade_source,
         IF(si.province IS NULL, '', si.province)                          AS province,
         IF(si.city IS NULL, '', si.city)                                  AS city,
-        IF(si.company_name IS NULL, '', cms_si.company_name)              AS company_name 
+        IF(si.company_name IS NULL, '', cms_si.company_name)              AS company_name,
         oi.brand_code                                                     AS brand_code,
         cdm_cms_si_bn.brand_name                                          AS brand_name,
         oi.store_code                                                     AS store_code,
