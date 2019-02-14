@@ -46,7 +46,7 @@ INSERT INTO cdm_crm.order_info_detail
             WHEN 'ZMD' THEN '专卖店'
             WHEN 'MALL' THEN 'MALL'
         ELSE '' END                                                       AS store_type,
-        IF(si.store_level IS NULL, '', si.store_level))                   AS store_level,
+        IF(si.store_level IS NULL, '', si.store_level)                    AS store_level,
         IF(si.channel_type IS NULL, '', si.channel_type)                  AS channel_type,
         oi.outer_order_no                                                 AS outer_order_no,
         oi.member_no                                                      AS member_no,
