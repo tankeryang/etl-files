@@ -129,7 +129,7 @@ INSERT INTO cdm_crm.order_info_detail
     FROM ods_crm.order_info oi
     LEFT JOIN cdm_crm.order_coupon_info_detail ocid ON oi.outer_order_no = ocid.outer_order_no
         AND ocid.coupon_category = 'Cash'
-    LEFT JOIN ods_crm.store_info si ON oi.store_code = si.store_code
+    LEFT JOIN cdm_crm.store_info_detail si ON oi.store_code = si.store_code
     LEFT JOIN cdm_cms_si_bn ON oi.brand_code = cdm_cms_si_bn.brand_code
     LEFT JOIN cdm_crm.member_first_order mfo ON oi.member_no = mfo.member_no AND oi.brand_code = mfo.brand_code
     LEFT JOIN ods_crm.member_info mi ON oi.member_no = mi.member_no AND oi.brand_code = mi.brand_code
