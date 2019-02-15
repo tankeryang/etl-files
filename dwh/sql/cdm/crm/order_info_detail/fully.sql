@@ -113,7 +113,8 @@ INSERT INTO cdm_crm.order_info_detail
         oi.order_amount                                                  AS order_amount,
         oi.order_fact_amount                                             AS order_fact_amount,
         CAST(IF(oi.order_fact_amount > 0, 
-            oi.order_fact_amount - COALESCE(ocid.coupon_denomination_sum, 0),
+            IF(oi.order_fact_amount - COALESCE(ocid.coupon_denomination_sum, 0) < 0, 0,
+                oi.order_fact_amount - COALESCE(ocid.coupon_denomination_sum, 0)),
             oi.order_fact_amount) AS DECIMAL(38, 2))                     AS order_fact_amount_include_coupon,
         CASE
             WHEN oi.order_fact_amount > 0 THEN 1
