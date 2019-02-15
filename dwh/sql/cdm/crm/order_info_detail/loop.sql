@@ -109,10 +109,9 @@ INSERT INTO cdm_crm.order_info_detail
         oi.order_item_quantity                                           AS order_item_quantity,
         oi.order_amount                                                  AS order_amount,
         oi.order_fact_amount                                             AS order_fact_amount,
-        CAST(IF(oi.order_fact_amount > 0, 
-            IF(oi.order_fact_amount - COALESCE(ocid.coupon_denomination_sum, 0) < 0, 0,
-                oi.order_fact_amount - COALESCE(ocid.coupon_denomination_sum, 0)),
-            oi.order_fact_amount) AS DECIMAL(38, 2))                     AS order_fact_amount_include_coupon,
+        TRY_CAST(COALESCE(
+            ocid.order_fact_amount_include_coupon, oi.order_fact_amount)
+            AS DECIMAL(38, 2))                                           AS order_fact_amount_include_coupon,
         CASE
             WHEN oi.order_fact_amount > 0 THEN 1
             WHEN oi.order_fact_amount = 0 THEN 0
@@ -120,7 +119,9 @@ INSERT INTO cdm_crm.order_info_detail
         ELSE NULL END                                                    AS order_type_num,
         ocid.coupon_no_array                                             AS order_coupon_no,
         ocid.coupon_category                                             AS order_coupon_category,
-        ocid.coupon_denomination_sum                                     AS order_coupon_denomination,
+        TRY_CAST(oi.order_fact_amount - COALESCE(
+            ocid.order_fact_amount_include_coupon, oi.order_fact_amount)
+            AS DECIMAL(18, 2))                                           AS order_coupon_denomination,
         mi.member_register_time                                          AS member_register_time,
         IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0,
             mgl.grade_change_time, NULL)                                 AS last_grade_change_time,
