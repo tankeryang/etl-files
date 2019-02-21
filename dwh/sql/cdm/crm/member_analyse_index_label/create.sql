@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS cdm_crm.member_analyse_index_label (
     province               VARCHAR,
     city                   VARCHAR,
     store_code             VARCHAR,
+    company_name           VARCHAR,
     brand_code             VARCHAR,
     brand_name             VARCHAR,
     sales_mode             VARCHAR,

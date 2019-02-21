@@ -95,7 +95,7 @@ INSERT INTO cdm_crm.order_info_detail
             ELSE NULL END
         ), NULL)                                                         AS member_recruit_type,
         -- 日报会员类型
-        IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0 AND oi.order_grade IN (9, 10, 11, 13, 14),
+        IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0 AND oi.order_grade IN (5, 6, 7, 8, 9, 10, 11, 13, 14),
             IF(DATE_FORMAT(oi.order_deal_time, '%Y-%m-%d') <= DATE_FORMAT(mfo.order_deal_time, '%Y-%m-%d'),
                 '新会员',
                 CASE oi.order_grade

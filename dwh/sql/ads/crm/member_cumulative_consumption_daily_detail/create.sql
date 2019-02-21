@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS ads_crm.member_cumulative_consumption_daily_detail;
 CREATE TABLE IF NOT EXISTS ads_crm.member_cumulative_consumption_daily_detail (
     member_no                             VARCHAR,
     brand_code                            VARCHAR,
-    cml_consumption_store                 ARRAY<VARCHAR>,
+    cml_consumption_store                 VARCHAR,
     cml_consumption_times                 INTEGER,
     cml_consumption_item_quantity         INTEGER,
     cml_consumption_retail_amount         DECIMAL(18, 2),

@@ -2,12 +2,10 @@ INSERT INTO ads_crm.member_cumulative_consumption_daily_detail
     SELECT
         member_no,
         brand_code,
-        ARRAY_DISTINCT(ARRAY_AGG(
-            CASE
-                WHEN store_code LIKE '%WWW%' THEN '官网'
-                WHEN store_code IS NULL THEN '其他'
-            ELSE store_code END
-        )),
+        CASE
+            WHEN store_code LIKE '%WWW%' THEN '官网'
+            WHEN store_code IS NULL THEN '其他'
+        ELSE store_code END,
         CAST(COUNT(DISTINCT consumption_order_no) AS INTEGER),
         CAST(SUM(consumption_item_quantity) AS INTEGER),
         CAST(SUM(retail_amount) AS DECIMAL(18 ,2)),
@@ -25,4 +23,4 @@ INSERT INTO ads_crm.member_cumulative_consumption_daily_detail
         (consumption_order_no IS NOT NULL AND return_order_no IS NULL)
     )
         AND consumption_date > (SELECT max_date FROM ads_crm.member_cumulative_consumption_max_date)
-    GROUP BY member_no, brand_code, consumption_date;
+    GROUP BY member_no, brand_code, store_code, consumption_date;
