@@ -89,6 +89,7 @@ INSERT INTO cdm_crm.member_analyse_index_label
         t1.province,
         t1.city,
         t1.store_code,
+        t1.company_name,
         t1.brand_code,
         t1.brand_name,
         t1.sales_mode,
