@@ -44,6 +44,7 @@ INSERT INTO cdm_crm.member_analyse_index_label
             sales_district,
             province,
             city,
+            company_name,
             brand_code,
             brand_name,
             'key' AS key
@@ -114,7 +115,7 @@ INSERT INTO cdm_crm.member_analyse_index_label
         tt1.province,
         tt1.city,
         NULL AS store_code,
-        NULL AS company_name,
+        tt1.company_name,
         tt1.brand_code,
         tt1.brand_name,
         tt4.sales_mode,
