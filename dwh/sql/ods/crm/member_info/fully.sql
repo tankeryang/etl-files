@@ -30,6 +30,7 @@ INSERT INTO ods_crm.member_info
         mi.member_register_store,
         mi.member_manage_store,
         mi.member_grade_id,
+        mg.grade_name,
         mi.grade_begin,
         mi.grade_expiration,
         mi.member_score,
@@ -42,4 +43,6 @@ INSERT INTO ods_crm.member_info
         localtimestamp
     FROM prod_mysql_crm.crm.member_info mi
     LEFT JOIN prod_mysql_crm.crm.member_info_ec_status me
-    ON mi.member_no = me.member_no AND mi.brand_code = me.brand_code;
+        ON mi.member_no = me.member_no AND mi.brand_code = me.brand_code
+    LEFT JOIN prod_mysql_crm.crm.member_grade_info mg
+        ON mi.member_grade_id = mg.grade_id;

@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS cdm_crm.member_info_detail (
     member_register_store       VARCHAR,
     member_register_time        TIMESTAMP,
     member_grade_id             INTEGER,
+    member_grade_name           VARCHAR,
     member_grade_begin          TIMESTAMP,
     member_grade_expiration     TIMESTAMP,
     member_score                DECIMAL(11, 2),

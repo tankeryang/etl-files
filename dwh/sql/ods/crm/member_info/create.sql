@@ -32,6 +32,7 @@ CREATE TABLE ods_crm.member_info (
     member_register_store       VARCHAR       COMMENT '会员注册门店',
     member_manage_store         VARCHAR       COMMENT '会员管理门店',
     member_grade_id             INTEGER       COMMENT '会员等级id',
+    member_grade_name           VARCHAR       COMMENT '会员等级名称',
     member_grade_begin          TIMESTAMP     COMMENT '会员等级开始日期',
     member_grade_expiration     TIMESTAMP     COMMENT '会员等级到期日期',
     member_score                DECIMAL(11,2) COMMENT '会员当前积分',

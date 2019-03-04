@@ -39,6 +39,7 @@ INSERT INTO cdm_crm.member_info_detail
         mi.member_register_store         AS member_register_store,
         mi.member_register_time          AS member_register_time,
         mi.member_grade_id               AS member_grade_id,
+        mi.member_grade_name             AS member_grade_name,
         mi.member_grade_begin            AS member_grade_begin,
         mi.member_grade_expiration       AS member_grade_expiration,
         mi.member_score                  AS member_score,
