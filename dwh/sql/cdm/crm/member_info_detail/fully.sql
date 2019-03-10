@@ -5,7 +5,7 @@ INSERT INTO cdm_crm.member_info_detail
     WITH cdm_cms_si_bn AS (
         SELECT DISTINCT brand_code, brand_name FROM cdm_cms.cms_store
     )
-    SELECT
+    SELECT DISTINCT
         mi.member_no                     AS member_no,
         mi.brand_code                    AS brand_code,
         cdm_cms_si_bn.brand_name         AS brand_name,
