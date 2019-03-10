@@ -52,7 +52,9 @@ INSERT INTO cdm_crm.member_info_detail
         mi.modify_time                   AS modify_time,
         localtimestamp                   AS create_time
     FROM ods_crm.member_info mi
-    LEFT JOIN cdm_crm.store_info_detail si ON mi.member_manage_store = si.store_code
+    LEFT JOIN cdm_crm.store_info_detail si
+        ON mi.member_manage_store = si.store_code
+        AND mi.brand_code = si.brand_code
     LEFT JOIN cdm_cms_si_bn ON mi.brand_code = cdm_cms_si_bn.brand_code
     LEFT JOIN cdm_crm.member_first_order mfo ON mi.member_no = mfo.member_no AND mfo.brand_code = mi.brand_code
     LEFT JOIN cdm_crm.member_last_order mlo ON mi.member_no = mlo.member_no AND mlo.brand_code = mi.brand_code;
