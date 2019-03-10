@@ -25,4 +25,7 @@ INSERT INTO cdm_crm.store_info_detail
         cms_si.company_name,
         LOCALTIMESTAMP
     FROM ods_crm.store_info si
-    LEFT JOIN cdm_cms.cms_store cms_si ON si.store_code = cms_si.store_code;
+    LEFT JOIN cdm_cms.cms_store cms_si
+        ON si.store_code = cms_si.store_code
+        AND si.brand_code = cms_si.brand_code;
+
