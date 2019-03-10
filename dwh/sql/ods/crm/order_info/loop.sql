@@ -1,6 +1,3 @@
--- CONSIDER IF USE IT OR NOT
--- COST 9:00 +/- 0:20/0:30 min
-
 INSERT INTO ods_crm.order_info
     SELECT
         order_id,

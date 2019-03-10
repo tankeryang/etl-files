@@ -4,4 +4,4 @@ command=${cmd}
 sql.dir=order_info_detail
 sql.names=loop
 
-dependencies=transform-store_info_detail,transform-member_first_order,transform-member_last_order,transform-order_coupon_info_detail
+dependencies=transform-store_info_detail,transform-member_first_order,transform-member_last_order,transform-order_coupon_info_detail,transform-order_grade_log_detail

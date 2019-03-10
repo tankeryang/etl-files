@@ -16,7 +16,7 @@ INSERT INTO ads_crm.member_register_detail
         store_level,
         channel_type,
         ARRAY_AGG(member_no)       AS register_member_array,
-        date(member_register_time) AS date
+        DATE(member_register_time) AS date
     FROM cdm_crm.member_info_detail
     GROUP BY
         country,
@@ -31,4 +31,4 @@ INSERT INTO ads_crm.member_register_detail
         store_type,
         store_level,
         channel_type,
-        date(member_register_time);
+        DATE(member_register_time);

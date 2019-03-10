@@ -1,18 +1,5 @@
 INSERT INTO cdm_crm.order_info_detail
-    WITH mgl AS (
-        SELECT
-            oi_t.member_no,
-            oi_t.brand_code,
-            oi_t.outer_order_no,
-            oi_t.order_deal_time,
-            MAX(mgl_t.grade_change_time) AS grade_change_time
-        FROM ods_crm.order_info oi_t
-        LEFT JOIN prod_mysql_crm.crm.member_grade_log mgl_t
-        ON oi_t.member_no = mgl_t.member_no
-            AND oi_t.brand_code = mgl_t.brand_code
-            AND date(oi_t.order_deal_time) >= date(mgl_t.grade_change_time)
-        GROUP BY oi_t.member_no, oi_t.brand_code, oi_t.outer_order_no, oi_t.order_deal_time
-    ), cdm_cms_si_bn AS (
+    WITH cdm_cms_si_bn AS (
         SELECT DISTINCT brand_code, brand_name FROM cdm_cms.cms_store
     )
     SELECT
@@ -69,16 +56,16 @@ INSERT INTO cdm_crm.order_info_detail
                 WHEN 8  THEN 'VIP会员'
             ELSE NULL END
         ), NULL)                                                          AS member_level_type,
-        -- 会员升级类型
-        IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0,
-            IF(oi.order_grade IN (13, 9) AND date(mgl.grade_change_time) = date(oi.order_deal_time),
-                '升级', '未升级'), NULL)                                   AS member_upgrade_type,
+        -- 会员升级类型 (普通升VIP)
+        ogl.normal_upgrade_type                                           AS member_upgrade_type,
+        -- 会员升级类型 (直接升)
+        ogl.upgrade_type                                                  AS member_force_upgrade_type,
         -- 会员注册类型
         IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0, 
-            IF(mi.member_manage_store like '%WWW%', '官网', '门店'), NULL) AS member_register_type,
+            IF(mi.member_manage_store LIKE '%WWW%', '官网', '门店'), NULL) AS member_register_type,
         -- 招募会员-有消费会员类型
         IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0,
-            IF(oi.order_grade IN (13, 9) AND date(mgl.grade_change_time) = date(oi.order_deal_time),
+            IF(oi.order_grade IN (13, 9, 5) AND DATE(ogl.grade_change_time) = DATE(oi.order_deal_time),
                 '升级', CASE oi.order_grade
                 WHEN 13 THEN '普通会员'
                 WHEN 9  THEN '普通会员'
@@ -124,9 +111,9 @@ INSERT INTO cdm_crm.order_info_detail
             AS DECIMAL(18, 2))                                           AS order_coupon_denomination,
         mi.member_register_time                                          AS member_register_time,
         IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0,
-            mgl.grade_change_time, NULL)                                 AS last_grade_change_time,
+            ogl.grade_change_time, NULL)                                 AS last_grade_change_time,
         oi.order_deal_time                                               AS order_deal_time,
-        date(oi.order_deal_time)                                         AS order_deal_date,
+        DATE(oi.order_deal_time)                                         AS order_deal_date,
         localtimestamp                                                   AS create_time
     FROM ods_crm.order_info oi
     LEFT JOIN cdm_crm.order_coupon_info_detail ocid ON oi.outer_order_no = ocid.outer_order_no
@@ -135,10 +122,9 @@ INSERT INTO cdm_crm.order_info_detail
     LEFT JOIN cdm_cms_si_bn ON oi.brand_code = cdm_cms_si_bn.brand_code
     LEFT JOIN cdm_crm.member_first_order mfo ON oi.member_no = mfo.member_no AND oi.brand_code = mfo.brand_code
     LEFT JOIN ods_crm.member_info mi ON oi.member_no = mi.member_no AND oi.brand_code = mi.brand_code
-    LEFT JOIN mgl ON oi.member_no = mgl.member_no
-        AND oi.brand_code = mgl.brand_code
-        AND oi.outer_order_no = mgl.outer_order_no
-        AND oi.order_deal_time = mgl.order_deal_time
+    LEFT JOIN cdm_crm.order_grade_log_detail ogl ON oi.member_no = ogl.member_no
+        AND oi.brand_code = ogl.brand_code
+        AND oi.outer_order_no = ogl.outer_order_no
     WHERE oi.order_status = 'PAYED'
     AND oi.order_deal_time > (SELECT MAX(order_deal_time) FROM cdm_crm.order_info_detail)
         AND oi.order_deal_time < DATE_PARSE(DATE_FORMAT(localtimestamp, '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T');

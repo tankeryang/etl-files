@@ -40,7 +40,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
                 order_deal_date AS date,
                 'key' AS key
             FROM cdm_crm.order_info_detail
-            WHERE order_deal_date < date(localtimestamp)
+            WHERE order_deal_date < DATE(localtimestamp)
                 AND order_deal_date > (SELECT MAX(date) FROM ads_crm.member_analyse_daily_income_detail)
         ) t1
         FULL JOIN (
@@ -95,7 +95,7 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
             oid.order_deal_date AS date
         FROM cdm_crm.order_info_detail oid
         WHERE oid.order_deal_date > (SELECT MAX(date) FROM ads_crm.member_analyse_daily_income_detail)
-        AND oid.order_deal_date < date(localtimestamp)
+        AND oid.order_deal_date < DATE(localtimestamp)
         GROUP BY 
             oid.country,
             oid.sales_area,
@@ -200,4 +200,4 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
         AND t.member_level_type = lyst_t.member_level_type
         AND t.member_upgrade_type = lyst_t.member_upgrade_type
         AND t.member_register_type = lyst_t.member_register_type
-        AND date(t.date - interval '1' year) = lyst_t.date;
+        AND DATE(t.date - interval '1' year) = lyst_t.date;

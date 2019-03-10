@@ -73,14 +73,14 @@ INSERT INTO cdm_crm.member_rfm (
                 0)                                              AS monetary_per_order,
         CASE WHEN rfm.frequency < 2
         THEN 0
-        ELSE date_diff('day', date(rfm.order_deal_date [1]),
-                    date(rfm.order_deal_date [2]))
+        ELSE date_diff('day', DATE(rfm.order_deal_date [1]),
+                    DATE(rfm.order_deal_date [2]))
         END                                                      AS circle_first_repurchase,
         CASE WHEN rfm.frequency < 2
         THEN 0
         ELSE CAST(
-            floor(COALESCE(TRY(CAST(date_diff('day', date(rfm.min_order_deal_date),
-                                            date(rfm.max_order_deal_date)) * 1.00 /
+            floor(COALESCE(TRY(CAST(date_diff('day', DATE(rfm.min_order_deal_date),
+                                            DATE(rfm.max_order_deal_date)) * 1.00 /
                                     rfm.frequency AS
                                     DECIMAL(38, 2))), 0)) AS INTEGER)
         END                                                      AS circle_average_repurchase,

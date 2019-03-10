@@ -199,4 +199,4 @@ INSERT INTO ads_crm.member_analyse_daily_income_detail
         AND t.member_level_type = lyst_t.member_level_type
         AND t.member_upgrade_type = lyst_t.member_upgrade_type
         AND t.member_register_type = lyst_t.member_register_type
-        AND date(t.date - interval '1' year) = lyst_t.date;
+        AND DATE(t.date - interval '1' year) = lyst_t.date;

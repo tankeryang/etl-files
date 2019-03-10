@@ -20,5 +20,5 @@ INSERT INTO ods_crm.order_info
         localtimestamp
     FROM prod_mysql_crm.crm.order_info
     WHERE order_status = 'PAYED'
-        AND pay_time <  DATE_PARSE(DATE_FORMAT(localtimestamp, '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')
+        AND pay_time < DATE_PARSE(DATE_FORMAT(localtimestamp, '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')
         AND brand_code IN ('2', '3', '6');

@@ -104,8 +104,8 @@ INSERT INTO cdm_crm.member_rfm_tag_advanced (
             mocic.member_no,
             COALESCE(TRY(CAST(total_order_fact_amount * 1.00 / total_order_count AS DECIMAL(38, 2))),
                     0) AS average_order_amount,
-            --           date_diff('day', DATE(MAX(min_order_deal_time)), date(max_order_deal_time)) as days,
-            COALESCE(TRY(CAST(date_diff('day', DATE(min_order_deal_time), date(max_order_deal_time)) * 1.00 /
+            --           date_diff('day', DATE(MAX(min_order_deal_time)), DATE(max_order_deal_time)) as days,
+            COALESCE(TRY(CAST(date_diff('day', DATE(min_order_deal_time), DATE(max_order_deal_time)) * 1.00 /
                                 total_order_count AS DECIMAL(38, 2))),
                     0) AS average_purchase_interval
             FROM member_order_count_item_count mocic, member_monetary_total mmt
