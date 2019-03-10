@@ -2,15 +2,27 @@ DELETE FROM cdm_crm.member_first_consumption;
 
 
 INSERT INTO cdm_crm.member_first_consumption
-    WITH mft AS (
+    WITH mft_d AS (
         SELECT
             member_no,
             brand_code,
-            store_code,
             MIN(order_deal_date) AS order_deal_date
         FROM cdm_crm.order_info_detail
         WHERE CAST(member_no AS INTEGER) > 0
-        GROUP BY member_no, brand_code, store_code
+        GROUP BY member_no, brand_code
+    ), mft AS (
+        SELECT DISTINCT
+            mft_d.member_no,
+            mft_d.brand_code,
+            first_value(oi_d.store_code) OVER (
+                PARTITION BY mft_d.member_no, mft_d.brand_code, mft_d.order_deal_date
+            ) AS store_code,
+            mft_d.order_deal_date
+        FROM mft_d
+        LEFT JOIN cdm_crm.order_info_detail oi_d
+        ON mft_d.brand_code = oi_d.brand_code
+            AND mft_d.member_no = oi_d.member_no
+            AND mft_d.order_deal_date = oi_d.order_deal_date
     )
     SELECT DISTINCT
         mft.member_no,
