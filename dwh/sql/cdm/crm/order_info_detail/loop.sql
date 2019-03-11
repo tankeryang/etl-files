@@ -54,6 +54,7 @@ INSERT INTO cdm_crm.order_info_detail
                 WHEN 6  THEN 'VIP会员'
                 WHEN 7  THEN 'VIP会员'
                 WHEN 8  THEN 'VIP会员'
+                WHEN 44 THEN 'VIP会员'
             ELSE NULL END
         ), NULL)                                                          AS member_level_type,
         -- 会员升级类型 (普通升VIP)
@@ -76,6 +77,7 @@ INSERT INTO cdm_crm.order_info_detail
                 WHEN 6  THEN 'VIP会员'
                 WHEN 7  THEN 'VIP会员'
                 WHEN 8  THEN 'VIP会员'
+                WHEN 44 THEN 'VIP会员'
             ELSE NULL END
         ), NULL)                                                         AS member_recruit_type,
         -- 日报会员类型
@@ -87,6 +89,7 @@ INSERT INTO cdm_crm.order_info_detail
                     WHEN 9 THEN '普通会员'
                     WHEN 5 THEN '普通会员'
                     WHEN 14 THEN 'VIP会员'
+                    WHEN 44 THEN 'SVIP会员'
                     WHEN 10 THEN '银卡会员'
                     WHEN 6 THEN '银卡会员'
                     WHEN 11 THEN '金卡会员'
