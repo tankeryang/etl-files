@@ -22,7 +22,7 @@ INSERT INTO cdm_crm.order_coupon_info_detail
         cu_t.coupon_no_array,
         cu_t.coupon_category,
         CAST(SUM(oit.sub_coupon_amount) AS DECIMAL(18, 2)),
-        cu_t.order_time,
+        cu_t.order_deal_time,
         localtimestamp
     FROM ods_crm.order_item oit
     LEFT JOIN cu_t ON cu_t.outer_order_no = oit.outer_order_no
