@@ -28,6 +28,6 @@ INSERT INTO cdm_crm.order_coupon_info_detail
         cu_t.order_time,
         localtimestamp
     FROM ods_crm.order_item oit
-    LEFT JOIN cu_t ON cu_t_t.outer_order_no = oit.outer_order_no
+    LEFT JOIN cu_t ON cu_t.outer_order_no = oit.outer_order_no
     WHERE cu_t.order_time < DATE_PARSE(DATE_FORMAT(localtimestamp, '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')
     GROUP BY oit.outer_order_no, cu_t.coupon_no_array, cu_t.order_time;
