@@ -30,6 +30,7 @@ INSERT INTO cdm_crm.order_grade_log_detail
             WHEN 11 THEN '金卡会员'
             WHEN 8 THEN '黑卡会员'
         ELSE NULL END                                                      AS after_grade_name,
+        mgl.grade_change_time                                              AS last_grade_change_time,
         IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0,
             IF(after_grade_id > before_grade_id AND mgl.before_grade_id IN (5, 9, 13)
                 AND mgl.before_grade_id IS NOT NULL AND mgl.after_grade_id IS NOT NULL, '升级', '未升级'

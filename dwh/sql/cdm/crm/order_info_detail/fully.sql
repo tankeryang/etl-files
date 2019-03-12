@@ -38,6 +38,18 @@ INSERT INTO cdm_crm.order_info_detail
         oi.outer_order_no                                                 AS outer_order_no,
         oi.member_no                                                      AS member_no,
         oi.order_grade                                                    AS member_grade_id,
+        CASE oi.order_grade
+            WHEN 13 THEN '普通会员'
+            WHEN 9 THEN '普通会员'
+            WHEN 5 THEN '普通会员'
+            WHEN 14 THEN 'VIP会员'
+            WHEN 44 THEN 'SVIP会员'
+            WHEN 10 THEN '银卡会员'
+            WHEN 6 THEN '银卡会员'
+            WHEN 11 THEN '金卡会员'
+            WHEN 7 THEN '金卡会员'
+            WHEN 8 THEN '黑卡会员'
+        ELSE '非会员' END                                                  AS member_grade_type,
         -- 是否会员
         IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0,
             '会员', '非会员')                                               AS member_type,
@@ -116,8 +128,8 @@ INSERT INTO cdm_crm.order_info_detail
             ocid.order_fact_amount_include_coupon, oi.order_fact_amount)
             AS DECIMAL(18, 2))                                           AS order_coupon_denomination,
         mi.member_register_time                                          AS member_register_time,
-        -- IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0,
-        --     ogl.grade_change_time, NULL)                                 AS last_grade_change_time,
+        IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0,
+            ogl.grade_change_time, NULL)                                 AS last_grade_change_time,
         oi.order_deal_time                                               AS order_deal_time,
         DATE(oi.order_deal_time)                                         AS order_deal_date,
         localtimestamp                                                   AS create_time
