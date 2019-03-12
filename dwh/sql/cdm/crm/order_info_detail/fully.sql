@@ -69,7 +69,7 @@ INSERT INTO cdm_crm.order_info_detail
             IF(mi.member_manage_store LIKE '%WWW%', '官网', '门店'), NULL) AS member_register_type,
         -- 招募会员-有消费会员类型
         IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0,
-            IF(oi.order_grade IN (13, 9, 5) AND DATE(ogl.grade_change_time) = DATE(oi.order_deal_time),
+            IF(oi.order_grade IN (13, 9, 5) AND ogl.normal_upgrade_type = '升级',
                 '升级', CASE oi.order_grade
                 WHEN 13 THEN '普通会员'
                 WHEN 9  THEN '普通会员'
@@ -116,8 +116,8 @@ INSERT INTO cdm_crm.order_info_detail
             ocid.order_fact_amount_include_coupon, oi.order_fact_amount)
             AS DECIMAL(18, 2))                                           AS order_coupon_denomination,
         mi.member_register_time                                          AS member_register_time,
-        IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0,
-            ogl.grade_change_time, NULL)                                 AS last_grade_change_time,
+        -- IF(COALESCE(TRY_CAST(oi.member_no AS INTEGER), 0) > 0,
+        --     ogl.grade_change_time, NULL)                                 AS last_grade_change_time,
         oi.order_deal_time                                               AS order_deal_time,
         DATE(oi.order_deal_time)                                         AS order_deal_date,
         localtimestamp                                                   AS create_time

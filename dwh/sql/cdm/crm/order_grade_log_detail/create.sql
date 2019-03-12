@@ -13,7 +13,6 @@ CREATE TABLE cdm_crm.order_grade_log_detail (
     before_grade_name   VARCHAR,
     after_grade_id      INTEGER,
     after_grade_name    VARCHAR,
-    grade_change_time   TIMESTAMP,
     normal_upgrade_type VARCHAR    COMMENT '普通升级到更高等级',
     upgrade_type        VARCHAR    COMMENT '纯升级'
 );
