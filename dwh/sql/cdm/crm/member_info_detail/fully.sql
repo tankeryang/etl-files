@@ -46,7 +46,13 @@ INSERT INTO cdm_crm.member_info_detail
         mi.member_will_score             AS member_will_score,
         mi.member_coupon_denomination    AS member_coupon_denomination,
         mfo.order_deal_time              AS member_first_order_time,
+        CASE
+            WHEN mfo.order_deal_time >= localtimestamp - interval '1' year THEN mfo.order_deal_time
+        ELSE NULL END                    AS member_first_order_time_ty,
         mlo.order_deal_time              AS member_last_order_time,
+        CASE
+            WHEN mlo.order_deal_time >= localtimestamp - interval '1' year THEN mlo.order_deal_time
+        ELSE NULL END                    AS member_last_order_time_ty,
         mi.member_status                 AS member_status,
         mi.member_ec_status              AS member_ec_status,
         mi.modify_time                   AS modify_time,
