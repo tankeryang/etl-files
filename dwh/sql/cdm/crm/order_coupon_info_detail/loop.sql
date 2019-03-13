@@ -28,4 +28,4 @@ INSERT INTO cdm_crm.order_coupon_info_detail
     LEFT JOIN cu_t ON cu_t.outer_order_no = oit.outer_order_no
     WHERE cu_t.order_deal_time > (SELECT MAX(order_time) FROM cdm_crm.order_coupon_info_detail)
         AND cu_t.order_deal_time < DATE_PARSE(DATE_FORMAT(localtimestamp, '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')
-    GROUP BY oit.outer_order_no, cu_t.coupon_no_array, cu_t.order_deal_time;
+    GROUP BY oit.outer_order_no, cu_t.coupon_no_array, cu_t.coupon_category, cu_t.order_deal_time;
