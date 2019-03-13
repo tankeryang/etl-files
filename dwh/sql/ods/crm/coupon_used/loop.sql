@@ -1,5 +1,5 @@
 INSERT INTO ods_crm.coupon_used
-    SELECT
+    SELECT DISTINCT
         coupon_no,
         status,
         outer_order_no,

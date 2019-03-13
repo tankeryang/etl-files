@@ -1,5 +1,5 @@
 INSERT INTO ods_crm.member_grade_log
-    SELECT
+    SELECT DISTINCT
         log_id,
         brand_code,
         member_no,

@@ -1,5 +1,5 @@
 INSERT INTO ods_crm.order_item
-    SELECT
+    SELECT DISTINCT
         oif.brand_code,
         oif.member_no,
         CAST(oit.order_item_no AS VARCHAR),

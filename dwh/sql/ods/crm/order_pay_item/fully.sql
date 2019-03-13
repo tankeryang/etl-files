@@ -2,7 +2,7 @@ DELETE FROM ods_crm.order_pay_item;
 
 
 INSERT INTO ods_crm.order_pay_item
-    SELECT
+    SELECT DISTINCT
         opi.pay_item_id,
         opi.order_id,
         opi.order_from,

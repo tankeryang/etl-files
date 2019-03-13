@@ -1,5 +1,5 @@
 INSERT INTO ods_crm.order_info
-    SELECT
+    SELECT DISTINCT
         order_id,
         outer_order_no,
         CAST(order_from AS VARCHAR),
