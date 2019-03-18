@@ -17,11 +17,11 @@ INSERT INTO cdm_crm.member_info_detail
         mi.member_manage_store           AS store_code,
         si.store_name                    AS store_name,
         si.sales_mode                    AS sales_mode,
-        (CASE si.store_type
+        CASE si.store_type
             WHEN 'BH' THEN '百货'
             WHEN 'ZMD' THEN '专卖店'
             WHEN 'MALL' THEN 'MALL'
-        ELSE NULL END)                   AS store_type,
+        ELSE NULL END                    AS store_type,
         si.store_level                   AS store_level,
         si.channel_type                  AS channel_type,
         mi.member_wechat_id              AS member_wechat_id,
@@ -36,8 +36,10 @@ INSERT INTO cdm_crm.member_info_detail
         mi.member_mobile                 AS member_mobile,
         mi.member_email                  AS member_email,
         mi.member_reg_source             AS member_reg_source,
+        mi.member_manage_clerk           AS member_manage_clerk,
         mi.member_register_store         AS member_register_store,
         mi.member_register_time          AS member_register_time,
+        mi.member_register_clerk         AS member_register_clerk,
         mi.member_grade_id               AS member_grade_id,
         mi.member_grade_name             AS member_grade_name,
         mi.member_grade_begin            AS member_grade_begin,
