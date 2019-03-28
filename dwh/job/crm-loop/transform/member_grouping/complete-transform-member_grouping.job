@@ -1,4 +1,0 @@
-type=command
-command=echo complete-transform-rfm_base
-
-dependencies=transform-member_first_consumption,transform-member_last_consumption,transform-member_cumulative_consumption

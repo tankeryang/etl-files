@@ -1,6 +1,0 @@
-type=command
-command=${cmd}
-
-sql.dir=order_info
-
-dependencies=extract-order_item,extract-coupon_info

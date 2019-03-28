@@ -1,4 +1,0 @@
-type=command
-command=echo complete-load-rfm_base
-
-dependencies=load-rfm_base

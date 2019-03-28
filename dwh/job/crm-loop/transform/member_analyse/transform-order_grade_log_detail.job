@@ -1,4 +1,0 @@
-type=command
-command=${cmd}
-
-sql.dir=order_grade_log_detail

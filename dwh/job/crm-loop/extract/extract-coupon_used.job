@@ -1,6 +1,0 @@
-type=command
-command=${cmd}
-
-sql.dir=coupon_used
-
-dependencies=extract-store_info

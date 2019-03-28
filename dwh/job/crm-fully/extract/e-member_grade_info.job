@@ -1,0 +1,5 @@
+type=command
+command=${cmd.fully}
+
+sqoop.table=member_grade_info
+sqoop.hive.table=member_grade_info

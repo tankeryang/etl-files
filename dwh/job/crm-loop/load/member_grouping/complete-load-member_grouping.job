@@ -1,4 +1,0 @@
-type=command
-command=echo complete-load-member_grouping
-
-dependencies=load-member_grouping_info_detail,load-member_cumulative_consumption_max_date

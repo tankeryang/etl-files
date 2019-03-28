@@ -1,1 +1,0 @@
-SELECT ARRAY[current_date] AS c_date;

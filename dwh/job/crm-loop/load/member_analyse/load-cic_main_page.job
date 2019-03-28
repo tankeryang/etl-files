@@ -1,6 +1,0 @@
-type=command
-command=${cmd}
-
-sql.dir=cic_main_page
-
-dependencies=load-member_register_detail

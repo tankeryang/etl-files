@@ -1,6 +1,0 @@
-type=command
-command=${cmd}
-
-sql.dir=member_grade_log
-
-dependencies=extract-member_info

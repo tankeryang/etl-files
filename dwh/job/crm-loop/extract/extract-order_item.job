@@ -1,6 +1,0 @@
-type=command
-command=${cmd}
-
-sql.dir=order_item
-
-dependencies=extract-member_grade_log

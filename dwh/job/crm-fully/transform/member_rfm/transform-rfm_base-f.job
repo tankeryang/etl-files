@@ -1,9 +1,0 @@
-type=command
-command=${phcmd}
-
-sql.dir=rfm_base
-sql.names=fully-f
-
-placeholder.config=fully-f:fully-f-placeholders
-
-dependencies=transform-duration_rfm_conf,transform-member_rfm,transform-rfm_base

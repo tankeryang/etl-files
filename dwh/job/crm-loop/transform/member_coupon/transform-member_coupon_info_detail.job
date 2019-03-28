@@ -1,4 +1,0 @@
-type=command
-command=${cmd}
-
-sql.dir=member_coupon_info_detail

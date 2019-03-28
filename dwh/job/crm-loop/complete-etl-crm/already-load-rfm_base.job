@@ -1,4 +1,0 @@
-type=flow
-flow.name=complete-load-rfm_base
-
-dependencies=already-transform-rfm_base

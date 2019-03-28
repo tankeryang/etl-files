@@ -1,7 +1,0 @@
-type=command
-command=${phcmd}
-
-sql.dir=member_structure_duration_member_recency
-placeholder.config=fully:fully-placeholders
-
-dependencies=transform-member_structure_duration_order_store

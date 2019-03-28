@@ -1,4 +1,0 @@
-type=command
-command=echo complete-etl-crm_member_structure
-
-dependencies=already-load-member_structure

@@ -1,4 +1,0 @@
-type=command
-command=${cmd}
-
-sql.dir=store_info_detail

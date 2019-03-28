@@ -1,4 +1,0 @@
-type=command
-command=echo complete-etl-crm-member_grouping
-
-dependencies=already-load-member_grouping

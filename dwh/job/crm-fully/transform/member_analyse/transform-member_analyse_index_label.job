@@ -1,6 +1,0 @@
-type=command
-command=${cmd}
-
-sql.dir=member_analyse_index_label
-
-dependencies=transform-order_info_detail

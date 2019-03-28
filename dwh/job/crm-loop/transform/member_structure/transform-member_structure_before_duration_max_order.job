@@ -1,9 +1,0 @@
-type=command
-command=${phcmd}
-
-sql.dir=member_structure_before_duration_max_order
-sql.names=create fully
-
-placeholder.config=fully:fully-placeholders
-
-dependencies=transform-member_structure_duration

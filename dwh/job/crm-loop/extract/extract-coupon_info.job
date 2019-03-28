@@ -1,7 +1,0 @@
-type=command
-command=${cmd}
-
-sql.dir=coupon_info
-sql.names=fully
-
-dependencies=extract-member_grade_log
