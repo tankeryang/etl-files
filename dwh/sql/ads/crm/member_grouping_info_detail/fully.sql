@@ -13,6 +13,7 @@ INSERT INTO ads_crm.member_grouping_info_detail
             WHEN mi.member_status = 1 AND mi.member_ec_status = 1 THEN '正常'
             WHEN mi.member_ec_status = -1 THEN '作废'
             WHEN mi.member_status = -1 THEN '异常卡'
+            WHEN member_ec_status = 0 THEN '未激活'
         ELSE NULL END,
         DATE(mi.member_register_time),
         CASE
