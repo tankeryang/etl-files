@@ -1,4 +1,4 @@
 type=command
 command=echo complete-extract-to-ods_crm
 
-dependencies=extract-coupon_used
+dependencies=extract-feedback_customer_contact_log
