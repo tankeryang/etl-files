@@ -1,0 +1,6 @@
+type=command
+command=${cmd}
+
+sql.dir=feedback_customer_contact_log
+
+dependencies=extract-coupon_used

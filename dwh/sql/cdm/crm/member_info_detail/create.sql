@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS cdm_crm.member_info_detail (
     member_first_order_time_ty  TIMESTAMP,
     member_last_order_time      TIMESTAMP,
     member_last_order_time_ty   TIMESTAMP,
+    member_last_feedback_time   TIMESTAMP,
     member_status               INTEGER,
     member_ec_status            INTEGER,
     modify_time                 TIMESTAMP,
