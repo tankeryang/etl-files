@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_grouping_info_detail (
     member_status                         VARCHAR        COMMENT '会员状态(正常/作废/异常卡)',
     member_register_date                  DATE           COMMENT '会员注册时间',
     member_manage_store                   VARCHAR        COMMENT '会员管理门店',
+    member_manage_store_operation_status  VARCHAR        COMMENT '会员管理门店状态',
     member_register_store                 VARCHAR        COMMENT '会员注册门店',
     member_reg_source                     VARCHAR        COMMENT '会员注册渠道',
     member_is_batch_mobile                INTEGER        COMMENT '会员是否绑定手机(1:是/0:否)',

@@ -20,6 +20,7 @@ INSERT INTO ads_crm.member_grouping_info_detail
             WHEN mi.store_code LIKE '%WWW%' THEN '官网'
             WHEN mi.store_code IS NULL THEN '其他'
         ELSE mi.store_code END,
+        mi.operation_status,
         CASE
             WHEN mi.member_register_store LIKE '%WWW%' THEN '官网'
             WHEN mi.member_register_store IS NULL THEN '其他'

@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS cdm_crm.member_info_detail (
     store_type                  VARCHAR,
     store_level                 VARCHAR,
     channel_type                VARCHAR,
+    operation_status            VARCHAR,
     member_wechat_id            VARCHAR,
     member_taobao_nick          VARCHAR,
     member_code                 VARCHAR,

@@ -24,6 +24,7 @@ INSERT INTO cdm_crm.member_info_detail
         ELSE NULL END                    AS store_type,
         si.store_level                   AS store_level,
         si.channel_type                  AS channel_type,
+        si.operation_state               AS operation_status,
         mi.member_wechat_id              AS member_wechat_id,
         mi.member_taobao_nick            AS member_taobao_nick,
         mi.member_code                   AS member_code,
