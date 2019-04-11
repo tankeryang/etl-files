@@ -1,4 +1,4 @@
 type=command
 command=echo complete-extract-to-test_ods_crm
 
-dependencies=e-member_grade_info
+dependencies=e-store_info

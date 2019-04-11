@@ -1,5 +1,4 @@
 type=command
-command=${cmd.fully}
+command=${cmd.sqoop.job.exec}
 
-sqoop.table=store_info
-sqoop.hive.table=store_info
+sqoop.job.name=e-store_info-fully

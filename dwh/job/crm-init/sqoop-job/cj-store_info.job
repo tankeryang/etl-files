@@ -1,0 +1,6 @@
+type=command
+command=${cmd.sqoop.job.create.fully}
+
+sqoop.job.name=e-store_info-fully
+sqoop.table=store_info
+sqoop.hcatalog.table=store_info
