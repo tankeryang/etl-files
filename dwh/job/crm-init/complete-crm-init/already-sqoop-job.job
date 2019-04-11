@@ -1,0 +1,4 @@
+type=flow
+flow.name=complete-sqoop-job
+
+dependencies=already-hive-create

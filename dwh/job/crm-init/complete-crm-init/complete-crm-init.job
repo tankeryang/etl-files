@@ -1,0 +1,4 @@
+type=command
+command=echo complete-crm-init
+
+dependencies=already-sqoop-job
