@@ -1,4 +1,4 @@
 type=command
 command=${cmd.shell}
 
-etl-file.git.filename=ct-store_info.hql
+hql.git.filename=ct-store_info.hql
