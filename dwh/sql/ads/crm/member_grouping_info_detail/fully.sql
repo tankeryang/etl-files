@@ -33,6 +33,8 @@ INSERT INTO ads_crm.member_grouping_info_detail
         DATE(mi.member_grade_expiration),
         mi.member_score,
         mi.member_will_score,
+        DATE(mi.member_last_feedback_time),
+        mi.member_last_feedback_time,
         mfc.consumption_date,
         mfc.consumption_gap,
         mfc.store_code,
