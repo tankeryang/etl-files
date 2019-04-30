@@ -57,6 +57,7 @@ INSERT INTO cdm_crm.member_info_detail
             WHEN mlo.order_deal_time >= localtimestamp - interval '1' year THEN mlo.order_deal_time
         ELSE NULL END                    AS member_last_order_time_ty,
         mlf.feedback_time                AS member_last_feedback_time,
+        mlgct.last_grade_change_time     AS member_last_grade_change_time,
         mi.member_status                 AS member_status,
         mi.member_ec_status              AS member_ec_status,
         mi.modify_time                   AS modify_time,
@@ -68,4 +69,5 @@ INSERT INTO cdm_crm.member_info_detail
     LEFT JOIN cdm_cms_si_bn ON mi.brand_code = cdm_cms_si_bn.brand_code
     LEFT JOIN cdm_crm.member_first_order mfo ON mi.member_no = mfo.member_no AND mfo.brand_code = mi.brand_code
     LEFT JOIN cdm_crm.member_last_order mlo ON mi.member_no = mlo.member_no AND mlo.brand_code = mi.brand_code
-    LEFT JOIN cdm_crm.member_last_feedback_time mlf ON mi.member_no = mlf.member_no AND mi.brand_code = mlf.brand_code;
+    LEFT JOIN cdm_crm.member_last_feedback_time mlf ON mi.member_no = mlf.member_no AND mi.brand_code = mlf.brand_code
+    LEFT JOIN cdm_crm.member_last_grade_change_time mlgct ON mi.member_no = mlgct.member_no AND mi.brand_code = mlgct.brand_code;

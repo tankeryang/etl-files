@@ -3,4 +3,4 @@ command=${cmd}
 
 sql.dir=member_info_detail
 
-dependencies=transform-store_info_detail,transform-member_first_order,transform-member_last_order,transform-member_last_feedback_time
+dependencies=transform-store_info_detail,transform-member_first_order,transform-member_last_order,transform-member_last_feedback_time,transform-member_last_grade_change_time

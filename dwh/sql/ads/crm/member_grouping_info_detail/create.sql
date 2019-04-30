@@ -27,6 +27,8 @@ CREATE TABLE IF NOT EXISTS ads_crm.member_grouping_info_detail (
     member_will_score                     DECIMAL(11, 2) COMMENT '会员未到账积分',
     member_last_feedback_date             DATE           COMMENT '会员最近一次回访日期',
     member_last_feedback_time             TIMESTAMP      COMMENT '会员最近一次回放时间',
+    member_last_grade_change_date         DATE           COMMENT '会员最近一次等级变动日期',
+    member_last_grade_change_time         TIMESTAMP      COMMENT '会员最近一次等级变动时间',
     -- 最近消费
     lst_consumption_date                  DATE           COMMENT '最近消费日期',
     lst_consumption_gap                   INTEGER        COMMENT '最近消费间隙(最近一次消费时间距离今天的间隔天数)',
