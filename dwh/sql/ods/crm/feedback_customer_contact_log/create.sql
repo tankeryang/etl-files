@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS ods_crm.feedback_customer_contact_log (
     contact_log_id           INTEGER,
     clerk_id                 VARCHAR,
     member_no                VARCHAR,
-    feedback_intention       INTEGER,
+    feedback_intention       VARCHAR,
     feedback_time            TIMESTAMP,
     store_code               VARCHAR,
     after_shopping_count     INTEGER,
