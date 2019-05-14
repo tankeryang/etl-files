@@ -1,6 +1,7 @@
 type=command
 command=${cmd.sqoop.job.create.fully}
 
-sqoop.job.name=e-store_info-fully
+sqoop.hcatalog.database=test_dim_crm
+sqoop.job.name=e-test_dim_crm-dim_store_info-fully
 sqoop.table=store_info
-sqoop.hcatalog.table=store_info
+sqoop.hcatalog.table=dim_store_info

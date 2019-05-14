@@ -1,4 +1,0 @@
-type=command
-command=${cmd.shell}
-
-hql.git.filename=ct-store_info.hql
