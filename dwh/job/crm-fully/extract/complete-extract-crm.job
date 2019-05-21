@@ -1,4 +1,4 @@
 type=command
-command=echo complete-extract-to-test_ods_crm
+command=echo complete-extract
 
-dependencies=e-store_info
+dependencies=e-test_dim_crm-dim_store_info-fully

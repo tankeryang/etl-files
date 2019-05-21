@@ -1,4 +1,0 @@
-type=command
-command=${cmd.sqoop.job.exec}
-
-sqoop.job.name=e-store_info-fully

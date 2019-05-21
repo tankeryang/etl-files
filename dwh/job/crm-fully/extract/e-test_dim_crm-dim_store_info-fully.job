@@ -1,0 +1,4 @@
+type=command
+command=${cmd.sqoop.job.exec}
+
+sqoop.job.name=e-test_dim_crm-dim_store_info-fully
