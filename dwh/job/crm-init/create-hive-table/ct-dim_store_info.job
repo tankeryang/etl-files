@@ -1,6 +1,6 @@
 type=command
 command=${cmd.shell}
 
-hql.model.layer=test_ods
+hql.model.layer=test_dim
 hql.model.domain=crm
 hql.git.filename=ct-dim_store_info.hql
