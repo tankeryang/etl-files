@@ -50,7 +50,8 @@ CREATE TABLE IF NOT EXISTS test_ods_crm.member_info (
     brand_code                 STRING,
     recommend_member_no        STRING,
     trigger_type               STRING,
-    taobao_nick                STRING
+    taobao_nick                STRING,
+    union_id                   STRING
 )
 ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.orc.OrcSerde'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.orc.OrcInputFormat'
