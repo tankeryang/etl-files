@@ -1,4 +1,0 @@
-type=command
-command=echo complete-sqoop-job
-
-dependencies=cj-store_info
