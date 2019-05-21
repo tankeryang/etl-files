@@ -1,0 +1,8 @@
+type=command
+command=${cmd.sqoop.job.create.fully}
+
+sqoop.hcatalog.database=test_ods_crm
+sqoop.job.name=e-test_ods_crm-order_info-fully
+sqoop.table=order_info
+sqoop.hcatalog.table=order_info
+sqoop.split.by=order_id

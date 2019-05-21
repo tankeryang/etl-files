@@ -1,0 +1,6 @@
+type=command
+command=${cmd.shell}
+
+hql.model.layer=test_ods
+hql.model.domain=crm
+hql.git.filename=ct-order_info.hql

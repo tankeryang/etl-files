@@ -5,3 +5,4 @@ sqoop.hcatalog.database=test_ods_crm
 sqoop.job.name=e-test_ods_crm-member_info-fully
 sqoop.table=member_info
 sqoop.hcatalog.table=member_info
+sqoop.split.by=member_id

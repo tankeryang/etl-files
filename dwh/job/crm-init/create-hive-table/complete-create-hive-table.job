@@ -1,4 +1,4 @@
 type=command
 command=echo complete-hive-create
 
-dependencies=ct-dim_store_info,ct-member_info
+dependencies=ct-dim_store_info,ct-member_info,ct-order_info,ct-member_grade_info
