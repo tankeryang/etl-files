@@ -2,8 +2,8 @@ type=command
 command=${cmd.sqoop.job.create.fully}
 
 sqoop.hcatalog.database=test_ods_crm
-sqoop.job.name=e-test_ods_crm-order_info-fully
-sqoop.table=order_info
+sqoop.job.name=e-test_ods_crm-order_item-fully
+sqoop.table=order_item
 sqoop.import.conditions=--where "brand_code IN ('2', '3' ,'6')"
-sqoop.hcatalog.table=order_info
-sqoop.split.by=order_id
+sqoop.hcatalog.table=order_item
+sqoop.split.by=order_item_no
