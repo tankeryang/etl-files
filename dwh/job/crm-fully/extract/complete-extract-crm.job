@@ -1,4 +1,4 @@
 type=command
 command=echo complete-extract
 
-dependencies=e-test_dim_crm-dim_store_info-fully
+dependencies=e-test_dim_crm-dim_store_info-fully,e-test_ods_crm-member_info-fully,e-test_ods_crm-member_grade_info-fully,e-test_ods_crm-order_info-fully,e-test_ods_crm-order_item-fully

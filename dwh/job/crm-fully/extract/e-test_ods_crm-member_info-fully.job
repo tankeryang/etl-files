@@ -1,0 +1,4 @@
+type=command
+command=${cmd.sqoop.job.exec}
+
+sqoop.job.name=e-test_ods_crm-member_info-fully

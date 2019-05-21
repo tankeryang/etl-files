@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS test_ods_crm.order_item (
     pos_discount_amount DECIMAL(18, 2),
     pos_input_type      STRING
 )
-PARTITIONED BY (brand_code STRING)
 ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.orc.OrcSerde'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.orc.OrcInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.orc.OrcOutputFormat'

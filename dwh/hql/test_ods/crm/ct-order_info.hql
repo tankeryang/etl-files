@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS test_ods_crm.order_info (
     outer_order_no        STRING         COMMENT '外部订单号',
     order_from            STRING         COMMENT '订单来源(1=线上/2=线下)',
     trade_source          STRING         COMMENT '系统来源(fpos/ipos...)',
-    brand_code            STRING,
     store_code            STRING,
     order_deal_time       TIMESTAMP,
     member_no             STRING,

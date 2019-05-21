@@ -1,4 +1,4 @@
 type=command
 command=echo complete-create-sqoop-job
 
-dependencies=cj-dim_store_info,cj-member_info,cj-order_info,cj-member_grade_info
+dependencies=cj-dim_store_info,cj-member_info,cj-order_info,cj-member_grade_info,cj-order_item
