@@ -1,7 +1,7 @@
 CREATE SCHEMA IF NOT EXISTS test_ods_crm;
 
 
-DROP TABLE IF EXISTS test_ods_crm.order_info;
+DROP TABLE IF EXISTS test_ods_crm.order_item;
 
 
 CREATE TABLE IF NOT EXISTS test_ods_crm.order_item (
