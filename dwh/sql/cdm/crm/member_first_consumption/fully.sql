@@ -27,7 +27,9 @@ INSERT INTO cdm_crm.member_first_consumption
     SELECT DISTINCT
         mft.member_no,
         mft.brand_code,
-        mft.store_code,
+        CASE
+            WHEN mft.store_code LIKE 'WWW%' THEN '官网'
+        ELSE mft.store_code END,
         CAST(SUM(oi.order_fact_amount) AS DECIMAL(18, 2)) AS consumption_amount,
         CAST(SUM(oi.order_fact_amount_include_coupon) AS DECIMAL(18, 2)) AS consumption_amount_include_coupon,
         CAST(SUM(oi.order_item_quantity) AS INTEGER) AS consumption_item_quantity,
